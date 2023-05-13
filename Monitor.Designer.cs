@@ -46,11 +46,11 @@
             this.LblSistemStatus = new System.Windows.Forms.Label();
             this.PbSistemStatus = new System.Windows.Forms.PictureBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.BtnConsultarAccesos = new System.Windows.Forms.Button();
             this.BtnAddAcceso = new System.Windows.Forms.Button();
             this.BtnAlarma = new System.Windows.Forms.Button();
             this.BtnCerrar = new System.Windows.Forms.Button();
             this.BtnAbrir = new System.Windows.Forms.Button();
-            this.BtnConsultarAccesos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TbUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -91,9 +91,11 @@
             // RtbSerialMonitor
             // 
             this.RtbSerialMonitor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.RtbSerialMonitor.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RtbSerialMonitor.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RtbSerialMonitor.Location = new System.Drawing.Point(6, 19);
             this.RtbSerialMonitor.Name = "RtbSerialMonitor";
+            this.RtbSerialMonitor.ReadOnly = true;
+            this.RtbSerialMonitor.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.RtbSerialMonitor.Size = new System.Drawing.Size(764, 184);
             this.RtbSerialMonitor.TabIndex = 0;
             this.RtbSerialMonitor.Text = "";
@@ -204,6 +206,16 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Controles";
             // 
+            // BtnConsultarAccesos
+            // 
+            this.BtnConsultarAccesos.Location = new System.Drawing.Point(6, 177);
+            this.BtnConsultarAccesos.Name = "BtnConsultarAccesos";
+            this.BtnConsultarAccesos.Size = new System.Drawing.Size(156, 28);
+            this.BtnConsultarAccesos.TabIndex = 4;
+            this.BtnConsultarAccesos.Text = "Consultar Accesos";
+            this.BtnConsultarAccesos.UseVisualStyleBackColor = true;
+            this.BtnConsultarAccesos.Click += new System.EventHandler(this.BtnConsultarAccesos_Click);
+            // 
             // BtnAddAcceso
             // 
             this.BtnAddAcceso.Location = new System.Drawing.Point(6, 143);
@@ -244,17 +256,7 @@
             this.BtnAbrir.UseVisualStyleBackColor = true;
             this.BtnAbrir.Click += new System.EventHandler(this.BtnAbrir_Click);
             // 
-            // BtnConsultarAccesos
-            // 
-            this.BtnConsultarAccesos.Location = new System.Drawing.Point(6, 177);
-            this.BtnConsultarAccesos.Name = "BtnConsultarAccesos";
-            this.BtnConsultarAccesos.Size = new System.Drawing.Size(156, 28);
-            this.BtnConsultarAccesos.TabIndex = 4;
-            this.BtnConsultarAccesos.Text = "Consultar Accesos";
-            this.BtnConsultarAccesos.UseVisualStyleBackColor = true;
-            this.BtnConsultarAccesos.Click += new System.EventHandler(this.BtnConsultarAccesos_Click);
-            // 
-            // Form1
+            // Monitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -263,8 +265,12 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
+            this.MaximumSize = new System.Drawing.Size(816, 489);
+            this.MinimumSize = new System.Drawing.Size(816, 489);
+            this.Name = "Monitor";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Monitor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TbUsuarios)).EndInit();

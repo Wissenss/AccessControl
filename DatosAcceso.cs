@@ -18,7 +18,7 @@ namespace AccessControl
 
         private readonly SerialPort puertoSerial;
 
-        private delegate void SetClave(string nuevaClave);
+        public delegate void SetClave(string nuevaClave);
 
         public DatosAcceso(SerialPort puerto)
         {
@@ -33,9 +33,9 @@ namespace AccessControl
             Clave = TxbClave.Text;
         }
 
-        public void On_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        public void On_DataReceived(object sender, SerialDataReceivedEventArgs e, string data)
         {
-            string data = puertoSerial.ReadLine();
+            //string data = puertoSerial.ReadLine();
 
             if (data.Trim().StartsWith("UID: "))
             {

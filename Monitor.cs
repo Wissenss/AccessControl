@@ -23,6 +23,8 @@ namespace AccessControl
         private delegate void SetTextDeleg(string stringData, bool isIncoming);
         private delegate void SetSistemStatus(string incomingStatus);
 
+        public DatosAcceso datosAcceso = null;
+
         public Monitor()
         {
             InitializeComponent();
@@ -62,7 +64,7 @@ namespace AccessControl
 
         private void BtnAlarma_Click(object sender, EventArgs e)
         {
-            if(! alarmaActivada)
+            if(!alarmaActivada)
             {
                 puertoSerial.Write("SoundAlarm");
                 WriteToSerialMonitor("SoundAlarm", false);
@@ -80,11 +82,11 @@ namespace AccessControl
 
         private void BtnAddAcceso_Click(object sender, EventArgs e)
         {
-            addingAccess = true; 
-            using (DatosAcceso datosAcceso = new DatosAcceso(puertoSerial))
+            addingAccess = true;
+            using (datosAcceso = new DatosAcceso(puertoSerial))
             {
-                SerialDataReceivedEventHandler eventHandler = new SerialDataReceivedEventHandler(datosAcceso.On_DataReceived);
-                puertoSerial.DataReceived += eventHandler;
+                //SerialDataReceivedEventHandler eventHandler = new SerialDataReceivedEventHandler(datosAcceso.On_DataReceived);
+                //puertoSerial.DataReceived += eventHandler;
 
                 if (datosAcceso.ShowDialog() == DialogResult.OK)
                 {
@@ -96,14 +98,21 @@ namespace AccessControl
                     TbUsuarios.EndLoadData();
                 }
 
-                puertoSerial.DataReceived -= eventHandler;
+                //puertoSerial.DataReceived -= eventHandler;
+                //eventHandler = null;
             }
             addingAccess = false;
         }
 
         private void BtnConsultarAccesos_Click(object sender, EventArgs e)
         {
-
+            using(CatalogoAcceso catalog = new CatalogoAcceso(dataSet))
+            {
+                if(catalog.ShowDialog() == DialogResult.OK)
+                {
+                    dataSet = catalog.dataSet;
+                }
+            }
         }
 
         private void On_DataReceived(object sender, SerialDataReceivedEventArgs e) // Multi-thread!
@@ -126,6 +135,10 @@ namespace AccessControl
                     puertoSerial.Write("Close");
                 }
             }
+            else if(datosAcceso != null && addingAccess)
+            {
+                datosAcceso.On_DataReceived(sender, e, data);
+            }
 
             this.BeginInvoke(new SetSistemStatus(UpdateSistemStatus), new object[] { data });
         }
@@ -135,6 +148,9 @@ namespace AccessControl
             string dataOrigin = isIncoming ? "Incoming" : "Outgoing";
 
             RtbSerialMonitor.Text = RtbSerialMonitor.Text + String.Format("{0}: {1}\n", dataOrigin, stringData);
+
+            RtbSerialMonitor.SelectionStart = RtbSerialMonitor.Text.Length;
+            RtbSerialMonitor.ScrollToCaret();
         }
 
         private void UpdateSistemStatus(string incomingStatus)
@@ -148,11 +164,15 @@ namespace AccessControl
             {
                 PbSistemStatus.Image = AccessControl.Properties.Resources.Door_Open;
                 LblSistemStatus.Text = "Abierto";
+                BtnAlarma.Text = "ProbarAlarma";
+                alarmaActivada = false;
             }
             else if (incomingStatus.Equals("Close called"))
             {
                 PbSistemStatus.Image = AccessControl.Properties.Resources.Door_Close;
                 LblSistemStatus.Text = "Cerrado";
+                BtnAlarma.Text = "ProbarAlarma";
+                alarmaActivada = false;
             }
             else if (incomingStatus.Equals("SoundAlarm called"))
             {

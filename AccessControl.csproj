@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogoAcceso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CatalogoAcceso.Designer.cs">
+      <DependentUpon>CatalogoAcceso.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatosAcceso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CatalogoAcceso.resx">
+      <DependentUpon>CatalogoAcceso.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DatosAcceso.resx">
       <DependentUpon>DatosAcceso.cs</DependentUpon>
     </EmbeddedResource>
