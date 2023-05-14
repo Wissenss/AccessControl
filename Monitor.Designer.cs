@@ -51,6 +51,12 @@
             this.BtnAlarma = new System.Windows.Forms.Button();
             this.BtnCerrar = new System.Windows.Forms.Button();
             this.BtnAbrir = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.LblEstadoSolicitud = new System.Windows.Forms.Label();
+            this.LblUIDIndicator = new System.Windows.Forms.Label();
+            this.LblUID = new System.Windows.Forms.Label();
+            this.LblNombreIndicator = new System.Windows.Forms.Label();
+            this.LblNombre = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TbUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -58,6 +64,7 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbSistemStatus)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataSet
@@ -168,7 +175,7 @@
             this.groupBox3.Controls.Add(this.PbSistemStatus);
             this.groupBox3.Location = new System.Drawing.Point(186, 227);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(428, 211);
+            this.groupBox3.Size = new System.Drawing.Size(428, 105);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Estado del Sistema";
@@ -256,19 +263,83 @@
             this.BtnAbrir.UseVisualStyleBackColor = true;
             this.BtnAbrir.Click += new System.EventHandler(this.BtnAbrir_Click);
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.LblNombre);
+            this.groupBox5.Controls.Add(this.LblNombreIndicator);
+            this.groupBox5.Controls.Add(this.LblUID);
+            this.groupBox5.Controls.Add(this.LblUIDIndicator);
+            this.groupBox5.Controls.Add(this.LblEstadoSolicitud);
+            this.groupBox5.Location = new System.Drawing.Point(186, 333);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(428, 105);
+            this.groupBox5.TabIndex = 6;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Último Acceso";
+            // 
+            // LblEstadoSolicitud
+            // 
+            this.LblEstadoSolicitud.AutoSize = true;
+            this.LblEstadoSolicitud.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblEstadoSolicitud.Location = new System.Drawing.Point(6, 16);
+            this.LblEstadoSolicitud.Name = "LblEstadoSolicitud";
+            this.LblEstadoSolicitud.Size = new System.Drawing.Size(0, 24);
+            this.LblEstadoSolicitud.TabIndex = 2;
+            // 
+            // LblUIDIndicator
+            // 
+            this.LblUIDIndicator.AutoSize = true;
+            this.LblUIDIndicator.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUIDIndicator.Location = new System.Drawing.Point(7, 52);
+            this.LblUIDIndicator.Name = "LblUIDIndicator";
+            this.LblUIDIndicator.Size = new System.Drawing.Size(37, 13);
+            this.LblUIDIndicator.TabIndex = 3;
+            this.LblUIDIndicator.Text = "UID: ";
+            // 
+            // LblUID
+            // 
+            this.LblUID.AutoSize = true;
+            this.LblUID.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblUID.Location = new System.Drawing.Point(68, 52);
+            this.LblUID.Name = "LblUID";
+            this.LblUID.Size = new System.Drawing.Size(43, 13);
+            this.LblUID.TabIndex = 4;
+            this.LblUID.Text = "ABC123";
+            // 
+            // LblNombreIndicator
+            // 
+            this.LblNombreIndicator.AutoSize = true;
+            this.LblNombreIndicator.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNombreIndicator.Location = new System.Drawing.Point(7, 71);
+            this.LblNombreIndicator.Name = "LblNombreIndicator";
+            this.LblNombreIndicator.Size = new System.Drawing.Size(55, 13);
+            this.LblNombreIndicator.TabIndex = 5;
+            this.LblNombreIndicator.Text = "Nombre: ";
+            // 
+            // LblNombre
+            // 
+            this.LblNombre.AutoSize = true;
+            this.LblNombre.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNombre.Location = new System.Drawing.Point(68, 71);
+            this.LblNombre.Name = "LblNombre";
+            this.LblNombre.Size = new System.Drawing.Size(49, 13);
+            this.LblNombre.TabIndex = 6;
+            this.LblNombre.Text = "wissens";
+            // 
             // Monitor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(816, 489);
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "Monitor";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Monitor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -281,6 +352,8 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbSistemStatus)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -308,6 +381,12 @@
         private System.Windows.Forms.Label LblPuertoFrecuencia;
         private System.Windows.Forms.Label LblPuertoNombre;
         private System.Windows.Forms.Button BtnConsultarAccesos;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label LblEstadoSolicitud;
+        private System.Windows.Forms.Label LblUIDIndicator;
+        private System.Windows.Forms.Label LblNombre;
+        private System.Windows.Forms.Label LblNombreIndicator;
+        private System.Windows.Forms.Label LblUID;
     }
 }
 

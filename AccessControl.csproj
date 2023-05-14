@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -106,6 +109,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Alarm_Bell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ControlAccess.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ControlAccess.ico" />
+    <Content Include="icon.ico" />
+    <None Include="Resources\icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -102,6 +102,8 @@
             this.Controls.Add(this.TxbClave);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TxbNombre);
+            this.MaximumSize = new System.Drawing.Size(422, 142);
+            this.MinimumSize = new System.Drawing.Size(422, 142);
             this.Name = "DatosAcceso";
             this.ShowIcon = false;
             this.Text = "Datos de Acceso";

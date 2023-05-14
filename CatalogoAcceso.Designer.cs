@@ -38,7 +38,7 @@
             // DgvUsuarios
             // 
             this.DgvUsuarios.AllowUserToAddRows = false;
-            this.DgvUsuarios.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
+            this.DgvUsuarios.BackgroundColor = System.Drawing.SystemColors.Control;
             this.DgvUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DgvUsuarios.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.DgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -75,8 +75,11 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.BtnAceptar);
             this.Controls.Add(this.DgvUsuarios);
+            this.MaximumSize = new System.Drawing.Size(425, 489);
+            this.MinimumSize = new System.Drawing.Size(425, 489);
             this.Name = "CatalogoAcceso";
-            this.Text = "CatalogoAcceso";
+            this.ShowIcon = false;
+            this.Text = "Catálogo de Accesos";
             ((System.ComponentModel.ISupportInitialize)(this.DgvUsuarios)).EndInit();
             this.ResumeLayout(false);
 

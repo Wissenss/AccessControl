@@ -20,8 +20,9 @@ namespace AccessControl
         private bool alarmaActivada;
         private bool addingAccess;
 
-        private delegate void SetTextDeleg(string stringData, bool isIncoming);
+        private delegate void SetMonitor(string stringData, bool isIncoming);
         private delegate void SetSistemStatus(string incomingStatus);
+        private delegate void SetSolicitud(string message, string UID = "", string name="");
 
         public DatosAcceso datosAcceso = null;
 
@@ -48,6 +49,12 @@ namespace AccessControl
             }
 
             alarmaActivada = false;
+
+            LblEstadoSolicitud.Visible = false;
+            LblUIDIndicator.Visible = false;
+            LblNombreIndicator.Visible = false;
+            LblUID.Visible = false;
+            LblNombre.Visible = false;
         }
 
         private void BtnAbrir_Click(object sender, EventArgs e)
@@ -119,20 +126,24 @@ namespace AccessControl
         {
             string data = puertoSerial.ReadLine();
 
-            this.BeginInvoke(new SetTextDeleg(WriteToSerialMonitor), new object[] { data, true });
+            this.BeginInvoke(new SetMonitor(WriteToSerialMonitor), new object[] { data, true });
 
             if (data.Trim().StartsWith("UID: ") && !addingAccess)
             {
                 string uid = data.Substring(4).Replace("\r", "");
 
+                this.BeginInvoke(new SetSolicitud(On_SetSolicitud), new object[] { "Solicitando...", uid, "" });
+
                 DataRow[] registros = TbUsuarios.Select("Clave='" + uid + "'");
                 if(registros.Length > 0)
                 {
                     puertoSerial.Write("Open");
+                    this.BeginInvoke(new SetSolicitud(On_SetSolicitud), new object[] { "Autorizado", uid, registros[0]["Nombre"] });
                 }
                 else
                 {
                     puertoSerial.Write("Close");
+                    this.BeginInvoke(new SetSolicitud(On_SetSolicitud), new object[] { "Denegado", uid, ""});
                 }
             }
             else if(datosAcceso != null && addingAccess)
@@ -141,6 +152,35 @@ namespace AccessControl
             }
 
             this.BeginInvoke(new SetSistemStatus(UpdateSistemStatus), new object[] { data });
+        }
+
+        private void On_SetSolicitud(string message, string UID = "", string name = "")
+        {
+            LblEstadoSolicitud.Visible = false;
+            LblUIDIndicator.Visible = false;
+            LblNombreIndicator.Visible = false;
+            LblUID.Visible = false;
+            LblNombre.Visible = false;
+
+            if(message.Trim().Length != 0)
+            {
+                LblEstadoSolicitud.Text = message;
+                LblEstadoSolicitud.Visible = true;
+            }
+
+            if(UID.Trim().Length != 0)
+            {
+                LblUID.Text = UID;
+                LblUID.Visible = true;
+                LblUIDIndicator.Visible = true;
+            }
+
+            if(name.Trim().Length != 0)
+            {
+                LblNombre.Text = name;
+                LblNombre.Visible = true;
+                LblNombreIndicator.Visible = true;
+            }
         }
 
         private void WriteToSerialMonitor(string stringData, bool isIncoming)
