@@ -4,6 +4,7 @@
 /.vpprefdata
 /tmp
 .lock
+.docs.vpp.lck
 docs.vpp.bak_000f
 docs.vpp.bak_001d
 docs.vpp.bak_002d
