@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessControl", "AccessControl.csproj", "{D68FA1D9-8D44-4FEE-8636-A5FEDEBE5BB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Middleware", "Middleware\Middleware.csproj", "{AB16B72B-A765-44B8-A014-627E0B97FC65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D68FA1D9-8D44-4FEE-8636-A5FEDEBE5BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D68FA1D9-8D44-4FEE-8636-A5FEDEBE5BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D68FA1D9-8D44-4FEE-8636-A5FEDEBE5BB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB16B72B-A765-44B8-A014-627E0B97FC65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB16B72B-A765-44B8-A014-627E0B97FC65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB16B72B-A765-44B8-A014-627E0B97FC65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB16B72B-A765-44B8-A014-627E0B97FC65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

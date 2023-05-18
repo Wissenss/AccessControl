@@ -1,4 +1,5 @@
 ## Custom Ignore
+./bin/AccesControl.ini
 
 #Visual Paradigm files
 /.vpprefdata
