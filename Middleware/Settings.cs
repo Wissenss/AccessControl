@@ -19,26 +19,37 @@ namespace Middleware
 
         public string Server
         {
-            get { return this.Read("Server", "Database"); }
-            set { this.Write("Server", value, "Database"); }
+            get { return this.Read("server", "Conexion"); }
+            set { this.Write("server", value, "Conexion"); }
         }
-        public string Name
+        public string Uid
         {
-            get { return this.Read("Name", "Database"); }
-            set { this.Write("Name", value, "Database"); }
+            get { return this.Read("uid", "Conexion"); }
+            set { this.Write("uid", value, "Conexion"); }
+        }
+        public string Pwd
+        {
+            get { return this.Read("pwd", "Conexion"); }
+            set { this.Write("pwd", value, "Conexion"); }
+        }
+
+        public string Database
+        {
+            get { return this.Read("database", "Conexion"); }
+            set { this.Write("database", value, "Conexion"); }
         }
 
         public bool Actualizar //este parametro se utiliza para indicar si se quiere actualizar la estructura de la base de datos al iniciar la app
         {
             get 
             {
-                string actualizar_string = this.Read("Actualizar", "Database");
+                string actualizar_string = this.Read("Actualizar", "Mantenimiento");
                 bool actualizar = bool.Parse(actualizar_string);
                 return actualizar;
             }
             set 
             {
-                this.Write("Actualizar", value.ToString(), "Database");
+                this.Write("Actualizar", value.ToString(), "Mantenimiento");
             }
         }
 

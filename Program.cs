@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Middleware;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,8 +15,20 @@ namespace AccessControl
         [STAThread]
         static void Main()
         {
+            //carga los ensamblados necesarios
+
+            //config de la app
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            //rutinas de inicio
+            ServiceProvider svProvider = ServiceProvider.Instance;//crea el service provider
+
+            if (new Settings().Actualizar)
+            {
+                DBUtils.InizializarDB(ServiceProvider.Instance);//actualiza/reinicia la estructura de la bd
+            }
+
             Application.Run(new Monitor());
         }
     }
