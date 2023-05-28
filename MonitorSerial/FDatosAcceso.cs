@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace AccessControl
 {
-    public partial class DatosAcceso : Form
+    public partial class FDatosAcceso : Form
     {
         public string Nombre { get; set; }
         public string Clave { get; set; }
@@ -20,7 +20,7 @@ namespace AccessControl
 
         public delegate void SetClave(string nuevaClave);
 
-        public DatosAcceso(SerialPort puerto)
+        public FDatosAcceso(SerialPort puerto)
         {
             InitializeComponent();
 

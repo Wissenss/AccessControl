@@ -92,33 +92,105 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CatalogoAcceso.cs">
+    <Compile Include="Catalogos\FCatalogoGruposPuertas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CatalogoAcceso.Designer.cs">
+    <Compile Include="Catalogos\FCatalogoGruposPuertas.Designer.cs">
+      <DependentUpon>FCatalogoGruposPuertas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\FCatalogoPuertas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\FCatalogoPuertas.Designer.cs">
+      <DependentUpon>FCatalogoPuertas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\FDatosGrupoPuertas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\FDatosGrupoPuertas.Designer.cs">
+      <DependentUpon>FDatosGrupoPuertas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\FDatosPuerta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\FDatosPuerta.Designer.cs">
+      <DependentUpon>FDatosPuerta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorSerial\CatalogoAcceso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonitorSerial\CatalogoAcceso.Designer.cs">
       <DependentUpon>CatalogoAcceso.cs</DependentUpon>
     </Compile>
-    <Compile Include="DatosAcceso.cs">
+    <Compile Include="Catalogos\FCatalogoGuposPersonas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DatosAcceso.Designer.cs">
-      <DependentUpon>DatosAcceso.cs</DependentUpon>
+    <Compile Include="Catalogos\FCatalogoGuposPersonas.Designer.cs">
+      <DependentUpon>FCatalogoGuposPersonas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Monitor.cs">
+    <Compile Include="Catalogos\FCatalogoPersonas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Monitor.Designer.cs">
+    <Compile Include="Catalogos\FCatalogoPersonas.Designer.cs">
+      <DependentUpon>FCatalogoPersonas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\FDatosPersona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\FDatosPersona.Designer.cs">
+      <DependentUpon>FDatosPersona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\FDatosGrupoPersonas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\FDatosGrupoPersonas.Designer.cs">
+      <DependentUpon>FDatosGrupoPersonas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorSerial\FDatosAcceso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonitorSerial\FDatosAcceso.Designer.cs">
+      <DependentUpon>FDatosAcceso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FAbout.Designer.cs">
+      <DependentUpon>FAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorSerial\Monitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MonitorSerial\Monitor.Designer.cs">
       <DependentUpon>Monitor.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CatalogoAcceso.resx">
+    <EmbeddedResource Include="MonitorSerial\CatalogoAcceso.resx">
       <DependentUpon>CatalogoAcceso.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DatosAcceso.resx">
-      <DependentUpon>DatosAcceso.cs</DependentUpon>
+    <EmbeddedResource Include="Catalogos\FCatalogoPersonas.resx">
+      <DependentUpon>FCatalogoPersonas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Monitor.resx">
+    <EmbeddedResource Include="Catalogos\FDatosGrupoPersonas.resx">
+      <DependentUpon>FDatosGrupoPersonas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonitorSerial\FDatosAcceso.resx">
+      <DependentUpon>FDatosAcceso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FAbout.resx">
+      <DependentUpon>FAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonitorSerial\Monitor.resx">
       <DependentUpon>Monitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -155,12 +227,23 @@
     <None Include="Resources\Alarm_Bell.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ControlAccess.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ControlAccess.ico" />
-    <Content Include="icon.ico" />
-    <None Include="Resources\icon.ico" />
+    <Content Include="icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\icon-sm.png" />
+    <None Include="Resources\icon-lg.png" />
+    <None Include="Resources\purplearrow2-24-32.png" />
+    <None Include="Resources\purplearrow-24-32.png" />
+    <None Include="Resources\purplearrow-24-16.png" />
+    <None Include="Resources\purpleplus-3-16.png" />
+    <None Include="Resources\purpledelete-16.png" />
+    <None Include="Resources\purple pencil.png" />
+    <None Include="Resources\info-64.png" />
+    <None Include="Resources\door-group-64.png" />
+    <None Include="Resources\today-64.png" />
+    <None Include="Resources\group-64.png" />
+    <None Include="Resources\door-6-64.png" />
+    <None Include="Resources\user-64.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Middleware\Middleware.csproj">

@@ -24,7 +24,7 @@ namespace AccessControl
         private delegate void SetSistemStatus(string incomingStatus);
         private delegate void SetSolicitud(string message, string UID = "", string name="");
 
-        public DatosAcceso datosAcceso = null;
+        public FDatosAcceso datosAcceso = null;
 
         public Monitor()
         {
@@ -90,7 +90,7 @@ namespace AccessControl
         private void BtnAddAcceso_Click(object sender, EventArgs e)
         {
             addingAccess = true;
-            using (datosAcceso = new DatosAcceso(puertoSerial))
+            using (datosAcceso = new FDatosAcceso(puertoSerial))
             {
                 //SerialDataReceivedEventHandler eventHandler = new SerialDataReceivedEventHandler(datosAcceso.On_DataReceived);
                 //puertoSerial.DataReceived += eventHandler;

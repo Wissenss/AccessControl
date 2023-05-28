@@ -1,6 +1,6 @@
 ﻿namespace AccessControl
 {
-    partial class DatosAcceso
+    partial class FDatosAcceso
     {
         /// <summary>
         /// Required designer variable.
