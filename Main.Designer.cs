@@ -185,6 +185,7 @@
             this.BtnPuertas.Text = "Puertas";
             this.BtnPuertas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnPuertas.UseVisualStyleBackColor = false;
+            this.BtnPuertas.Click += new System.EventHandler(this.BtnPuertas_Click);
             // 
             // BtnGPuertas
             // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccessControl.Catalogos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -68,6 +69,14 @@ namespace AccessControl
             using(FCatalogoPersonas DCatalogPersonas = new FCatalogoPersonas())
             {
                 DCatalogPersonas.ShowDialog();
+            }
+        }
+
+        private void BtnPuertas_Click(object sender, EventArgs e)
+        {
+            using(FCatalogoPuertas DCatalogoPuertas = new FCatalogoPuertas())
+            {
+                DCatalogoPuertas.ShowDialog();
             }
         }
     }

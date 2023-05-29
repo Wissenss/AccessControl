@@ -16,5 +16,13 @@ namespace AccessControl.Catalogos
         {
             InitializeComponent();
         }
+
+        public void EjecutarAccion(object sender, EventArgs e)
+        {
+            using(FDatosPuerta DDatosPuerta = new FDatosPuerta())
+            {
+                DDatosPuerta.ShowDialog();
+            }
+        }
     }
 }

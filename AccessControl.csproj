@@ -172,8 +172,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Catalogos\FCatalogoPuertas.resx">
+      <DependentUpon>FCatalogoPuertas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\FDatosPersona.resx">
       <DependentUpon>FDatosPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\FDatosPuerta.resx">
+      <DependentUpon>FDatosPuerta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonitorSerial\CatalogoAcceso.resx">
       <DependentUpon>CatalogoAcceso.cs</DependentUpon>
