@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccessControl.Catalogos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,25 @@ namespace AccessControl
         public FCatalogoPersonas()
         {
             InitializeComponent();
+        }
+
+        //esta funcion se encarga de las funciones de edicion, eliminar y agregar
+        public void EjecutarAccion(object sender, EventArgs e)
+        {
+            using(FDatosPersona DDatosPersona = new FDatosPersona())
+            {
+                DDatosPersona.ShowDialog();
+            }
+        }
+
+        private void BtnSelect_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

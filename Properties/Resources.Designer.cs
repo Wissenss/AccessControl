@@ -213,6 +213,16 @@ namespace AccessControl.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap search_12_16 {
+            get {
+                object obj = ResourceManager.GetObject("search-12-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap today_64 {
             get {
                 object obj = ResourceManager.GetObject("today_64", resourceCulture);

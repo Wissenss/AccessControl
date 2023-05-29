@@ -172,6 +172,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Catalogos\FDatosPersona.resx">
+      <DependentUpon>FDatosPersona.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MonitorSerial\CatalogoAcceso.resx">
       <DependentUpon>CatalogoAcceso.cs</DependentUpon>
     </EmbeddedResource>
@@ -230,6 +233,7 @@
     <Content Include="icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\search-12-16.png" />
     <None Include="Resources\icon-sm.png" />
     <None Include="Resources\icon-lg.png" />
     <None Include="Resources\purplearrow2-24-32.png" />

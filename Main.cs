@@ -62,5 +62,13 @@ namespace AccessControl
             //TCMonitor.Size = new Size(newPanelWidth, newPanelHeight);
             panel1.Size = new Size(newPanelWidth, newPanelHeight);
         }
+
+        private void BtnPersonas_Click(object sender, EventArgs e)
+        {
+            using(FCatalogoPersonas DCatalogPersonas = new FCatalogoPersonas())
+            {
+                DCatalogPersonas.ShowDialog();
+            }
+        }
     }
 }

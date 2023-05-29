@@ -28,24 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.TCMonitor = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.BtnPersonas = new System.Windows.Forms.Button();
             this.BtnGPersonas = new System.Windows.Forms.Button();
             this.BtnPuertas = new System.Windows.Forms.Button();
             this.BtnGPuertas = new System.Windows.Forms.Button();
             this.BtnItinerario = new System.Windows.Forms.Button();
             this.BtnAbout = new System.Windows.Forms.Button();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.TCMonitor = new System.Windows.Forms.TabControl();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.TCMonitor.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.TCMonitor.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -58,6 +60,40 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(816, 371);
             this.panel1.TabIndex = 2;
+            // 
+            // TCMonitor
+            // 
+            this.TCMonitor.Controls.Add(this.tabPage1);
+            this.TCMonitor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TCMonitor.Location = new System.Drawing.Point(0, 0);
+            this.TCMonitor.Margin = new System.Windows.Forms.Padding(0);
+            this.TCMonitor.Name = "TCMonitor";
+            this.TCMonitor.Padding = new System.Drawing.Point(0, 0);
+            this.TCMonitor.SelectedIndex = 0;
+            this.TCMonitor.Size = new System.Drawing.Size(816, 371);
+            this.TCMonitor.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(808, 345);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Piso 1";
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(808, 345);
+            this.label1.TabIndex = 0;
+            this.label1.Tag = "";
+            this.label1.Text = "Aquí va un diagrama del edificio a algo así";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -86,6 +122,11 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(816, 110);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
             // BtnPersonas
             // 
             this.BtnPersonas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -105,6 +146,7 @@
             this.BtnPersonas.Text = "Personas";
             this.BtnPersonas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnPersonas.UseVisualStyleBackColor = false;
+            this.BtnPersonas.Click += new System.EventHandler(this.BtnPersonas_Click);
             // 
             // BtnGPersonas
             // 
@@ -202,40 +244,6 @@
             this.BtnAbout.UseVisualStyleBackColor = false;
             this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(808, 345);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Piso 1";
-            // 
-            // TCMonitor
-            // 
-            this.TCMonitor.Controls.Add(this.tabPage1);
-            this.TCMonitor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TCMonitor.Location = new System.Drawing.Point(0, 0);
-            this.TCMonitor.Margin = new System.Windows.Forms.Padding(0);
-            this.TCMonitor.Name = "TCMonitor";
-            this.TCMonitor.Padding = new System.Drawing.Point(0, 0);
-            this.TCMonitor.SelectedIndex = 0;
-            this.TCMonitor.Size = new System.Drawing.Size(816, 371);
-            this.TCMonitor.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(808, 345);
-            this.label1.TabIndex = 0;
-            this.label1.Tag = "";
-            this.label1.Text = "Aquí va un diagrama del edificio a algo así";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -250,11 +258,11 @@
             this.Text = "AccessControl";
             this.Resize += new System.EventHandler(this.Main_Resize);
             this.panel1.ResumeLayout(false);
+            this.TCMonitor.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.TCMonitor.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -273,5 +281,6 @@
         private System.Windows.Forms.TabControl TCMonitor;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
