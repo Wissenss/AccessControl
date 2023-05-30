@@ -36,5 +36,11 @@ namespace AccessControl
         {
 
         }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            textBox1.ForeColor = Color.Black;
+        }
     }
 }

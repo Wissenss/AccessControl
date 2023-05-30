@@ -79,5 +79,26 @@ namespace AccessControl
                 DCatalogoPuertas.ShowDialog();
             }
         }
+
+        private void BtnGPuertas_Click(object sender, EventArgs e)
+        {
+            using(FCatalogoGruposPuertas DCatalogoGruposPuertas = new FCatalogoGruposPuertas())
+            {
+                DCatalogoGruposPuertas.ShowDialog();
+            }
+        }
+
+        private void BtnItinerario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnGPersonas_Click(object sender, EventArgs e)
+        {
+            using (FCatalogoGuposPersonas DCatalogoGruposPersonas = new FCatalogoGuposPersonas())
+            {
+                DCatalogoGruposPersonas.ShowDialog();
+            }
+        }
     }
 }

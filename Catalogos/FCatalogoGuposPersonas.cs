@@ -16,5 +16,13 @@ namespace AccessControl.Catalogos
         {
             InitializeComponent();
         }
+
+        private void EjecutarAccion(object sender, EventArgs e)
+        {
+            using (FDatosGrupoPersonas DGruposPersonas = new FDatosGrupoPersonas())
+            {
+                DGruposPersonas.ShowDialog();
+            }
+        }
     }
 }

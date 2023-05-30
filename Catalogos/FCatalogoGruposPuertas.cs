@@ -16,5 +16,13 @@ namespace AccessControl.Catalogos
         {
             InitializeComponent();
         }
+
+        private void EjecutarAccion(object sender, EventArgs e)
+        {
+            using(FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas())
+            {
+                DDatosGrupoPuertas.ShowDialog();
+            }
+        }
     }
 }

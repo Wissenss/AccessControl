@@ -166,6 +166,7 @@
             this.BtnGPersonas.Text = "Grup. Personas";
             this.BtnGPersonas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnGPersonas.UseVisualStyleBackColor = false;
+            this.BtnGPersonas.Click += new System.EventHandler(this.BtnGPersonas_Click);
             // 
             // BtnPuertas
             // 
@@ -205,6 +206,7 @@
             this.BtnGPuertas.Text = "Grup. Puertas";
             this.BtnGPuertas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnGPuertas.UseVisualStyleBackColor = false;
+            this.BtnGPuertas.Click += new System.EventHandler(this.BtnGPuertas_Click);
             // 
             // BtnItinerario
             // 
@@ -224,6 +226,7 @@
             this.BtnItinerario.Text = "Itinerario";
             this.BtnItinerario.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnItinerario.UseVisualStyleBackColor = false;
+            this.BtnItinerario.Click += new System.EventHandler(this.BtnItinerario_Click);
             // 
             // BtnAbout
             // 
