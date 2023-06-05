@@ -21,14 +21,30 @@ namespace Middleware
             using(VScriptExecution DScriptExecution = new VScriptExecution())
             {
                 conn.Open();
-                string sqlScript = File.ReadAllText("sqlScripts/initDatabase.sql");
-                MySqlScript script = new MySqlScript(conn, sqlScript);
 
-                script.StatementExecuted += DScriptExecution.On_StatementExecuted;
+                MySqlScript script;
+                string sqlScript;
+
+                //esto para meterlo a otra thread y mostrar el progreso, aun no me sale...
+                //script.StatementExecuted += DScriptExecution.On_StatementExecuted; 
+                //DScriptExecution.ShowDialog();
+
+                //elimina las tablas
+                sqlScript = File.ReadAllText("sqlScripts/dropDatabase.sql");
+                script = new MySqlScript(conn, sqlScript);
+                script.Execute();
+
+                //crea las tablas
+                sqlScript = File.ReadAllText("sqlScripts/initDatabase.sql");
+                script = new MySqlScript(conn, sqlScript);
+                script.Execute();
+
+                //llena los campos con la info del demo
+                sqlScript = File.ReadAllText("sqlScripts/fillDatabase.sql");
+                script = new MySqlScript(conn, sqlScript);
                 script.Execute();
 
                 MessageBox.Show("Actualizacion Terminada");
-                //DScriptExecution.ShowDialog();
 
                 conn.Close();
             }

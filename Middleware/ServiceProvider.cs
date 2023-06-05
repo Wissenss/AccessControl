@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Management.Instrumentation;
-using MySql;
-using MySql.Data;
 using MySql.Data.MySqlClient;
 
 namespace Middleware
@@ -11,6 +8,7 @@ namespace Middleware
         public MySqlConnection connection;
         
         public ServiceGeneral ServiceGeneral { get; private set; }
+        public ServicePersonas ServicePersonas { get; private set; }
 
         public Settings settings;
 
@@ -26,7 +24,6 @@ namespace Middleware
                 settings.Pwd,
                 settings.Database);
 
-
             //establece la conexion
             this.connection = new MySqlConnection(connectionString);
             this.connection.Open();
@@ -34,6 +31,7 @@ namespace Middleware
 
             //inicia los diversos servicios
             ServiceGeneral = new ServiceGeneral(this.connection);
+            ServicePersonas = new ServicePersonas(this.connection);
         }
 
         public static ServiceProvider Instance
@@ -52,17 +50,17 @@ namespace Middleware
         /// This Method Invokes a certain service method.
         /// </summary>
         //static public void invoke(Func<> method, object[] parameters)
-        public Error Invoke(Type serviceType, string methodName, object[] arguments)
-        {
-            if(connection.State == System.Data.ConnectionState.Closed)
-                connection.Open();
+        //public Error Invoke(Type serviceType, string methodName, object[] arguments)
+        //{
+        //    if(connection.State == System.Data.ConnectionState.Closed)
+        //        connection.Open();
 
-            Error error = (Error)serviceType.GetMethod(methodName).Invoke(null, arguments);
+        //    Error error = (Error)serviceType.GetMethod(methodName).Invoke(null, arguments);
 
-            if(connection.State == System.Data.ConnectionState.Open)
-                connection.Close();
+        //    if(connection.State == System.Data.ConnectionState.Open)
+        //        connection.Close();
 
-            return error;
-        }
+        //    return error;
+        //}
     }
 }

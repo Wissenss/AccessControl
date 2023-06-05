@@ -89,10 +89,10 @@
     <Compile Include="Models\Hora.cs" />
     <Compile Include="Models\Puerta.cs" />
     <Compile Include="Models\SemanaTipo.cs" />
-    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
-    <Compile Include="ServiceCatalogs.cs" />
+    <Compile Include="ServicePersonas.cs" />
     <Compile Include="ServiceGeneral.cs" />
     <Compile Include="ServiceProvider.cs" />
     <Compile Include="Settings.cs" />
@@ -105,7 +105,10 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="sqlScripts\dropDatabase.sql" />
+    <Content Include="sqlScripts\fillDatabase.sql" />
     <Content Include="sqlScripts\InitDatabase.sql" />
+    <Content Include="sqlScripts\InitDatabase_old.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="VScriptExecution.resx">

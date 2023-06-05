@@ -8,6 +8,8 @@ namespace Middleware
     {
         NoError = 0,
 
+        Desconocido = 666,
+
     /*************************************************************
       Errores sobre el inicio de sesion y conexiones al servidor
     *************************************************************/

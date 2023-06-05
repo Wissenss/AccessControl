@@ -177,6 +177,7 @@
             this.lbPuertas.Size = new System.Drawing.Size(180, 264);
             this.lbPuertas.TabIndex = 35;
             this.lbPuertas.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawItemSelected);
+            this.lbPuertas.SelectedIndexChanged += new System.EventHandler(this.On_SelectionChanged);
             // 
             // lbMiembros
             // 
@@ -191,6 +192,7 @@
             this.lbMiembros.Size = new System.Drawing.Size(180, 264);
             this.lbMiembros.TabIndex = 34;
             this.lbMiembros.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawItemSelected);
+            this.lbMiembros.SelectedIndexChanged += new System.EventHandler(this.On_SelectionChanged);
             // 
             // FDatosGrupoPuertas
             // 

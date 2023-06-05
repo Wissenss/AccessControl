@@ -1,12 +1,10 @@
 ﻿using AccessControl.Catalogos;
+using Middleware;
+using Middleware.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AccessControl
@@ -16,6 +14,30 @@ namespace AccessControl
         public FCatalogoPersonas()
         {
             InitializeComponent();
+        }
+        private void FCatalogoPersonas_Load(object sender, EventArgs e)
+        {
+            List<Persona> personas;
+            Error codigoError = ServiceProvider.Instance.ServicePersonas.GetPersonas(out personas);
+            if(codigoError != Error.NoError)
+            {
+                MessageBox.Show("Sucedio el error: " + (int)codigoError + " la aplicacion intentara continuar...");
+                return;
+            }
+
+            dtPersonas.Clear();
+            dtPersonas.BeginLoadData();
+            DataRow register;
+            foreach(Persona persona in personas)
+            {
+                register = dtPersonas.NewRow();
+
+                register["Id"] = persona.Id;
+                register["Nombre"] = persona.Nombres;
+
+                dtPersonas.Rows.Add(register);
+            }
+            dtPersonas.EndLoadData();
         }
 
         //esta funcion se encarga de las funciones de edicion, eliminar y agregar
