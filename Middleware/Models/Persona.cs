@@ -26,6 +26,8 @@ namespace Middleware.Models
             this.Correo = correo;
         }
 
+
+
         //no se si lo de usuarios al final si se vaya a usar, si me hace mucho sentido tenerlo pero para
         //lo que pide el profe no parece que sea un requerimiento...
         //private int idUsuario { get; }
@@ -42,5 +44,10 @@ namespace Middleware.Models
         //    this.tipo_usuario = tipo;
         //    this.idCalendario = idCalendario;
         //}
+
+        // RE: Usuarios
+        //Usuarios tal vez no sea necesario, como es un prototipo yo creo que con que cumpla con 
+        //los requerimientos más cruciales deberá ser suficiente
+        // (además es muy permisivo el profe con cosas que no quedan muy claras)
     }
 }
