@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace AccessControl.Models
 {
-    internal class Puerta
+    public class Puerta
     {
         public int IdPuerta { get; set; }
-        public int IdZona { get; set; }
+        public string Descripcion { get; set; }
+        public string Ubicacion { get; set; }
+        public string Observaciones { get; set; }
 
-        public Puerta(int idPuerta, int idZona) {
+        public Puerta(int idPuerta, string Descripcion, string Ubicacion, string observaciones)
+        {
             this.IdPuerta = idPuerta;
-            this.IdZona = idZona;
+            this.Ubicacion = Ubicacion;
+            this.Descripcion = Descripcion;
+            this.Observaciones = observaciones;
         }
     }
 }

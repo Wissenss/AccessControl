@@ -16,6 +16,11 @@ namespace AccessControl.Catalogos
         {
             InitializeComponent();
         }
+        
+        public FDatosPersona(string[]personData)
+        {
+            InitializeComponent();
+        }
 
         private void BtnSelectFile_Click(object sender, EventArgs e)
         {
