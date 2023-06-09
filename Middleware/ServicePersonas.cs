@@ -51,10 +51,10 @@ namespace Middleware
             return Error.NoError;
         }
 
-        public Error GetPersona(int personaId)
+        public Error GetPersona(int personaId, out Persona persona)
         {
             base.connection.Open();
-            Persona persona = null;
+            persona = null;
 
             try
             {
@@ -77,6 +77,9 @@ namespace Middleware
                         Correo = (string)reader[4],
                     };
                 }
+
+                if(persona == null)
+                    return Error.RegistroNoEncontrado;
             }
             catch (Exception e)
             {
@@ -138,7 +141,7 @@ namespace Middleware
                         "Nombres=@Nombres, " +
                         "Apellidos=@Apellidos, " +
                         "Celular=@Celular, " +
-                        "Correo=@Correo" +
+                        "Correo=@Correo " +
                         "WHERE idPersona = @Id;";
                 }
 
@@ -146,7 +149,7 @@ namespace Middleware
 
                 cmd.Parameters.AddWithValue("@Id", persona.Id);
                 cmd.Parameters.AddWithValue("@Nombres", persona.Nombres);
-                cmd.Parameters.AddWithValue("@Apellidos", persona.Nombres);
+                cmd.Parameters.AddWithValue("@Apellidos", persona.Apellidos);
                 cmd.Parameters.AddWithValue("@Celular", persona.Celular);
                 cmd.Parameters.AddWithValue("@Correo", persona.Correo);
 

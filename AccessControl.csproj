@@ -116,6 +116,7 @@
     <Compile Include="Catalogos\FDatosPuerta.Designer.cs">
       <DependentUpon>FDatosPuerta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Catalogos\ModoAcceso.cs" />
     <Compile Include="MonitorSerial\CatalogoAcceso.cs">
       <SubType>Form</SubType>
     </Compile>

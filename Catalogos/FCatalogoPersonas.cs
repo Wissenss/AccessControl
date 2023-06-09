@@ -25,8 +25,26 @@ namespace AccessControl
         {
             using(FDatosPersona DDatosPersona = new FDatosPersona())
             {
+                if(sender == btnAdd)
+                {
+                    DDatosPersona.modo = ModoAcceso.Alta;
+                }
+                else if (sender == btnEdit && gvListadoPersonas.SelectedRows.Count != 0)
+                {
+                    DataGridViewRow row = this.gvListadoPersonas.SelectedRows[0];
+                    int personaId = (int)row.Cells["colId"].Value;
+
+                    DDatosPersona.modo = ModoAcceso.Edicion;
+                    DDatosPersona.personaId = personaId;
+                }
+                else
+                {
+                    return;
+                }
+                
                 DDatosPersona.ShowDialog();
             }
+            cargarPersonas();
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -44,17 +62,17 @@ namespace AccessControl
                 return;
             }
 
-            cargarPersonas(); //medio savage cargar todas las personas cuando solo cambia uno de los registros pero weno, de 0.00001 a 0.00002ms no se nota
+            cargarPersonas(); 
         }
 
         private void BtnSelect_Click(object sender, EventArgs e)
         {
-
+            //PENDIENTE...
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
-
+            //PENDIENTE...
         }
 
         private void textBox1_Enter(object sender, EventArgs e)
@@ -63,7 +81,7 @@ namespace AccessControl
             textBox1.ForeColor = Color.Black;
         }
 
-        private void cargarPersonas()
+        private void cargarPersonas() //medio savage cargar todas las personas cuando solo cambia uno de los registros pero weno, de 0.00001 a 0.00002ms no se nota
         {
             List<Persona> personas;
             Error codigoError = ServiceProvider.Instance.ServicePersonas.GetPersonas(out personas);
