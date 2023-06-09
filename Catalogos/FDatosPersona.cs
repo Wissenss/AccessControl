@@ -17,7 +17,7 @@ namespace AccessControl.Catalogos
             InitializeComponent();
         }
         
-        public FDatosPersona(string[]personData)
+        public FDatosPersona(string[] personData)
         {
             InitializeComponent();
         }

@@ -20,8 +20,8 @@ namespace Middleware
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
-                cmd.CommandText = "Persona";
                 cmd.Connection = base.connection;
+                cmd.CommandText = "Persona";
                 cmd.CommandType = System.Data.CommandType.TableDirect;
                 MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -38,7 +38,6 @@ namespace Middleware
 
                     personas.Add(persona);
                 }
-
             }
             catch(Exception e)
             {
@@ -60,6 +59,7 @@ namespace Middleware
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = base.connection;
                 cmd.CommandText = "SELECT * FROM Persona WHERE idPersona=@personaId";
 
                 cmd.Parameters.AddWithValue("@personaId", personaId);
@@ -97,6 +97,8 @@ namespace Middleware
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = base.connection;
+
                 cmd.CommandText = "DELETE FROM Persona WHERE idPersona=@personaId";
 
                 cmd.Parameters.AddWithValue("@personaId", personaId);
@@ -123,6 +125,7 @@ namespace Middleware
             try
             {
                 MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = base.connection;
                 string query;
                 if(newPersona)
                 {

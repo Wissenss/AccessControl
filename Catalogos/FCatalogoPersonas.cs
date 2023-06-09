@@ -17,36 +17,34 @@ namespace AccessControl
         }
         private void FCatalogoPersonas_Load(object sender, EventArgs e)
         {
-            List<Persona> personas;
-            Error codigoError = ServiceProvider.Instance.ServicePersonas.GetPersonas(out personas);
-            if(codigoError != Error.NoError)
-            {
-                MessageBox.Show("Sucedió el error: " + (int)codigoError + " la aplicación intentará continuar...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            dtPersonas.Clear();
-            dtPersonas.BeginLoadData();
-            DataRow register;
-            foreach(Persona persona in personas)
-            {
-                register = dtPersonas.NewRow();
-
-                register["Id"] = persona.Id;
-                register["Nombre"] = persona.Nombres;
-
-                dtPersonas.Rows.Add(register);
-            }
-            dtPersonas.EndLoadData();
+            cargarPersonas();
         }
 
-        //esta funcion se encarga de las funciones de edicion, eliminar y agregar
+        //esta funcion se encarga de las funciones de editar y agregar
         public void EjecutarAccion(object sender, EventArgs e)
         {
             using(FDatosPersona DDatosPersona = new FDatosPersona())
             {
                 DDatosPersona.ShowDialog();
             }
+        }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            if (gvListadoPersonas.SelectedRows.Count == 0)
+                return;
+
+            DataGridViewRow row = this.gvListadoPersonas.SelectedRows[0];
+            int personaId = (int)row.Cells["colId"].Value;
+
+            Error codigoError = ServiceProvider.Instance.ServicePersonas.DeletePersona(personaId);
+            if (codigoError != Error.NoError)
+            {
+                MessageBox.Show("Sucedió el error: " + (int)codigoError + " la aplicación intentará continuar...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            cargarPersonas(); //medio savage cargar todas las personas cuando solo cambia uno de los registros pero weno, de 0.00001 a 0.00002ms no se nota
         }
 
         private void BtnSelect_Click(object sender, EventArgs e)
@@ -63,6 +61,31 @@ namespace AccessControl
         {
             textBox1.Text = "";
             textBox1.ForeColor = Color.Black;
+        }
+
+        private void cargarPersonas()
+        {
+            List<Persona> personas;
+            Error codigoError = ServiceProvider.Instance.ServicePersonas.GetPersonas(out personas);
+            if (codigoError != Error.NoError)
+            {
+                MessageBox.Show("Sucedió el error: " + (int)codigoError + " la aplicación intentará continuar...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            dtPersonas.Clear();
+            dtPersonas.BeginLoadData();
+            DataRow register;
+            foreach (Persona persona in personas)
+            {
+                register = dtPersonas.NewRow();
+
+                register["Id"] = persona.Id;
+                register["Nombre"] = persona.Nombres;
+
+                dtPersonas.Rows.Add(register);
+            }
+            dtPersonas.EndLoadData();
         }
     }
 }
