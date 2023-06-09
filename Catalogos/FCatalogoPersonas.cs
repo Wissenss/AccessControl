@@ -21,7 +21,7 @@ namespace AccessControl
             Error codigoError = ServiceProvider.Instance.ServicePersonas.GetPersonas(out personas);
             if(codigoError != Error.NoError)
             {
-                MessageBox.Show("Sucedio el error: " + (int)codigoError + " la aplicacion intentara continuar...");
+                MessageBox.Show("Sucedió el error: " + (int)codigoError + " la aplicación intentará continuar...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

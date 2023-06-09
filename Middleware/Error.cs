@@ -14,6 +14,11 @@ namespace Middleware
       Errores sobre el inicio de sesion y conexiones al servidor
     *************************************************************/
         LoginFallido = 1001,
-        
+
+    /*************************************************************
+        Errores sobre la consulta de infromacion
+    *************************************************************/
+        RegistroNoEncontrado = 2001,
+
     }
 }
