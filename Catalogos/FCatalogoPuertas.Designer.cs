@@ -1,4 +1,6 @@
-﻿namespace AccessControl.Catalogos
+﻿using System.Data;
+
+namespace AccessControl.Catalogos
 {
     partial class FCatalogoPuertas
     {
@@ -41,15 +43,17 @@
             this.dataColumn1 = new System.Data.DataColumn();
             this.dtPuertas = new System.Data.DataTable();
             this.dataColumn3 = new System.Data.DataColumn();
+            this.dataColumn4 = new System.Data.DataColumn();
             this.dataSet1 = new System.Data.DataSet();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.zonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.BtnSearch = new System.Windows.Forms.Button();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.zonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtPuertas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -124,7 +128,7 @@
             // 
             // dataColumn2
             // 
-            this.dataColumn2.ColumnName = "Nombre";
+            this.dataColumn2.ColumnName = "Descripcion";
             // 
             // dataColumn1
             // 
@@ -136,12 +140,17 @@
             this.dtPuertas.Columns.AddRange(new System.Data.DataColumn[] {
             this.dataColumn1,
             this.dataColumn2,
-            this.dataColumn3});
+            this.dataColumn3,
+            this.dataColumn4});
             this.dtPuertas.TableName = "dtPuertas";
             // 
             // dataColumn3
             // 
-            this.dataColumn3.ColumnName = "Zona";
+            this.dataColumn3.ColumnName = "Ubicacion";
+            // 
+            // dataColumn4
+            // 
+            this.dataColumn4.ColumnName = "Observaciones";
             // 
             // dataSet1
             // 
@@ -193,8 +202,9 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
-            this.nombreDataGridViewTextBoxColumn,
-            this.zonaDataGridViewTextBoxColumn});
+            this.zonaDataGridViewTextBoxColumn,
+            this.Descripcion,
+            this.Observaciones});
             this.dataGridView1.DataSource = this.bindingSource1;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -216,28 +226,6 @@
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(460, 262);
             this.dataGridView1.TabIndex = 10;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // zonaDataGridViewTextBoxColumn
-            // 
-            this.zonaDataGridViewTextBoxColumn.DataPropertyName = "Zona";
-            this.zonaDataGridViewTextBoxColumn.HeaderText = "Zona";
-            this.zonaDataGridViewTextBoxColumn.Name = "zonaDataGridViewTextBoxColumn";
-            this.zonaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // textBox1
             // 
@@ -262,6 +250,34 @@
             this.BtnSearch.Text = "Buscar";
             this.BtnSearch.UseVisualStyleBackColor = false;
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // zonaDataGridViewTextBoxColumn
+            // 
+            this.zonaDataGridViewTextBoxColumn.DataPropertyName = "Ubicacion";
+            this.zonaDataGridViewTextBoxColumn.HeaderText = "Ubicación";
+            this.zonaDataGridViewTextBoxColumn.Name = "zonaDataGridViewTextBoxColumn";
+            this.zonaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.DataPropertyName = "Descripcion";
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            // 
+            // Observaciones
+            // 
+            this.Observaciones.DataPropertyName = "Observaciones";
+            this.Observaciones.HeaderText = "Observaciones";
+            this.Observaciones.Name = "Observaciones";
+            this.Observaciones.ReadOnly = true;
+            // 
             // FCatalogoPuertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,6 +299,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Puertas";
+            this.Load += new System.EventHandler(this.CaatalogoPuertas_OnLoad);
             ((System.ComponentModel.ISupportInitialize)(this.dtPuertas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
@@ -307,10 +324,12 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Data.DataColumn dataColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn zonaDataGridViewTextBoxColumn;
+        private System.Data.DataColumn dataColumn4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button BtnSearch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn zonaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Observaciones;
     }
 }
