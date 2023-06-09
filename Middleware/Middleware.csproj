@@ -97,6 +97,8 @@
     <Compile Include="ServicePersonas.cs" />
     <Compile Include="ServiceGeneral.cs" />
     <Compile Include="ServiceProvider.cs" />
+    <Compile Include="ServicePuertas.cs" />
+    <Compile Include="ServiceSemanasTipo.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="VScriptExecution.cs">
       <SubType>Form</SubType>

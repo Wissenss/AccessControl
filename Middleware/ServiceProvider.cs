@@ -9,6 +9,8 @@ namespace Middleware
         
         public ServiceGeneral ServiceGeneral { get; private set; }
         public ServicePersonas ServicePersonas { get; private set; }
+        public ServicePuertas ServicePuertas { get; private set; }
+        public ServiceSemanasTipo ServiceSemanasTipo { get; private set; }
 
         public Settings settings;
 
@@ -32,6 +34,7 @@ namespace Middleware
             //inicia los diversos servicios
             ServiceGeneral = new ServiceGeneral(this.connection);
             ServicePersonas = new ServicePersonas(this.connection);
+            ServicePuertas = new ServicePuertas(this.connection);
         }
 
         public static ServiceProvider Instance
