@@ -7,6 +7,6 @@ DROP TABLE IF EXISTS `DetalleGrupPersona` ;
 DROP TABLE IF EXISTS `Persona` ;
 DROP TABLE IF EXISTS `SemanaTipo` ;
 DROP TABLE IF EXISTS `GrupoPersona` ;
+DROP TABLE IF EXISTS `Puerta` ;
 DROP TABLE IF EXISTS `GrupoPuerta` ;
 DROP TABLE IF EXISTS `Periodo` ;
-DROP TABLE IF EXISTS `Puerta` ;

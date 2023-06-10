@@ -11,14 +11,24 @@ namespace Middleware.Models
     {
         public int IdGrupoPuerta { get; set; }
         public string Nombre { get; set; }
+        public string Descripcion { get; set; }
         private List<Puerta> puertas;
 
 
-        public GrupoPuerta(int idGrupoPuerta, string nombre)
+        public GrupoPuerta(int idGrupoPuerta, string nombre, string descripcion)
         {
             IdGrupoPuerta = idGrupoPuerta;
             Nombre = nombre;
+            this.Descripcion = descripcion;
             this.puertas = new List<Puerta>();
+        }
+
+        public GrupoPuerta(int idGrupoPuerta, string nombre, string descripcion, List<Puerta> puertasAsociadas)
+        {
+            IdGrupoPuerta = idGrupoPuerta;
+            Nombre = nombre;
+            this.Descripcion = descripcion;
+            this.puertas = puertasAsociadas;
         }
 
         public int AñadirPuerta(Puerta nuevaPuerta)
@@ -51,8 +61,8 @@ namespace Middleware.Models
         public int EliminarPuerta(Puerta puerta)
         {
             //si no existe en la lista, retorna 1
-            if(!puertas.Contains(puerta)) { return 1; }
-            
+            if (!puertas.Contains(puerta)) { return 1; }
+
             puertas.Remove(puerta);
             return 0;
         }

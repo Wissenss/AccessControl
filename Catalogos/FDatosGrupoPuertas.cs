@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AccessControl.Models;
+using Middleware;
+
 
 namespace AccessControl.Catalogos
 {
@@ -18,12 +21,13 @@ namespace AccessControl.Catalogos
         }
         private void FDatosGrupoPuertas_Load(object sender, EventArgs e)
         {
+            ServiceProvider.Instance.ServicePuertas.GetPuertas(out List<Puerta> puertas);
             //temporal para testing...
             //****************************************
-            lbPuertas.Items.Add("Puerta Azul");
-            lbPuertas.Items.Add("Puerta Rojo");
-            lbPuertas.Items.Add("Puerta Morada");
-            lbPuertas.Items.Add("Puerta Amarilla");
+            foreach (Puerta puerta in puertas)
+            {
+                lbPuertas.Items.Add(puerta.Descripcion);
+            }
             //****************************************
 
             ActualizarControlesActivos();

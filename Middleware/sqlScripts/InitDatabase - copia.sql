@@ -25,15 +25,8 @@ CREATE TABLE IF NOT EXISTS `Puerta` (
   `Descripcion` VARCHAR(255) NULL,
   `Ubicacion` VARCHAR(45) NULL,
   `Observaciones` VARCHAR(255) NULL,
-  `GrupoPuerta_idGrupo` INT NOT NULL,
   PRIMARY KEY (`idPuerta`),
-  UNIQUE INDEX `idPuerta_UNIQUE` (`idPuerta` ASC) VISIBLE,
-  INDEX `fk_grupoPuerta` (`GrupoPuerta_idGrupo` ASC) VISIBLE,
-  CONSTRAINT `fk_grupopuerta`
-	FOREIGN KEY (`GrupoPuerta_idGrupo`)
-    REFERENCES `GrupoPuerta`(`idGrupoPuerta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `idPuerta_UNIQUE` (`idPuerta` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -44,8 +37,15 @@ CREATE TABLE IF NOT EXISTS `GrupoPuerta` (
   `idGrupoPuerta` INT NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(45) NOT NULL,
   `Descripcion` VARCHAR(255) NULL,
+  `Puerta_idPuerta` INT NOT NULL,
   PRIMARY KEY (`idGrupoPuerta`),
-  UNIQUE INDEX `idGrupoPuerta_UNIQUE` (`idGrupoPuerta` ASC) VISIBLE)
+  UNIQUE INDEX `idGrupoPuerta_UNIQUE` (`idGrupoPuerta` ASC) VISIBLE,
+  INDEX `fk_GrupoPuerta_Puerta1_idx` (`Puerta_idPuerta` ASC) VISIBLE,
+  CONSTRAINT `fk_GrupoPuerta_Puerta1`
+    FOREIGN KEY (`Puerta_idPuerta`)
+    REFERENCES `Puerta` (`idPuerta`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
