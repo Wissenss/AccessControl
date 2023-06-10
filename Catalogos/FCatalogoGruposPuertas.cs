@@ -29,19 +29,19 @@ namespace AccessControl.Catalogos
                 MessageBox.Show($"Ocurrió el error {(int)error}, la aplicación intentará continuar...");
                 return;
             }
-            dtPersonas.Clear();
-            dtPersonas.BeginLoadData();
+            dtGruposPuertas.Clear();
+            dtGruposPuertas.BeginLoadData();
             foreach(GrupoPuerta grupo in gruposPuerta)
             {
-                DataRow row = dtPersonas.NewRow();
+                DataRow row = dtGruposPuertas.NewRow();
                 //Modificar las columnas desde el designer
-                row["Id"] = grupo.IdGrupoPuerta;
+                row["idGrupo"] = grupo.IdGrupoPuerta;
                 row["Nombre"] = grupo.Nombre;
                 row["Descripcion"] = grupo.Descripcion;
 
-                dtPersonas.Rows.Add(row);
+                dtGruposPuertas.Rows.Add(row);
             }
-            dtPersonas.EndLoadData();
+            dtGruposPuertas.EndLoadData();
         }
 
         private void EjecutarAccion(object sender, EventArgs e)
