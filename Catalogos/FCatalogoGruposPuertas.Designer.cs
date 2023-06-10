@@ -44,8 +44,9 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.idGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.miembrosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtPersonas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -182,8 +183,9 @@
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idGrupo,
             this.nombreDataGridViewTextBoxColumn,
-            this.miembrosDataGridViewTextBoxColumn});
+            this.Descripcion});
             this.dataGridView1.DataSource = this.bindingSource1;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
@@ -206,6 +208,13 @@
             this.dataGridView1.Size = new System.Drawing.Size(460, 293);
             this.dataGridView1.TabIndex = 19;
             // 
+            // idGrupo
+            // 
+            this.idGrupo.DataPropertyName = "idGrupo";
+            this.idGrupo.HeaderText = "idGrupo";
+            this.idGrupo.Name = "idGrupo";
+            this.idGrupo.ReadOnly = true;
+            // 
             // nombreDataGridViewTextBoxColumn
             // 
             this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
@@ -213,12 +222,12 @@
             this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
             this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // miembrosDataGridViewTextBoxColumn
+            // Descripcion
             // 
-            this.miembrosDataGridViewTextBoxColumn.DataPropertyName = "Miembros";
-            this.miembrosDataGridViewTextBoxColumn.HeaderText = "Miembros";
-            this.miembrosDataGridViewTextBoxColumn.Name = "miembrosDataGridViewTextBoxColumn";
-            this.miembrosDataGridViewTextBoxColumn.ReadOnly = true;
+            this.Descripcion.DataPropertyName = "Descripcion";
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
             // 
             // FCatalogoGruposPuertas
             // 
@@ -236,6 +245,7 @@
             this.Name = "FCatalogoGruposPuertas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Grupos de Puertas";
+            this.Load += new System.EventHandler(this.GruposPuertas_OnLoad);
             ((System.ComponentModel.ISupportInitialize)(this.dtPersonas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
@@ -258,7 +268,8 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idGrupo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn miembrosDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
     }
 }
