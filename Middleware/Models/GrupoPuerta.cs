@@ -20,6 +20,13 @@ namespace Middleware.Models
             Nombre = nombre;
             this.puertas = new List<Puerta>();
         }
+        
+        public GrupoPuerta(int idGrupoPuerta, string nombre, List<Puerta>puertasAsociadas)
+        {
+            IdGrupoPuerta = idGrupoPuerta;
+            Nombre = nombre;
+            this.puertas = puertasAsociadas;
+        }
 
         public int AñadirPuerta(Puerta nuevaPuerta)
         {

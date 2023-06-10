@@ -7,14 +7,9 @@ INSERT INTO Persona VALUES
 (5, 'Diego', 'López Mendoza', '449 243 1362', 'dlopez@gmail.com'),
 (6, 'Leslie Miroslava', 'Benites Marín', '449 533 1395', 'lbenites@gmail.com');
 
--- Grupo Puerta --
-INSERT INTO grupopuerta VALUES (1, "Investigación", "Puertas del área de investigación"),
-(2, "Almacenes", "Almacenes de uso general"),
-(3, "Administración", "Puertas del área administrativa");
-
 -- Puerta --
 INSERT INTO Puerta VALUES
-(1, "Laboratorio 60", "Investigación", "Sin Observaciones", 1),
-(2, "Laboratorio 23", "Investigación", "Sin Observaciones", 1),
-(3, "Almacén A23", "Almacenes", "En Remodelación", 2),
-(23, "Oficina Administrativa", "Adminstracion", "Sin Observaciones", 3);
+(1, "Laboratorio 60", "Investigación", "Sin Observaciones"),
+(2, "Laboratorio 23", "Investigación", "Sin Observaciones"),
+(3, "Almacén A23", "Almacenes", "En Remodelación"),
+(23, "Oficina Administrativa", "Adminstracion", "Sin Observaciones");

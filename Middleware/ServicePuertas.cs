@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AccessControl.Models;
+using Middleware.Models;
 using MySql.Data.MySqlClient;
 
 namespace Middleware
@@ -44,6 +45,25 @@ namespace Middleware
                 base.connection.Close();
             }
 
+            return Error.NoError;
+        }
+
+        public Error GetGruposDePuertas(out List<GrupoPuerta> gruposDePuertas)
+        {
+            base.connection.Open();
+            gruposDePuertas = new List<GrupoPuerta>();
+            try
+            {
+                string queryGrupo = "SELECT * FROM grupopuerta";
+                string queryPuertas = "SELECT * FROM puerta where idGrupo";
+                MySqlCommand command = new MySqlCommand(queryGrupo, base.connection);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally { base.connection.Close(); }
             return Error.NoError;
         }
     }
