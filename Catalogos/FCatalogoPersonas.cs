@@ -70,17 +70,6 @@ namespace AccessControl
             //PENDIENTE...
         }
 
-        private void BtnSearch_Click(object sender, EventArgs e)
-        {
-            //PENDIENTE...
-        }
-
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-            textBox1.ForeColor = Color.Black;
-        }
-
         private void cargarPersonas() //medio savage cargar todas las personas cuando solo cambia uno de los registros pero weno, de 0.00001 a 0.00002ms no se nota
         {
             List<Persona> personas;
@@ -104,6 +93,43 @@ namespace AccessControl
                 dtPersonas.Rows.Add(register);
             }
             dtPersonas.EndLoadData();
+        }
+
+        private void tbSearchText_TextChanged(object sender, EventArgs e)
+        {
+            string filter;
+
+            if (tbSearchText.Text.Equals(" Ingrese el texto a buscar...") || tbSearchText.Text.Trim().Length == 0) //esto significa que esta vacio
+            {
+                filter = null;
+            }
+            else
+            {
+                string searchParam = tbSearchText.Text;
+                filter = string.Format("convert(Id, 'System.String') Like '{0}%' OR Nombre Like '%{0}%'", searchParam);
+            }
+
+            bindingSource1.Filter = filter;
+        }
+
+        private void tbSearchText_Leave(object sender, EventArgs e)
+        {
+            if (tbSearchText.Text.Trim().Length == 0)
+            {
+                tbSearchText.Text = " Ingrese el texto a buscar...";
+            }
+
+            tbSearchText.ForeColor = SystemColors.GrayText;
+        }
+
+        private void tbSearchText_Enter(object sender, EventArgs e)
+        {
+            if (tbSearchText.Text.Equals(" Ingrese el texto a buscar..."))
+            {
+                tbSearchText.Text = "";
+            }
+
+            tbSearchText.ForeColor = SystemColors.WindowText;
         }
     }
 }
