@@ -140,7 +140,7 @@ namespace Middleware
             gruposDePuertas = new List<GrupoPersona>();
             try
             {
-                string queryGrupo = "SELECT * FROM grupopersona";
+                string queryGrupo = "SELECT * FROM grupopersona;";
                 MySqlCommand command = new MySqlCommand(queryGrupo, base.connection);
                 MySqlDataReader reader = command.ExecuteReader();
 
@@ -150,8 +150,8 @@ namespace Middleware
                     string Nombre = (string)reader[1];
                     string Descripcion = (string)reader[2];
                     GetPersonasByGroup(idGrupo, out List<Persona> PersonasAsociadas, true);
-                    GrupoPersona grupopuerta = new GrupoPersona(idGrupo, Nombre, PersonasAsociadas);
-                    gruposDePuertas.Add(grupopuerta);
+                    GrupoPersona grupopersona = new GrupoPersona(idGrupo, Nombre, Descripcion, PersonasAsociadas);
+                    gruposDePuertas.Add(grupopersona);
                 }
             }
             catch (Exception ex)
@@ -359,45 +359,53 @@ namespace Middleware
 
         public Error SetGrupoDePersonas(GrupoPersona grupoPersonas, bool EsNuevo)
         {
-            base.connection.Open();
+            MySqlConnection conn = base.connection;
+            MySqlTransaction transaction = null;
 
             try
             {
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = base.connection;
+                MySqlCommand cmd = conn.CreateCommand();
+                conn.Open();
+                transaction = base.connection.BeginTransaction();
 
-                string query;
-                if(EsNuevo)
-                {
-                    query = "INSERT INTO GrupoPersona(Nombre, Descripcion) VALUES (@Nombre, @Descripcion);";
-                }
-                else
-                {
-                    query = "UPDATE GrupoPersona SET Nombre = @Nombre, Descripcion = @Descripcion WHERE idGrupoPersona = @idGrupoPersona";
-                }
-                cmd.CommandText = query;
-
-                cmd.Parameters.AddWithValue("@idGrupoPersona", grupoPersonas.idGrupoPersona);
                 cmd.Parameters.AddWithValue("@Nombre", grupoPersonas.Nombre);
                 cmd.Parameters.AddWithValue("@Descripcion", grupoPersonas.Descripcion);
 
+                if(EsNuevo)
+                {
+                    cmd.CommandText = "INSERT INTO GrupoPersona(Nombre, Descripcion) VALUES (@Nombre, @Descripcion);";
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = "SELECT LAST_INSERT_ID();"; //jala el id generado para el registro anterior.
+                    grupoPersonas.idGrupoPersona = Convert.ToInt32(cmd.ExecuteScalar());
+                    cmd.Parameters.AddWithValue("@IdGrupoPersona", grupoPersonas.idGrupoPersona);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@IdGrupoPersona", grupoPersonas.idGrupoPersona);
+                    cmd.CommandText = "UPDATE GrupoPersona SET Nombre = @Nombre, Descripcion = @Descripcion WHERE idGrupoPersona = @IdGrupoPersona";
+                    cmd.ExecuteNonQuery();
+                }
+
                 //agrega las personas relacionadas
-                cmd.CommandText = "DELETE FROM DetalleGrupoPersona WHERE GrupoPersona_idGrupoPersona = @idGrupoPersona";
+                cmd.CommandText = "DELETE FROM detallegrupopersona WHERE GrupoPersona_idGrupoPersona = @IdGrupoPersona";
                 cmd.ExecuteNonQuery();
 
-                query = "INSERT INTO DetalleGrupoPersona(Persona_idPersona, GrupoPersona_idGrupoPersona) VALUES ";
-                foreach(Persona persona in grupoPersonas.personas)
+                string query = "INSERT INTO detallegrupopersona(Persona_idPersona, GrupoPersona_idGrupoPersona) VALUES ";
+                foreach (Persona persona in grupoPersonas.personas)
                 {
                     query += string.Format("({0}, {1}), ", persona.Id, grupoPersonas.idGrupoPersona);
                 }
-                query = query.TrimEnd(new char[] { ' ', ',' });
-                query += ";";
+                query = query.TrimEnd(new char[] { ' ', ',' }) + ";";
 
                 cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
+
+                transaction.Commit();
             }
             catch (Exception e)
             {
+                transaction.Rollback();
                 return Error.Desconocido;
             }
             finally

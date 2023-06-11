@@ -142,6 +142,7 @@ namespace AccessControl
         {
             GrupoPersona grupo = new GrupoPersona
             {
+                idGrupoPersona = grupoPersonasId, 
                 Nombre = tbNombre.Text,
                 Descripcion = tbDescripcion.Text
             };
@@ -199,7 +200,7 @@ namespace AccessControl
         {
             while (lbPersonas.Items.Count > 0)
             {
-                string item = (string)lbPersonas.Items[0];
+                Persona item = (Persona)lbPersonas.Items[0];
                 lbMiembros.Items.Add(item);
                 lbPersonas.Items.Remove(item);
             }
@@ -210,7 +211,7 @@ namespace AccessControl
         {
             while (lbMiembros.Items.Count > 0)
             {
-                string item = (string)lbMiembros.Items[0];
+                Persona item = (Persona)lbMiembros.Items[0];
                 lbPersonas.Items.Add(item);
                 lbMiembros.Items.Remove(item);
             }

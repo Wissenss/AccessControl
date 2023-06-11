@@ -67,6 +67,7 @@
             this.button5.TabIndex = 17;
             this.button5.Text = "Aceptar";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Visible = false;
             // 
             // BtnSelect
             // 
@@ -80,6 +81,7 @@
             this.BtnSelect.TabIndex = 16;
             this.BtnSelect.Text = "Seleccionar";
             this.BtnSelect.UseVisualStyleBackColor = false;
+            this.BtnSelect.Visible = false;
             // 
             // btnDelete
             // 
@@ -163,14 +165,14 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 18;
-            this.button1.Text = "Cancelar";
+            this.button1.Text = "Cerrar";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // gvListadoGruposPersonas
             // 
             this.gvListadoGruposPersonas.AllowUserToAddRows = false;
             this.gvListadoGruposPersonas.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(76)))), ((int)(((byte)(151)))));
             this.gvListadoGruposPersonas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvListadoGruposPersonas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -254,7 +256,7 @@
             this.Name = "FCatalogoGuposPersonas";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Grupos de Puertas";
+            this.Text = "Grupos de Personas";
             this.Load += new System.EventHandler(this.GruposPersonas_OnLoad);
             ((System.ComponentModel.ISupportInitialize)(this.dtGruposPersonas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();

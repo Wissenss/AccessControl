@@ -27,12 +27,13 @@ namespace Middleware.Models
             Nombre = nombre;
             this.personas = new List<Persona>();
         }
-        public GrupoPersona(int idGrupoPersona, string nombre, List<Persona> personasAsociadas)
+        public GrupoPersona(int idGrupoPersona, string nombre, string descripcion, List<Persona> personasAsociadas)
         {
             //podríamos usar un servicio para traer las personas directo de la base de datos
             //si la respuesta está vacía, lo igualamos a una nueva lsita
             this.idGrupoPersona = idGrupoPersona;
-            Nombre = nombre;
+            this.Nombre = nombre;
+            this.Descripcion = descripcion;
             this.personas = personasAsociadas;
         }
 
