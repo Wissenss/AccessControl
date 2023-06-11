@@ -69,6 +69,7 @@ namespace AccessControl.Catalogos
             this.button5.TabIndex = 24;
             this.button5.Text = "Aceptar";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // BtnSelect
             // 
@@ -94,7 +95,7 @@ namespace AccessControl.Catalogos
             this.button4.TabIndex = 22;
             this.button4.Text = "Eliminar";
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.EjecutarAccion);
+            this.button4.Click += new System.EventHandler(this.EliminarGrupo);
             // 
             // button3
             // 
@@ -120,7 +121,7 @@ namespace AccessControl.Catalogos
             this.button2.TabIndex = 20;
             this.button2.Text = "Añadir";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.EjecutarAccion);
+            this.button2.Click += new System.EventHandler(this.NuevoGrupo);
             // 
             // dataColumn1
             // 
@@ -166,6 +167,7 @@ namespace AccessControl.Catalogos
             this.button1.TabIndex = 25;
             this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView1
             // 

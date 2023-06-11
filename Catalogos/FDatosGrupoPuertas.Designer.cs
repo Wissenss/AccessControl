@@ -32,7 +32,7 @@
             this.BtnRemoveSelected = new System.Windows.Forms.Button();
             this.BtnAddSelected = new System.Windows.Forms.Button();
             this.BtnRemoveAll = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbNombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -40,6 +40,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lbPuertas = new System.Windows.Forms.ListBox();
             this.lbMiembros = new System.Windows.Forms.ListBox();
+            this.tbDescripcion = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BtnAddAll
@@ -47,7 +49,7 @@
             this.BtnAddAll.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BtnAddAll.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnAddAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAddAll.Location = new System.Drawing.Point(199, 131);
+            this.BtnAddAll.Location = new System.Drawing.Point(198, 135);
             this.BtnAddAll.Name = "BtnAddAll";
             this.BtnAddAll.Size = new System.Drawing.Size(35, 23);
             this.BtnAddAll.TabIndex = 45;
@@ -60,7 +62,7 @@
             this.BtnRemoveSelected.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BtnRemoveSelected.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnRemoveSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRemoveSelected.Location = new System.Drawing.Point(199, 220);
+            this.BtnRemoveSelected.Location = new System.Drawing.Point(198, 224);
             this.BtnRemoveSelected.Name = "BtnRemoveSelected";
             this.BtnRemoveSelected.Size = new System.Drawing.Size(35, 23);
             this.BtnRemoveSelected.TabIndex = 44;
@@ -73,7 +75,7 @@
             this.BtnAddSelected.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BtnAddSelected.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnAddSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAddSelected.Location = new System.Drawing.Point(199, 160);
+            this.BtnAddSelected.Location = new System.Drawing.Point(198, 164);
             this.BtnAddSelected.Name = "BtnAddSelected";
             this.BtnAddSelected.Size = new System.Drawing.Size(35, 23);
             this.BtnAddSelected.TabIndex = 43;
@@ -86,7 +88,7 @@
             this.BtnRemoveAll.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BtnRemoveAll.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnRemoveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRemoveAll.Location = new System.Drawing.Point(199, 249);
+            this.BtnRemoveAll.Location = new System.Drawing.Point(198, 253);
             this.BtnRemoveAll.Name = "BtnRemoveAll";
             this.BtnRemoveAll.Size = new System.Drawing.Size(35, 23);
             this.BtnRemoveAll.TabIndex = 42;
@@ -94,15 +96,15 @@
             this.BtnRemoveAll.UseVisualStyleBackColor = false;
             this.BtnRemoveAll.Click += new System.EventHandler(this.BtnRemoveAll_Click);
             // 
-            // textBox2
+            // tbNombre
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.textBox2.Location = new System.Drawing.Point(68, 12);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(352, 21);
-            this.textBox2.TabIndex = 41;
+            this.tbNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tbNombre.Location = new System.Drawing.Point(68, 12);
+            this.tbNombre.Name = "tbNombre";
+            this.tbNombre.Size = new System.Drawing.Size(352, 21);
+            this.tbNombre.TabIndex = 41;
             // 
             // label3
             // 
@@ -128,6 +130,7 @@
             this.button5.TabIndex = 38;
             this.button5.Text = "Aceptar";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -142,12 +145,13 @@
             this.button6.TabIndex = 39;
             this.button6.Text = "Cancelar";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label2.Location = new System.Drawing.Point(237, 58);
+            this.label2.Location = new System.Drawing.Point(236, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 37;
@@ -158,7 +162,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.label1.Location = new System.Drawing.Point(10, 58);
+            this.label1.Location = new System.Drawing.Point(9, 83);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 36;
@@ -171,10 +175,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbPuertas.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lbPuertas.FormattingEnabled = true;
-            this.lbPuertas.Location = new System.Drawing.Point(13, 74);
+            this.lbPuertas.Location = new System.Drawing.Point(12, 99);
             this.lbPuertas.Name = "lbPuertas";
             this.lbPuertas.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lbPuertas.Size = new System.Drawing.Size(180, 264);
+            this.lbPuertas.Size = new System.Drawing.Size(180, 238);
             this.lbPuertas.TabIndex = 35;
             this.lbPuertas.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawItemSelected);
             this.lbPuertas.SelectedIndexChanged += new System.EventHandler(this.On_SelectionChanged);
@@ -186,13 +190,34 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbMiembros.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lbMiembros.FormattingEnabled = true;
-            this.lbMiembros.Location = new System.Drawing.Point(240, 74);
+            this.lbMiembros.Location = new System.Drawing.Point(239, 99);
             this.lbMiembros.Name = "lbMiembros";
             this.lbMiembros.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lbMiembros.Size = new System.Drawing.Size(180, 264);
+            this.lbMiembros.Size = new System.Drawing.Size(180, 238);
             this.lbMiembros.TabIndex = 34;
             this.lbMiembros.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DrawItemSelected);
             this.lbMiembros.SelectedIndexChanged += new System.EventHandler(this.On_SelectionChanged);
+            // 
+            // tbDescripcion
+            // 
+            this.tbDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tbDescripcion.Location = new System.Drawing.Point(68, 41);
+            this.tbDescripcion.Name = "tbDescripcion";
+            this.tbDescripcion.Size = new System.Drawing.Size(352, 21);
+            this.tbDescripcion.TabIndex = 47;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label4.Location = new System.Drawing.Point(10, 45);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.TabIndex = 46;
+            this.label4.Text = "Descripcion";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FDatosGrupoPuertas
             // 
@@ -200,11 +225,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(431, 386);
             this.ControlBox = false;
+            this.Controls.Add(this.tbDescripcion);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.BtnAddAll);
             this.Controls.Add(this.BtnRemoveSelected);
             this.Controls.Add(this.BtnAddSelected);
             this.Controls.Add(this.BtnRemoveAll);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tbNombre);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button6);
@@ -228,7 +255,7 @@
         private System.Windows.Forms.Button BtnRemoveSelected;
         private System.Windows.Forms.Button BtnAddSelected;
         private System.Windows.Forms.Button BtnRemoveAll;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
@@ -236,5 +263,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbPuertas;
         private System.Windows.Forms.ListBox lbMiembros;
+        private System.Windows.Forms.TextBox tbDescripcion;
+        private System.Windows.Forms.Label label4;
     }
 }

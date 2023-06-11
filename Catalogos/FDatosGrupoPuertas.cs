@@ -15,7 +15,17 @@ namespace AccessControl.Catalogos
 {
     public partial class FDatosGrupoPuertas : Form
     {
-        private int idGrupo;
+        private int idGrupo = -1;
+        private string Descripcion { get; set; }
+        private string Nombre { get; set; }
+
+        List<Puerta> members;
+        List<Puerta> puertasDisponibles;
+        public FDatosGrupoPuertas()
+        {
+            InitializeComponent();
+            this.members = new List<Puerta>();
+        }
         public FDatosGrupoPuertas(int idGrupo)
         {
             InitializeComponent();
@@ -23,18 +33,21 @@ namespace AccessControl.Catalogos
         }
         private void FDatosGrupoPuertas_Load(object sender, EventArgs e)
         {
-            ServiceProvider.Instance.ServicePuertas.GetPuertas(out List<Puerta> puertas);
-            ServiceProvider.Instance.ServicePuertas.GetPuertasByGroup(this.idGrupo, out List<Puerta> miembros, false);
-
-            foreach (Puerta miembro in miembros)
+            ServiceProvider.Instance.ServicePuertas.GetPuertas(out puertasDisponibles);
+            // puertasDisponibles = new List<Puerta>(puertas);
+            if (idGrupo != -1)
+            {
+                ServiceProvider.Instance.ServicePuertas.GetPuertasByGroup(this.idGrupo, out members, false);
+            }
+            foreach (Puerta miembro in members)
             {
                 lbMiembros.Items.Add(miembro.Descripcion);
             }
 
-            foreach (Puerta puerta in puertas)
+            foreach (Puerta puerta in puertasDisponibles)
             {
                 bool flag = false;
-                foreach (Puerta miembro in miembros)
+                foreach (Puerta miembro in members)
                 {
                     if (miembro.IdPuerta == puerta.IdPuerta)
                     {
@@ -45,7 +58,6 @@ namespace AccessControl.Catalogos
                 if (!flag) lbPuertas.Items.Add(puerta.Descripcion);
             }
 
-
             ActualizarControlesActivos();
         }
 
@@ -54,6 +66,15 @@ namespace AccessControl.Catalogos
             while (lbPuertas.SelectedItems.Count > 0)
             {
                 string item = (string)lbPuertas.SelectedItems[0];
+                for (int i = 0; i < puertasDisponibles.Count; i++)
+                {
+                    if (puertasDisponibles[i].Descripcion == item)
+                    {
+                        members.Add(puertasDisponibles[i]);
+                        puertasDisponibles.Remove(puertasDisponibles[i]);
+                        break;
+                    }
+                }
                 lbMiembros.Items.Add(item);
                 lbPuertas.Items.Remove(item);
             }
@@ -65,6 +86,14 @@ namespace AccessControl.Catalogos
             while (lbMiembros.SelectedItems.Count > 0)
             {
                 string item = (string)lbMiembros.SelectedItems[0];
+                foreach (Puerta pt in members)
+                {
+                    if (pt.Descripcion == item)
+                    {
+                        puertasDisponibles.Add(pt);
+                        members.Remove(pt);
+                    }
+                }
                 lbPuertas.Items.Add(item);
                 lbMiembros.Items.Remove(item);
             }
@@ -123,6 +152,29 @@ namespace AccessControl.Catalogos
         private void On_SelectionChanged(object sender, EventArgs e)
         {
             ActualizarControlesActivos();
+        }
+
+        public string[] GetNewGroupData()
+        {
+            return new string[] { this.Nombre, this.Descripcion };
+        }
+
+        public List<Puerta> GetMemebers()
+        {
+            return this.members;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Descripcion = tbDescripcion.Text;
+            this.Nombre = tbNombre.Text;
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
