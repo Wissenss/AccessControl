@@ -29,7 +29,7 @@ namespace AccessControl
                 DBUtils.InizializarDB(ServiceProvider.Instance);//actualiza/reinicia la estructura de la bd
             }
 
-            Application.Run(new Main());
+            Application.Run(new Monitor());
         }
     }
 }

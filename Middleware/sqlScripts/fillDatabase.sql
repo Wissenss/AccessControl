@@ -4,8 +4,8 @@ INSERT INTO Persona VALUES
 (2, 'David', 'Delgado Villalobos', '449 332 2332', 'ddelgado@gmail.com'),
 (3, 'Andres Esteban', 'Escudero Robles', '449 233 1042', 'aescudero@gmail.com'),
 (4, 'Alejandro', 'Medina Castañeda', '449 233 3042', 'amedina@gmail.com'),
-(5, 'Diego', 'López Mendoza', '449 243 1362', 'dlopez@gmail.com'),
-(6, 'Leslie Miroslava', 'Benites Marín', '449 533 1395', 'lbenites@gmail.com');
+(5, 'Diego', 'Lopez Mendoza', '449 243 1362', 'dlopez@gmail.com'),
+(6, 'Leslie Miroslava', 'Benites Marin', '449 533 1395', 'lbenites@gmail.com');
 
 -- Grupo Puerta --
 INSERT INTO grupopuerta VALUES (1, "Investigación", "Puertas del área de investigación"),

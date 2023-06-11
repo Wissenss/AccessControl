@@ -151,21 +151,21 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DetalleGrupPersona`
+-- Table `DetalleGrupoPersona`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DetalleGrupPersona` (
-  `idDetalleGrupPersona` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `DetalleGrupoPersona` (
+  `idDetalleGrupoPersona` INT NOT NULL AUTO_INCREMENT,
   `Persona_idPersona` INT NOT NULL,
   `GrupoPersona_idGrupoPersona` INT NOT NULL,
-  PRIMARY KEY (`idDetalleGrupPersona`),
-  INDEX `fk_DetalleGrupPersona_Persona1_idx` (`Persona_idPersona` ASC) VISIBLE,
-  INDEX `fk_DetalleGrupPersona_GrupoPersona1_idx` (`GrupoPersona_idGrupoPersona` ASC) VISIBLE,
-  CONSTRAINT `fk_DetalleGrupPersona_Persona1`
+  PRIMARY KEY (`idDetalleGrupoPersona`),
+  INDEX `fk_DetalleGrupoPersona_Persona1_idx` (`Persona_idPersona` ASC) VISIBLE,
+  INDEX `fk_DetalleGrupoPersona_GrupoPersona1_idx` (`GrupoPersona_idGrupoPersona` ASC) VISIBLE,
+  CONSTRAINT `fk_DetalleGrupoPersona_Persona1`
     FOREIGN KEY (`Persona_idPersona`)
     REFERENCES `Persona` (`idPersona`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_DetalleGrupPersona_GrupoPersona1`
+  CONSTRAINT `fk_DetalleGrupoPersona_GrupoPersona1`
     FOREIGN KEY (`GrupoPersona_idGrupoPersona`)
     REFERENCES `GrupoPersona` (`idGrupoPersona`)
     ON DELETE NO ACTION

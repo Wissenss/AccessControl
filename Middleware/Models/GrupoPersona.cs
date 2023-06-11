@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace Middleware.Models
 {
-    internal class GrupoPersona
+    public class GrupoPersona
     {
         public int idGrupoPersona { get; set; }
         public string Nombre { get; set; }
-        private List<Persona> personas;
+        public string Descripcion { get; set; }
+        public List<Persona> personas;
+
+        public GrupoPersona() { }
 
         public GrupoPersona(int idGrupoPersona, string nombre)
         {
@@ -22,7 +25,7 @@ namespace Middleware.Models
             this.personas = new List<Persona>();
         }
 
-        public int AñadirPuerta(Persona nuevaPersona)
+        public int AñadirPersona(Persona nuevaPersona)
         {
             if (personas.Contains(nuevaPersona))
             {
@@ -35,7 +38,7 @@ namespace Middleware.Models
             return 0;
         }
 
-        public int ModificarPuerta(Persona nuevaPersona)
+        public int ModificarPersona(Persona nuevaPersona)
         {
             int index = personas.FindIndex((persona) => persona.Id == nuevaPersona.Id);
             //si no existe en l alista, retorna 1
@@ -46,7 +49,7 @@ namespace Middleware.Models
             return 0;
         }
 
-        public int EliminarPuerta(Persona persona)
+        public int EliminarPersona(Persona persona)
         {
             //si no existe en la lista, retorna 1
             if (!personas.Contains(persona)) { return 1; }

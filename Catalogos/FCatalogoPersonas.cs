@@ -31,7 +31,7 @@ namespace AccessControl
                 }
                 else if (sender == btnEdit && gvListadoPersonas.SelectedRows.Count != 0)
                 {
-                    DataGridViewRow row = this.gvListadoPersonas.SelectedRows[0];
+                    DataGridViewRow row = gvListadoPersonas.SelectedRows[0];
                     int personaId = (int)row.Cells["colId"].Value;
 
                     DDatosPersona.modo = ModoAcceso.Edicion;
@@ -70,7 +70,7 @@ namespace AccessControl
             //PENDIENTE...
         }
 
-        private void cargarPersonas() //medio savage cargar todas las personas cuando solo cambia uno de los registros pero weno, de 0.00001 a 0.00002ms no se nota
+        private void cargarPersonas() //medio savage cargar todas las personas (llamar a esta funcion) en casos donde solo cambia uno de los registros pero weno, de 0.00001 a 0.00002ms no se nota
         {
             List<Persona> personas;
             Error codigoError = ServiceProvider.Instance.ServicePersonas.GetPersonas(out personas);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -16,6 +17,15 @@ namespace Middleware.Models
         public string Correo { get; set; }
 
         public Persona() { }
+
+        public Persona(MySqlDataReader reader)
+        {
+            this.Id = (int)reader[0];
+            this.Nombres = (string)reader[1];
+            this.Apellidos = (string)reader[2];
+            this.Celular = (string)reader[3];
+            this.Correo = (string)reader[4];
+        }
 
         public Persona (int id, string nombres, string apellidos, string celular, string correo)
         {
