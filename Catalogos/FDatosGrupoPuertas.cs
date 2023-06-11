@@ -15,20 +15,36 @@ namespace AccessControl.Catalogos
 {
     public partial class FDatosGrupoPuertas : Form
     {
-        public FDatosGrupoPuertas()
+        private int idGrupo;
+        public FDatosGrupoPuertas(int idGrupo)
         {
             InitializeComponent();
+            this.idGrupo = idGrupo;
         }
         private void FDatosGrupoPuertas_Load(object sender, EventArgs e)
         {
             ServiceProvider.Instance.ServicePuertas.GetPuertas(out List<Puerta> puertas);
-            //temporal para testing...
-            //****************************************
+            ServiceProvider.Instance.ServicePuertas.GetPuertasByGroup(this.idGrupo, out List<Puerta> miembros, false);
+
+            foreach (Puerta miembro in miembros)
+            {
+                lbMiembros.Items.Add(miembro.Descripcion);
+            }
+
             foreach (Puerta puerta in puertas)
             {
-                lbPuertas.Items.Add(puerta.Descripcion);
+                bool flag = false;
+                foreach (Puerta miembro in miembros)
+                {
+                    if (miembro.IdPuerta == puerta.IdPuerta)
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag) lbPuertas.Items.Add(puerta.Descripcion);
             }
-            //****************************************
+
 
             ActualizarControlesActivos();
         }

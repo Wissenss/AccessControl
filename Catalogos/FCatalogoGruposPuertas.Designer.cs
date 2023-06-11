@@ -194,6 +194,7 @@ namespace AccessControl.Catalogos
             this.idGrupo,
             this.nombreDataGridViewTextBoxColumn,
             this.Descripcion});
+            this.dataGridView1.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bindingSource1, "idGrupo", true));
             this.dataGridView1.DataSource = this.bindingSource1;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;

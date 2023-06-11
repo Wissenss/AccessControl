@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Middleware.Models
 {
-    internal class GrupoPersona
+    public class GrupoPersona
     {
         public int idGrupoPersona { get; set; }
         public string Nombre { get; set; }
@@ -20,6 +20,14 @@ namespace Middleware.Models
             this.idGrupoPersona = idGrupoPersona;
             Nombre = nombre;
             this.personas = new List<Persona>();
+        }
+        public GrupoPersona(int idGrupoPersona, string nombre, List<Persona> personasAsociadas)
+        {
+            //podríamos usar un servicio para traer las personas directo de la base de datos
+            //si la respuesta está vacía, lo igualamos a una nueva lsita
+            this.idGrupoPersona = idGrupoPersona;
+            Nombre = nombre;
+            this.personas = personasAsociadas;
         }
 
         public int AñadirPuerta(Persona nuevaPersona)
