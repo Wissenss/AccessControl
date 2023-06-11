@@ -153,16 +153,6 @@ namespace AccessControl.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap piso_1 {
-            get {
-                object obj = ResourceManager.GetObject("piso 1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap purple_pencil {
             get {
                 object obj = ResourceManager.GetObject("purple pencil", resourceCulture);
@@ -246,16 +236,6 @@ namespace AccessControl.Properties {
         internal static System.Drawing.Bitmap user_64 {
             get {
                 object obj = ResourceManager.GetObject("user_64", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap wololo {
-            get {
-                object obj = ResourceManager.GetObject("wololo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
