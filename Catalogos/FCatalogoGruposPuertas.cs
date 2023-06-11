@@ -15,11 +15,20 @@ namespace AccessControl.Catalogos
 {
     public partial class FCatalogoGruposPuertas : Form
     {
-        public static List<GrupoPuerta> gruposPuerta;
+        /*
+        Esta stack se crea cada vez qeu se abre la ventana
+        para ejecutar las tareas cuando se clickea OK, 
+        así, si se clickea Cancelar, entonces no se ejecuta
+        ninguna tarea, así se puede mantener la DB segura
+        hasta que se de click en "Aceptar"
+        */
+        private static List<string[]> taskStack;
+        private static List<GrupoPuerta> gruposPuerta;
 
         public FCatalogoGruposPuertas()
         {
             InitializeComponent();
+            taskStack = new List<string[]>();
         }
 
         private void GruposPuertas_OnLoad(object sender, EventArgs e)
@@ -51,13 +60,85 @@ namespace AccessControl.Catalogos
             int idGr = Int32.Parse(row.Cells[0].Value.ToString());
             using (FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas(idGr))
             {
-                DDatosGrupoPuertas.ShowDialog();
+                var res = DDatosGrupoPuertas.ShowDialog();
+                //lógica para actualizar
             }
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void NuevoGrupo(object sender, EventArgs e)
         {
+            using (FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas())
+            {
+                var res = DDatosGrupoPuertas.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    int idGrupo = GetNextId();
+                    string[] newGroup = DDatosGrupoPuertas.GetNewGroupData();
+                    string Nombre = newGroup[0];
+                    string Descripcion = newGroup[1];
+                    List<Puerta> ptAsociadas = DDatosGrupoPuertas.GetMemebers();
+                    gruposPuerta.Add(new GrupoPuerta(idGrupo, Nombre, Descripcion, ptAsociadas));
 
+                    taskStack.Add(new string[] { "Add", $"{gruposPuerta.Count() - 1}" });
+
+                    DataRow row = dtGruposPuertas.NewRow();
+                    //Modificar las columnas desde el designer
+                    row["idGrupo"] = idGrupo;
+                    row["Nombre"] = Nombre;
+                    row["Descripcion"] = Descripcion;
+
+                    dtGruposPuertas.Rows.Add(row);
+                }
+            }
+        }
+
+        private void EliminarGrupo(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount == 0) return;
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            string idGr = row.Cells[0].Value.ToString();
+            taskStack.Add(new string[] { "Delete", $"{idGr}" });
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //Lógica para ejecutar la lista de tareas
+            if (taskStack.Count > 0)
+            {
+                foreach (string[] task in taskStack)
+                {
+                    int index = Int32.Parse(task[1]);
+                    switch (task[0])
+                    {
+                        case "Delete":
+                            //servicio borrarGrupo, requiere: idGrupo -> index
+                            break;
+                        case "Add":
+                            GrupoPuerta toSave = gruposPuerta[index];
+                            //Servicio guardar, requiere: Objeto <GrupoPuerta>
+                            break;
+                        case "Update":
+                            //Servicio actualizar,  requiere: Objeto <Puerta>
+                            break;
+                    }
+                }
+            }
+            this.Dispose();
+        }
+
+        private int GetNextId()
+        {
+            int max = Int32.MinValue;
+            foreach (GrupoPuerta gp in gruposPuerta)
+            {
+                max = (gp.IdGrupoPuerta > max) ? gp.IdGrupoPuerta : max;
+            }
+            return max + 1;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }
