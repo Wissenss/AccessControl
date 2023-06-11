@@ -121,9 +121,6 @@
   <data name="icon_lg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon-lg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_sm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-sm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Door_Close" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Door_Close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,6 +132,12 @@
   </data>
   <data name="purpledelete-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\purpledelete-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="door_group_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\door-group-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search-12-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search-12-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="purple pencil" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\purple pencil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,6 +154,9 @@
   <data name="user_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="today_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\today-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="purpleplus-3-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\purpleplus-3-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -160,16 +166,13 @@
   <data name="door_6_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\door-6-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon_sm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-sm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="group_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\group-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="today_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\today-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="door_group_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\door-group-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="search-12-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search-12-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="piso 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\piso 1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
