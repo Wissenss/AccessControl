@@ -1,4 +1,5 @@
-﻿using Middleware.Models;
+﻿using AccessControl.Models;
+using Middleware.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Middleware
 {
-    public class ServicePersonas: Service, IService
+    public class ServicePersonas : Service, IService
     {
         public ServicePersonas(MySqlConnection connection) : base(connection) { }
 
@@ -39,7 +40,7 @@ namespace Middleware
                     personas.Add(persona);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Error.Desconocido;
             }
@@ -78,7 +79,7 @@ namespace Middleware
                     };
                 }
 
-                if(persona == null)
+                if (persona == null)
                     return Error.RegistroNoEncontrado;
             }
             catch (Exception e)
@@ -90,6 +91,74 @@ namespace Middleware
                 base.connection.Close();
             }
 
+            return Error.NoError;
+        }
+
+        public Error GetPersonasByGroup(int idGrupo, out List<Persona> personas, bool keepOpen)
+        {
+            //base.connection.Open();
+            personas = new List<Persona>();
+            try
+            {
+                if (base.connection.State != System.Data.ConnectionState.Open)
+                {
+                    base.connection.Open();
+                }
+                string columns = "idPersona, Nombres, Apellidos, Celular, Correo";
+                string query = $"SELECT {columns} FROM persona JOIN ON Persona_idPersona = idPersona  WHERE GrupoPersona_idGrupoPersona = {idGrupo}";
+                MySqlCommand command = new MySqlCommand(query, base.connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int id = (int)reader[0];
+                    string nombres = (string)reader[1];
+                    string apellidos = (string)reader[2];
+                    string celular = (string)reader[3];
+                    string correo = (string)reader[4];
+                    Persona Persona = new Persona(id, nombres, apellidos, celular, correo);
+
+                    personas.Add(Persona);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return Error.Desconocido;
+            }
+            finally
+            {
+                if (!keepOpen) base.connection.Close();
+            }
+
+            return Error.NoError;
+        }
+
+        public Error GetGruposDePersonas(out List<GrupoPersona> gruposDePuertas)
+        {
+            base.connection.Open();
+            gruposDePuertas = new List<GrupoPersona>();
+            try
+            {
+                string queryGrupo = "SELECT * FROM grupopersona";
+                MySqlCommand command = new MySqlCommand(queryGrupo, base.connection);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int idGrupo = (int)reader[0];
+                    string Nombre = (string)reader[1];
+                    string Descripcion = (string)reader[2];
+                    GetPersonasByGroup(idGrupo, out List<Persona> PersonasAsociadas, true);
+                    GrupoPersona grupopuerta = new GrupoPersona(idGrupo, Nombre, PersonasAsociadas);
+                    gruposDePuertas.Add(grupopuerta);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally { base.connection.Close(); }
             return Error.NoError;
         }
 
@@ -130,7 +199,7 @@ namespace Middleware
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = base.connection;
                 string query;
-                if(newPersona)
+                if (newPersona)
                 {
                     query = "INSERT INTO Persona VALUES (@Id, @Nombres, @Apellidos, @Celular, @Correo);";
                 }

@@ -15,6 +15,8 @@ namespace AccessControl.Catalogos
 {
     public partial class FCatalogoGruposPuertas : Form
     {
+        public static List<GrupoPuerta> gruposPuerta;
+
         public FCatalogoGruposPuertas()
         {
             InitializeComponent();
@@ -22,16 +24,15 @@ namespace AccessControl.Catalogos
 
         private void GruposPuertas_OnLoad(object sender, EventArgs e)
         {
-            List<GrupoPuerta> gruposPuerta;
-            Error error = ServiceProvider.Instance.ServicePuertas.GetGruposDePuertas(out gruposPuerta); 
-            if(error != Error.NoError)
+            Error error = ServiceProvider.Instance.ServicePuertas.GetGruposDePuertas(out gruposPuerta);
+            if (error != Error.NoError)
             {
                 MessageBox.Show($"Ocurrió el error {(int)error}, la aplicación intentará continuar...");
                 return;
             }
             dtGruposPuertas.Clear();
             dtGruposPuertas.BeginLoadData();
-            foreach(GrupoPuerta grupo in gruposPuerta)
+            foreach (GrupoPuerta grupo in gruposPuerta)
             {
                 DataRow row = dtGruposPuertas.NewRow();
                 //Modificar las columnas desde el designer
@@ -46,10 +47,17 @@ namespace AccessControl.Catalogos
 
         private void EjecutarAccion(object sender, EventArgs e)
         {
-            using(FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas())
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            int idGr = Int32.Parse(row.Cells[0].Value.ToString());
+            using (FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas(idGr))
             {
                 DDatosGrupoPuertas.ShowDialog();
             }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

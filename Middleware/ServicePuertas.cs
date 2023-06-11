@@ -48,12 +48,16 @@ namespace Middleware
             return Error.NoError;
         }
 
-        public Error GetPuertasByGroup(int idGrupo, out List<Puerta> puertas)
+        public Error GetPuertasByGroup(int idGrupo, out List<Puerta> puertas, bool keepOpen)
         {
             //base.connection.Open();
             puertas = new List<Puerta>();
             try
             {
+                if(base.connection.State != System.Data.ConnectionState.Open)
+                {
+                    base.connection.Open();
+                }
                 string query = $"SELECT * FROM puerta WHERE grupoPuerta_idGrupo = {idGrupo}";
                 MySqlCommand command = new MySqlCommand(query, base.connection);
                 MySqlDataReader reader = command.ExecuteReader();
@@ -76,7 +80,7 @@ namespace Middleware
             }
             finally
             {
-                //base.connection.Close();
+                if(!keepOpen) base.connection.Close();
             }
 
             return Error.NoError;
@@ -97,7 +101,7 @@ namespace Middleware
                     int idGrupo = (int)reader[0];
                     string Nombre = (string)reader[1];
                     string Descripcion = (string)reader[2];
-                    GetPuertasByGroup(idGrupo, out List<Puerta> puertasAsociadas);
+                    GetPuertasByGroup(idGrupo, out List<Puerta> puertasAsociadas, true);
                     GrupoPuerta grupopuerta = new GrupoPuerta(idGrupo, Nombre, Descripcion, puertasAsociadas);
                     gruposDePuertas.Add(grupopuerta);
                 }
