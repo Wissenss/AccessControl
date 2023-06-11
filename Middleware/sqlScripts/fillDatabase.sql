@@ -7,6 +7,20 @@ INSERT INTO Persona VALUES
 (5, 'Diego', 'Lopez Mendoza', '449 243 1362', 'dlopez@gmail.com'),
 (6, 'Leslie Miroslava', 'Benites Marin', '449 533 1395', 'lbenites@gmail.com');
 
+-- Grupo Persona--
+INSERT INTO GrupoPersona VALUES 
+(1, "Guardias", "Encargados de la seguridad"),
+(2, "Clientes", "Visitantes a las intalaciones"),
+(3, "Administradores", "Encargados de la gestión");
+
+INSERT INTO DetalleGrupoPersona VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 2),
+(4, 4, 2),
+(5, 5, 3),
+(6, 6, 3);
+
 -- Grupo Puerta --
 INSERT INTO grupopuerta VALUES (1, "Investigación", "Puertas del área de investigación"),
 (2, "Almacenes", "Almacenes de uso general"),

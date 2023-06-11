@@ -35,5 +35,12 @@ namespace Middleware.Models
             this.Celular = celular;
             this.Correo = correo;
         }
+
+
+
+        public override string ToString() //para que el list box muestre correctamente una lista de objetos
+        {
+            return this.Nombres;
+        }
     }
 }

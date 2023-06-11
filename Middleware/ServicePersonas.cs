@@ -236,74 +236,74 @@ namespace Middleware
             return Error.NoError;
         }
 
+        //lol, escribi los mismos
+        //public Error GetPersonasByGroup(int grupoPersonasId, out List<Persona> personas)
+        //{
+        //    base.connection.Open();
+        //    personas = new List<Persona>();
 
-        public Error GetPersonasByGroup(int grupoPersonasId, out List<Persona> personas)
-        {
-            base.connection.Open();
-            personas = new List<Persona>();
+        //    try
+        //    {
+        //        MySqlCommand cmd = new MySqlCommand();
+        //        cmd.Connection = base.connection;
 
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = base.connection;
+        //        cmd.CommandText = "SELECT * FROM DetalleGrupoPersona WHERE GrupoPersona_idGrupoPersona = @grupoPersonaId";
+        //        cmd.Parameters.AddWithValue("@grupoPersonaId", grupoPersonasId);
 
-                cmd.CommandText = "SELECT * FROM DetalleGrupoPersona WHERE GrupoPersona_idGrupoPersona = @grupoPersonaId";
-                cmd.Parameters.AddWithValue("@grupoPersonaId", grupoPersonasId);
+        //        MySqlDataReader reader = cmd.ExecuteReader();
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            Persona persona = new Persona(reader);
+        //            personas.Add(persona);
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return Error.Desconocido;
+        //    }
+        //    finally
+        //    {
+        //        base.connection.Close();
+        //    }
 
-                while (reader.Read())
-                {
-                    Persona persona = new Persona(reader);
-                    personas.Add(persona);
-                }
-            }
-            catch (Exception e)
-            {
-                return Error.Desconocido;
-            }
-            finally
-            {
-                base.connection.Close();
-            }
+        //    return Error.NoError;
+        //}
 
-            return Error.NoError;
-        }
+        //public Error GetGruposDePersonas(out List<GrupoPersona> gruposPersonas)
+        //{
+        //    base.connection.Open();
+        //    gruposPersonas = new List<GrupoPersona>();
 
-        public Error GetGruposDePersonas(out List<GrupoPersona> gruposPersonas)
-        {
-            base.connection.Open();
-            gruposPersonas = new List<GrupoPersona>();
+        //    try
+        //    {
+        //        MySqlCommand cmd = new MySqlCommand("GrupoPersona", base.connection);
+        //        cmd.CommandType = System.Data.CommandType.TableDirect;
 
-            try
-            {
-                MySqlCommand cmd = new MySqlCommand("GrupoPersona", base.connection);
-                cmd.CommandType = System.Data.CommandType.TableDirect;
+        //        MySqlDataReader reader = cmd.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            GrupoPersona grupo = new GrupoPersona
+        //            {
+        //                idGrupoPersona = (int)reader[0],
+        //                Nombre = (string)reader[1],
+        //                Descripcion = (string)reader[2]
+        //            };
 
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    GrupoPersona grupo = new GrupoPersona
-                    {
-                        idGrupoPersona = (int)reader[0],
-                        Nombre = (string)reader[1],
-                        Descripcion = (string)reader[2]
-                    };
+        //            gruposPersonas.Add(grupo);
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return Error.Desconocido;
+        //    }
+        //    finally
+        //    {
+        //        base.connection.Close();
+        //    }
 
-                    gruposPersonas.Add(grupo);
-                }
-            }
-            catch (Exception e)
-            {
-                return Error.Desconocido;
-            }
-            finally
-            {
-                base.connection.Close();
-            }
-
-            return Error.NoError;
-        }
+        //    return Error.NoError;
+        //}
 
         public Error GetGrupoDePersonas(int grupoPersonaId, out GrupoPersona grupoPersonas)
         {
@@ -314,15 +314,11 @@ namespace Middleware
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = base.connection;
-
-                cmd.CommandText = "SELECT * FROM GrupoPersona WHERE idGrupoPersona = @grupoPersonaId;";
                 cmd.Parameters.AddWithValue("@grupoPersonaId", grupoPersonaId);
 
+                cmd.CommandText = "SELECT * FROM GrupoPersona WHERE idGrupoPersona = @grupoPersonaId;";
+
                 MySqlDataReader reader = cmd.ExecuteReader();
-                //if(!reader.HasRows)
-                //{
-                //    return Error.NoError;
-                //}
                 if(reader.Read())
                 {
                     grupoPersonas = new GrupoPersona
@@ -336,10 +332,10 @@ namespace Middleware
                 {
                     return Error.RegistroNoEncontrado;
                 }
+                reader.Close();
 
                 //llena la lista de personas
-                cmd.CommandText = "SELECT * FROM DetalleGrupoPersona WHERE GrupoPersona_idGrupoPersona = @grupoPersonaId";
-                cmd.Parameters.AddWithValue("@grupoPersonaId", grupoPersonaId); //creo que no ocupas volver a agreagar este param, pues arriba se hizo, not sure...
+                cmd.CommandText = "SELECT b.* FROM DetalleGrupoPersona a INNER JOIN Persona b ON a.GrupoPersona_idGrupoPersona = @grupoPersonaId AND a.Persona_idPersona = b.idPersona";
 
                 reader = cmd.ExecuteReader();
 
@@ -347,7 +343,7 @@ namespace Middleware
                 {
                     Persona persona = new Persona(reader);
                     grupoPersonas.AñadirPersona(persona);
-                }   
+                }  
             }
             catch (Exception e)
             {
@@ -394,9 +390,10 @@ namespace Middleware
                 {
                     query += string.Format("({0}, {1}), ", persona.Id, grupoPersonas.idGrupoPersona);
                 }
-                query.TrimEnd(',');
+                query = query.TrimEnd(new char[] { ' ', ',' });
                 query += ";";
 
+                cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -422,10 +419,10 @@ namespace Middleware
 
                 cmd.Parameters.AddWithValue("@idGrupoPersona", grupoPersonaId);
 
-                cmd.CommandText = "DELETE FROM GrupoPersona WHERE idGrupoPersona = @idGrupoPersona;"
+                cmd.CommandText = "DELETE FROM DetalleGrupoPersona WHERE GrupoPersona_idGrupoPersona = @idGrupoPersona";
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = "DELETE FROM DetalleGrupoPersona WHERE GrupoPersona_idGrupoPersona = @idGrupoPersona";
+                cmd.CommandText = "DELETE FROM GrupoPersona WHERE idGrupoPersona = @idGrupoPersona;";
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)

@@ -14,7 +14,10 @@ namespace Middleware.Models
         public string Descripcion { get; set; }
         public List<Persona> personas;
 
-        public GrupoPersona() { }
+        public GrupoPersona() 
+        {
+            this.personas = new List<Persona>();
+        }
 
         public GrupoPersona(int idGrupoPersona, string nombre)
         {

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AccessControl.Catalogos;
+using Middleware;
+using Middleware.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,28 +15,169 @@ namespace AccessControl
 {
     public partial class FDatosGrupoPersonas : Form
     {
+        public int grupoPersonasId { get; set; }
+        public ModoAcceso modo { get; set; }
+
         public FDatosGrupoPersonas()
         {
             InitializeComponent();
         }
         private void FDatosGrupoPersonas_Load(object sender, EventArgs e)
         {
-            //temporal para testing...
-            //****************************************
-            lbPersonas.Items.Add("Persona Azul");
-            lbPersonas.Items.Add("Persona Rojo");
-            lbPersonas.Items.Add("Persona Morada");
-            lbPersonas.Items.Add("Persona Amarilla");
-            //****************************************
+            List<Persona> personas;
+            Error codigoError = ServiceProvider.Instance.ServicePersonas.GetPersonas(out personas);
+            if (codigoError != Error.NoError)
+            {
+                MessageBox.Show($"Ocurrió el error {(int)codigoError}, la aplicación intentará continuar...");
+                return;
+            }
+
+            if (modo == ModoAcceso.Edicion)
+            {
+                CargarDatos();
+            }
+            else
+            {
+                NuevosDatos();
+            }
 
             ActualizarControlesActivos();
         }
 
+        private void CargarDatos()
+        {
+            GrupoPersona grupo;
+            Error codigoError;
+            
+            codigoError = ServiceProvider.Instance.ServicePersonas.GetGrupoDePersonas(grupoPersonasId, out grupo);
+            if(codigoError != Error.NoError)
+            {
+                MessageBox.Show($"Ocurrió el error {(int)codigoError}, la aplicación intentará continuar...");
+                return;
+            }
+
+            tbNombre.Text = grupo.Nombre;
+            tbDescripcion.Text = grupo.Descripcion;
+
+            //this.Miembros = grupo.personas;
+            //lbMiembros.DataSource = this.Miembros;
+            //lbMiembros.DisplayMember = "Nombres";
+            //lbMiembros.ValueMember = "Id";
+
+            List<Persona> personas;
+            codigoError = ServiceProvider.Instance.ServicePersonas.GetPersonas(out personas);
+            if (codigoError != Error.NoError)
+            {
+                MessageBox.Show($"Ocurrió el error {(int)codigoError}, la aplicación intentará continuar...");
+                return;
+            }
+
+            //this.Personas = personas.RemoveAll(item => grupo.personas.Any(item2 => item.Id == item2.Id));
+            //this.Personas = personas.Except(grupo.personas).ToList(); //remueve todos las personas que ya son miembros del grupo
+
+            //foreach(Persona persona in grupo.personas)
+            //{
+            //    personas.Remove(persona);
+            //}
+
+
+            bool esMiembro = false;
+            foreach(Persona persona in personas)
+            {
+                foreach(Persona miembro in grupo.personas)
+                {
+                    if(persona.Id == miembro.Id)
+                    {
+                        esMiembro = true;
+                        break;
+                    }
+                    esMiembro = false;
+                }
+
+                if (esMiembro)
+                {
+                    lbMiembros.Items.Add(persona);
+                }
+                else
+                {
+                    lbPersonas.Items.Add(persona);
+                }
+            }
+
+            //this.Personas = personas;
+            //lbPersonas.DataSource = this.Personas;
+            //lbPersonas.DisplayMember = "Nombres";
+            //lbPersonas.ValueMember = "Id";
+        }
+
+        private void NuevosDatos()
+        {
+            List<Persona> personas;
+            Error codigoError = ServiceProvider.Instance.ServicePersonas.GetPersonas(out personas);
+            if (codigoError != Error.NoError)
+            {
+                MessageBox.Show($"Ocurrió el error {(int)codigoError}, la aplicación intentará continuar...");
+                return;
+            }
+
+            foreach (Persona persona in personas)
+            {
+                lbPersonas.Items.Add(persona);
+            }
+        }
+
+        private bool ValidarDatos()
+        {
+            if (lbMiembros.Items.Count == 0)
+                return false;
+            if (tbNombre.Text.Trim().Length == 0)
+                return false;
+            if (tbDescripcion.Text.Trim().Length == 0)
+                return false;
+
+            return true;
+        }
+
+        private void GuardarDatos()
+        {
+            GrupoPersona grupo = new GrupoPersona
+            {
+                Nombre = tbNombre.Text,
+                Descripcion = tbDescripcion.Text
+            };
+
+            foreach(Persona miembro in lbMiembros.Items)
+            {
+                grupo.AñadirPersona(miembro);
+            }
+
+            Error codigoError = ServiceProvider.Instance.ServicePersonas.SetGrupoDePersonas(grupo, modo == ModoAcceso.Alta);
+            if (codigoError != Error.NoError)
+            {
+                MessageBox.Show($"Ocurrió el error {(int)codigoError}, la aplicación intentará continuar...");
+                return;
+            }
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if(!ValidarDatos())
+            {
+                MessageBox.Show("Datos inválidos o incompletos, revise la información", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            GuardarDatos();
+            DialogResult = DialogResult.OK;
+        }
+
+        //graficos y comportamiento de los controles
         private void BtnAddSelected_Click(object sender, EventArgs e)
         {
             while(lbPersonas.SelectedItems.Count > 0)
             {
-                string item = (string)lbPersonas.SelectedItems[0];
+                Persona item = (Persona)lbPersonas.SelectedItems[0];
+
                 lbMiembros.Items.Add(item);
                 lbPersonas.Items.Remove(item);
             }
@@ -44,7 +188,7 @@ namespace AccessControl
         {
             while (lbMiembros.SelectedItems.Count > 0)
             {
-                string item = (string)lbMiembros.SelectedItems[0];
+                Persona item = (Persona)lbMiembros.SelectedItems[0];
                 lbPersonas.Items.Add(item);
                 lbMiembros.Items.Remove(item);
             }
@@ -104,5 +248,6 @@ namespace AccessControl
         {
             ActualizarControlesActivos();
         }
+
     }
 }

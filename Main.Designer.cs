@@ -36,20 +36,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.BtnPersonas = new System.Windows.Forms.Button();
             this.BtnGPersonas = new System.Windows.Forms.Button();
             this.BtnPuertas = new System.Windows.Forms.Button();
             this.BtnGPuertas = new System.Windows.Forms.Button();
             this.BtnItinerario = new System.Windows.Forms.Button();
             this.BtnAbout = new System.Windows.Forms.Button();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.TCMonitor.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -60,7 +58,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1088, 457);
+            this.panel1.Size = new System.Drawing.Size(816, 371);
             this.panel1.TabIndex = 2;
             // 
             // TCMonitor
@@ -72,18 +70,17 @@
             this.TCMonitor.Name = "TCMonitor";
             this.TCMonitor.Padding = new System.Drawing.Point(0, 0);
             this.TCMonitor.SelectedIndex = 0;
-            this.TCMonitor.Size = new System.Drawing.Size(1088, 457);
+            this.TCMonitor.Size = new System.Drawing.Size(816, 371);
             this.TCMonitor.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1080, 428);
+            this.tabPage1.Size = new System.Drawing.Size(808, 345);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Piso 1";
             // 
@@ -91,11 +88,11 @@
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1080, 428);
+            this.label1.Size = new System.Drawing.Size(808, 345);
             this.label1.TabIndex = 0;
             this.label1.Tag = "";
+            this.label1.Text = "Aqui va un diagrama del edificio o algo así...";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
@@ -103,10 +100,9 @@
             this.panel2.BackColor = System.Drawing.Color.Salmon;
             this.panel2.Controls.Add(this.flowLayoutPanel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 457);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
+            this.panel2.Location = new System.Drawing.Point(0, 371);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1088, 135);
+            this.panel2.Size = new System.Drawing.Size(816, 110);
             this.panel2.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -122,10 +118,14 @@
             this.flowLayoutPanel1.Controls.Add(this.BtnAbout);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1088, 135);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(816, 110);
             this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
             // 
             // BtnPersonas
             // 
@@ -138,11 +138,10 @@
             this.BtnPersonas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPersonas.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnPersonas.Image = global::AccessControl.Properties.Resources.user_64;
-            this.BtnPersonas.Location = new System.Drawing.Point(4, 4);
-            this.BtnPersonas.Margin = new System.Windows.Forms.Padding(4);
-            this.BtnPersonas.MinimumSize = new System.Drawing.Size(139, 128);
+            this.BtnPersonas.Location = new System.Drawing.Point(3, 3);
+            this.BtnPersonas.MinimumSize = new System.Drawing.Size(104, 104);
             this.BtnPersonas.Name = "BtnPersonas";
-            this.BtnPersonas.Size = new System.Drawing.Size(139, 128);
+            this.BtnPersonas.Size = new System.Drawing.Size(104, 104);
             this.BtnPersonas.TabIndex = 1;
             this.BtnPersonas.Text = "Personas";
             this.BtnPersonas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -160,10 +159,9 @@
             this.BtnGPersonas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGPersonas.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnGPersonas.Image = global::AccessControl.Properties.Resources.group_64;
-            this.BtnGPersonas.Location = new System.Drawing.Point(151, 4);
-            this.BtnGPersonas.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnGPersonas.Location = new System.Drawing.Point(113, 3);
             this.BtnGPersonas.Name = "BtnGPersonas";
-            this.BtnGPersonas.Size = new System.Drawing.Size(139, 128);
+            this.BtnGPersonas.Size = new System.Drawing.Size(104, 104);
             this.BtnGPersonas.TabIndex = 3;
             this.BtnGPersonas.Text = "Grup. Personas";
             this.BtnGPersonas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -181,10 +179,9 @@
             this.BtnPuertas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPuertas.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnPuertas.Image = global::AccessControl.Properties.Resources.door_6_64;
-            this.BtnPuertas.Location = new System.Drawing.Point(298, 4);
-            this.BtnPuertas.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnPuertas.Location = new System.Drawing.Point(223, 3);
             this.BtnPuertas.Name = "BtnPuertas";
-            this.BtnPuertas.Size = new System.Drawing.Size(139, 128);
+            this.BtnPuertas.Size = new System.Drawing.Size(104, 104);
             this.BtnPuertas.TabIndex = 2;
             this.BtnPuertas.Text = "Puertas";
             this.BtnPuertas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -202,10 +199,9 @@
             this.BtnGPuertas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnGPuertas.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnGPuertas.Image = global::AccessControl.Properties.Resources.door_group_64;
-            this.BtnGPuertas.Location = new System.Drawing.Point(445, 4);
-            this.BtnGPuertas.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnGPuertas.Location = new System.Drawing.Point(333, 3);
             this.BtnGPuertas.Name = "BtnGPuertas";
-            this.BtnGPuertas.Size = new System.Drawing.Size(139, 128);
+            this.BtnGPuertas.Size = new System.Drawing.Size(104, 104);
             this.BtnGPuertas.TabIndex = 4;
             this.BtnGPuertas.Text = "Grup. Puertas";
             this.BtnGPuertas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -223,10 +219,9 @@
             this.BtnItinerario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnItinerario.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnItinerario.Image = global::AccessControl.Properties.Resources.today_64;
-            this.BtnItinerario.Location = new System.Drawing.Point(592, 4);
-            this.BtnItinerario.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnItinerario.Location = new System.Drawing.Point(443, 3);
             this.BtnItinerario.Name = "BtnItinerario";
-            this.BtnItinerario.Size = new System.Drawing.Size(139, 128);
+            this.BtnItinerario.Size = new System.Drawing.Size(104, 104);
             this.BtnItinerario.TabIndex = 0;
             this.BtnItinerario.Text = "Itinerario";
             this.BtnItinerario.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -244,41 +239,25 @@
             this.BtnAbout.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAbout.ForeColor = System.Drawing.SystemColors.Control;
             this.BtnAbout.Image = global::AccessControl.Properties.Resources.info_64;
-            this.BtnAbout.Location = new System.Drawing.Point(739, 4);
-            this.BtnAbout.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnAbout.Location = new System.Drawing.Point(553, 3);
             this.BtnAbout.Name = "BtnAbout";
-            this.BtnAbout.Size = new System.Drawing.Size(139, 128);
+            this.BtnAbout.Size = new System.Drawing.Size(104, 104);
             this.BtnAbout.TabIndex = 5;
             this.BtnAbout.Text = "Acerca de";
             this.BtnAbout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnAbout.UseVisualStyleBackColor = false;
             this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::AccessControl.Properties.Resources.piso_1;
-            this.pictureBox1.Location = new System.Drawing.Point(-4, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1088, 423);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1088, 592);
+            this.ClientSize = new System.Drawing.Size(816, 481);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1103, 629);
+            this.MinimumSize = new System.Drawing.Size(831, 518);
             this.Name = "Main";
             this.Text = "AccessControl";
             this.Resize += new System.EventHandler(this.Main_Resize);
@@ -288,7 +267,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -308,6 +286,5 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
