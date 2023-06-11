@@ -249,6 +249,7 @@
     <Content Include="icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\piso 1.jpg" />
     <None Include="Resources\search-12-16.png" />
     <None Include="Resources\icon-sm.png" />
     <None Include="Resources\icon-lg.png" />
