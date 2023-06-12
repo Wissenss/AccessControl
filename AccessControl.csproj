@@ -117,6 +117,12 @@
       <DependentUpon>FDatosPuerta.cs</DependentUpon>
     </Compile>
     <Compile Include="Catalogos\ModoAcceso.cs" />
+    <Compile Include="Generic\MensajeConfirmacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generic\MensajeConfirmacion.Designer.cs">
+      <DependentUpon>MensajeConfirmacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="MonitorSerial\CatalogoAcceso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\FDatosPuerta.resx">
       <DependentUpon>FDatosPuerta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generic\MensajeConfirmacion.resx">
+      <DependentUpon>MensajeConfirmacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonitorSerial\CatalogoAcceso.resx">
       <DependentUpon>CatalogoAcceso.cs</DependentUpon>

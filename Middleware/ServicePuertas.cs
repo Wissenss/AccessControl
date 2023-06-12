@@ -54,7 +54,7 @@ namespace Middleware
             puertas = new List<Puerta>();
             try
             {
-                if(base.connection.State != System.Data.ConnectionState.Open)
+                if (base.connection.State != System.Data.ConnectionState.Open)
                 {
                     base.connection.Open();
                 }
@@ -80,7 +80,7 @@ namespace Middleware
             }
             finally
             {
-                if(!keepOpen) base.connection.Close();
+                if (!keepOpen) base.connection.Close();
             }
 
             return Error.NoError;
@@ -95,14 +95,13 @@ namespace Middleware
                 string queryGrupo = "SELECT * FROM grupopuerta";
                 MySqlCommand command = new MySqlCommand(queryGrupo, base.connection);
                 MySqlDataReader reader = command.ExecuteReader();
-                
+
                 while (reader.Read())
                 {
                     int idGrupo = (int)reader[0];
                     string Nombre = (string)reader[1];
                     string Descripcion = (string)reader[2];
-                    GetPuertasByGroup(idGrupo, out List<Puerta> puertasAsociadas, true);
-                    GrupoPuerta grupopuerta = new GrupoPuerta(idGrupo, Nombre, Descripcion, puertasAsociadas);
+                    GrupoPuerta grupopuerta = new GrupoPuerta(idGrupo, Nombre, Descripcion);
                     gruposDePuertas.Add(grupopuerta);
                 }
             }
@@ -111,6 +110,13 @@ namespace Middleware
                 Console.WriteLine(ex);
             }
             finally { base.connection.Close(); }
+
+            for (int i = 0; i < gruposDePuertas.Count; i++)
+            {
+                GetPuertasByGroup(gruposDePuertas[i].IdGrupoPuerta, out List<Puerta> puertasAsociadas, false);
+                gruposDePuertas[i].SetPuertasAsociadas(puertasAsociadas);
+            }
+
             return Error.NoError;
         }
     }

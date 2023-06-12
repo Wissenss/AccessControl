@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AccessControl.Models;
 using Middleware;
-
+using Middleware.Models;
 
 namespace AccessControl.Catalogos
 {
@@ -19,6 +19,8 @@ namespace AccessControl.Catalogos
         private string Descripcion { get; set; }
         private string Nombre { get; set; }
 
+        private GrupoPuerta grupoTemporal;
+
         List<Puerta> members;
         List<Puerta> puertasDisponibles;
         public FDatosGrupoPuertas()
@@ -26,18 +28,22 @@ namespace AccessControl.Catalogos
             InitializeComponent();
             this.members = new List<Puerta>();
         }
-        public FDatosGrupoPuertas(int idGrupo)
+        public FDatosGrupoPuertas(int idGrupo, GrupoPuerta gruporecibido)
         {
             InitializeComponent();
             this.idGrupo = idGrupo;
+            this.grupoTemporal = gruporecibido;
+            this.tbNombre.Text = gruporecibido.Nombre;
+            this.tbDescripcion.Text = gruporecibido.Descripcion;
         }
+
         private void FDatosGrupoPuertas_Load(object sender, EventArgs e)
         {
+
             ServiceProvider.Instance.ServicePuertas.GetPuertas(out puertasDisponibles);
-            // puertasDisponibles = new List<Puerta>(puertas);
             if (idGrupo != -1)
             {
-                ServiceProvider.Instance.ServicePuertas.GetPuertasByGroup(this.idGrupo, out members, false);
+                this.members = grupoTemporal.GetPuertasAsociadas();
             }
             foreach (Puerta miembro in members)
             {
@@ -86,12 +92,13 @@ namespace AccessControl.Catalogos
             while (lbMiembros.SelectedItems.Count > 0)
             {
                 string item = (string)lbMiembros.SelectedItems[0];
-                foreach (Puerta pt in members)
+                for (int i = 0; i < members.Count; i++)
                 {
-                    if (pt.Descripcion == item)
+                    if (members[i].Descripcion == item)
                     {
-                        puertasDisponibles.Add(pt);
-                        members.Remove(pt);
+                        puertasDisponibles.Add(puertasDisponibles[i]);
+                        members.Remove(puertasDisponibles[i]);
+                        break;
                     }
                 }
                 lbPuertas.Items.Add(item);
@@ -105,6 +112,15 @@ namespace AccessControl.Catalogos
             while (lbPuertas.Items.Count > 0)
             {
                 string item = (string)lbPuertas.Items[0];
+                for (int i = 0; i < puertasDisponibles.Count; i++)
+                {
+                    if (puertasDisponibles[i].Descripcion == item)
+                    {
+                        members.Add(puertasDisponibles[i]);
+                        puertasDisponibles.Remove(puertasDisponibles[i]);
+                        break;
+                    }
+                }
                 lbMiembros.Items.Add(item);
                 lbPuertas.Items.Remove(item);
             }
@@ -116,6 +132,15 @@ namespace AccessControl.Catalogos
             while (lbMiembros.Items.Count > 0)
             {
                 string item = (string)lbMiembros.Items[0];
+                for (int i = 0; i < members.Count; i++)
+                {
+                    if (members[i].Descripcion == item)
+                    {
+                        puertasDisponibles.Add(puertasDisponibles[i]);
+                        members.Remove(puertasDisponibles[i]);
+                        break;
+                    }
+                }
                 lbPuertas.Items.Add(item);
                 lbMiembros.Items.Remove(item);
             }
@@ -156,7 +181,10 @@ namespace AccessControl.Catalogos
 
         public string[] GetNewGroupData()
         {
-            return new string[] { this.Nombre, this.Descripcion };
+            //Si el idGrupo se quedó en -1, estamos en modo creativo
+            //si no es -1, entonces estamos editando
+            if (this.idGrupo == -1) return new string[] { this.Nombre, this.Descripcion };
+            return new string[] { this.Nombre, this.Descripcion, this.idGrupo.ToString() };
         }
 
         public List<Puerta> GetMemebers()

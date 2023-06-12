@@ -3,13 +3,10 @@ using Middleware;
 using Middleware.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using AccessControl.Generic;
 
 namespace AccessControl.Catalogos
 {
@@ -22,8 +19,9 @@ namespace AccessControl.Catalogos
         ninguna tarea, así se puede mantener la DB segura
         hasta que se de click en "Aceptar"
         */
+        private bool OnLocalModifications = false;
         private static List<string[]> taskStack;
-        private static List<GrupoPuerta> gruposPuerta;
+        private List<GrupoPuerta> gruposPuerta;
 
         public FCatalogoGruposPuertas()
         {
@@ -54,17 +52,33 @@ namespace AccessControl.Catalogos
             dtGruposPuertas.EndLoadData();
         }
 
+        //Editar
         private void EjecutarAccion(object sender, EventArgs e)
         {
             DataGridViewRow row = dataGridView1.SelectedRows[0];
             int idGr = Int32.Parse(row.Cells[0].Value.ToString());
-            using (FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas(idGr))
+            using (FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas(idGr, this.gruposPuerta[row.Index]))
             {
                 var res = DDatosGrupoPuertas.ShowDialog();
-                //lógica para actualizar
+                if (res == DialogResult.OK)
+                {
+
+                    string[] newGroup = DDatosGrupoPuertas.GetNewGroupData();
+                    string Nombre = newGroup[0];
+                    string Descripcion = newGroup[1];
+                    int idGrupo = Int32.Parse(newGroup[2]); //recibimos el id en  un indice extra
+                    List<Puerta> ptAsociadas = DDatosGrupoPuertas.GetMemebers();
+
+                    gruposPuerta[row.Index] = new GrupoPuerta(idGrupo, Nombre, Descripcion, ptAsociadas);
+                    taskStack.Add(new string[] { "Update", $"{gruposPuerta.Count() - 1}" });
+                    //Modificar las columnas desde el designer
+                    row.SetValues(idGrupo, Nombre, Descripcion);
+                    this.OnLocalModifications = true;
+                }
             }
         }
 
+        //Crear
         private void NuevoGrupo(object sender, EventArgs e)
         {
             using (FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas())
@@ -86,17 +100,20 @@ namespace AccessControl.Catalogos
                     row["idGrupo"] = idGrupo;
                     row["Nombre"] = Nombre;
                     row["Descripcion"] = Descripcion;
-
                     dtGruposPuertas.Rows.Add(row);
+                    this.OnLocalModifications = true;
                 }
             }
         }
 
+        //Eliminar
         private void EliminarGrupo(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount == 0) return;
             DataGridViewRow row = dataGridView1.SelectedRows[0];
             string idGr = row.Cells[0].Value.ToString();
+            gruposPuerta.Remove(gruposPuerta[row.Index]);
+            row.Dispose();
             taskStack.Add(new string[] { "Delete", $"{idGr}" });
         }
 
@@ -138,7 +155,15 @@ namespace AccessControl.Catalogos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            using (MensajeConfirmacion confirmacion = new MensajeConfirmacion())
+            {
+                var res = confirmacion.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    this.Dispose();
+                }
+                else { return; }
+            }
         }
     }
 }

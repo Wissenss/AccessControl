@@ -66,5 +66,15 @@ namespace Middleware.Models
             puertas.Remove(puerta);
             return 0;
         }
+
+        public List<Puerta> GetPuertasAsociadas()
+        {
+            return this.puertas;
+        }
+
+        public void SetPuertasAsociadas(List<Puerta> asociadas)
+        {
+            this.puertas = asociadas;
+        }
     }
 }
