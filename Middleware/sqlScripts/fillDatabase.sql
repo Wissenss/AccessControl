@@ -22,7 +22,9 @@ INSERT INTO DetalleGrupoPersona VALUES
 (6, 6, 3);
 
 -- Grupo Puerta --
-INSERT INTO grupopuerta VALUES (1, "Investigación", "Puertas del área de investigación"),
+INSERT INTO grupopuerta VALUES 
+(-1, "Sin Asignar", "Puertas sin área asignada"),
+(1, "Investigación", "Puertas del área de investigación"),
 (2, "Almacenes", "Almacenes de uso general"),
 (3, "Administración", "Puertas del área administrativa");
 
@@ -31,4 +33,6 @@ INSERT INTO Puerta VALUES
 (1, "Laboratorio 60", "Investigación", "Sin Observaciones", 1),
 (2, "Laboratorio 23", "Investigación", "Sin Observaciones", 1),
 (3, "Almacén A23", "Almacenes", "En Remodelación", 2),
-(23, "Oficina Administrativa", "Adminstracion", "Sin Observaciones", 3);
+(23, "Oficina Administrativa", "Adminstracion", "Sin Observaciones", 3),
+(4, "Puerta de prueba sin asignar", "Sin zona", "Sin Observaciones", -1),
+(5, "Otra puerta de prueba sin asignar", "Sin zona", "Sin Observaciones", -1);
