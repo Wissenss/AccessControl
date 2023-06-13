@@ -169,7 +169,7 @@ namespace Middleware
                 {
                     string query = "UPDATE puerta SET GrupoPuerta_idGrupo = ?idGrupo, Ubicacion = ?Nombre WHERE idPuerta = ?idPt";
                     command.Parameters.Clear();
-                    command.Parameters.Add("?idGrupo", MySqlDbType.Int32).Value = puerta.idGrupo;
+                    command.Parameters.Add("?idGrupo", MySqlDbType.Int32).Value = -1;
                     command.Parameters.Add("?idPt", MySqlDbType.Int32).Value = puerta.IdPuerta;
                     command.Parameters.Add("?Nombre", MySqlDbType.VarChar).Value = "Sin Zona";
                     command.CommandText = query;
@@ -311,6 +311,47 @@ namespace Middleware
                 base.connection.Close();
             }
             return SavePuertasAsociadas(nuevoGrupo.GetPuertasAsociadas(), nuevoGrupo.IdGrupoPuerta, nuevoGrupo.Nombre, out status);
+        }
+
+        public Error DeleteGrupoPuerta(int idGrupo, out bool status)
+        {
+            status = false;
+            GetPuertasByGroup(idGrupo, out List<Puerta> asociadas, false);
+            //liberamos todas las puertas de este grupo, así 
+            //evitamos problemas con la llave foránea hija
+            //y no borramos puertas
+            UpdatePuertasDisponibles(asociadas, out status);
+            //y luego borramos el grupo como tal
+            base.connection.Open();
+            MySqlTransaction transaction = base.connection.BeginTransaction();
+            try
+            {
+                MySqlCommand command = base.connection.CreateCommand();
+                string query = "DELETE FROM GrupoPuerta WHERE idGrupoPuerta = ?idGrupo";
+
+                command.Parameters.Add("?idGrupo", MySqlDbType.Int32).Value = idGrupo;
+                command.CommandText = query;
+
+                int afected = command.ExecuteNonQuery();
+                if (afected > 0)
+                {
+                    status = true;
+                }
+
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                //rollback todo wapo
+                transaction.Rollback();
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+            return Error.NoError;
         }
 
     }

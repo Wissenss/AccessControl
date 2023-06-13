@@ -130,11 +130,11 @@ namespace AccessControl.Catalogos
                     switch (task[0])
                     {
                         case "Delete":
-                            //Falta servicio borrar
+                            ServiceProvider.Instance.ServicePuertas.DeleteGrupoPuerta(index, out bool status);
                             break;
                         case "Add":
                             GrupoPuerta toSave = gruposPuerta[index];
-                            ServiceProvider.Instance.ServicePuertas.SaveGrupoPuertas(toSave, out bool status);
+                            ServiceProvider.Instance.ServicePuertas.SaveGrupoPuertas(toSave, out status);
                             break;
                         case "Update":
                             GrupoPuerta toUpdate = gruposPuerta[index];

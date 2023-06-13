@@ -95,8 +95,8 @@ namespace AccessControl.Catalogos
                     if (members[i].Descripcion == item)
                     {
                         members[i].idGrupo = -1;
-                        puertasDisponibles.Add(puertasDisponibles[i]);
-                        members.Remove(puertasDisponibles[i]);
+                        puertasDisponibles.Add(members[i]);
+                        members.Remove(members[i]);
                         break;
                     }
                 }
@@ -135,8 +135,8 @@ namespace AccessControl.Catalogos
                 {
                     if (members[i].Descripcion == item)
                     {
-                        puertasDisponibles.Add(puertasDisponibles[i]);
-                        members.Remove(puertasDisponibles[i]);
+                        puertasDisponibles.Add(members[i]);
+                        members.Remove(members[i]);
                         break;
                     }
                 }
