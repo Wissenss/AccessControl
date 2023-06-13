@@ -1,8 +1,5 @@
 ﻿using Middleware;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AccessControl
@@ -15,18 +12,17 @@ namespace AccessControl
         [STAThread]
         static void Main()
         {
-            //carga los ensamblados necesarios
-
             //config de la app
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetCompatibleTextRenderingDefault(true);
 
             //rutinas de inicio
             ServiceProvider svProvider = ServiceProvider.Instance;//crea el service provider
 
-            if (new Settings().Actualizar)
+            if (new Settings().Actualizar) //actualiza/reinicia la estructura de la bd
             {
-                DBUtils.InizializarDB(ServiceProvider.Instance);//actualiza/reinicia la estructura de la bd
+                DBUtils.InizializarDB(ServiceProvider.Instance);
+                MessageBox.Show("Actualización Terminada", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             Application.Run(new Main());

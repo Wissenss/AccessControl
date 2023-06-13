@@ -100,12 +100,6 @@
     <Compile Include="ServicePuertas.cs" />
     <Compile Include="ServiceSemanasTipo.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="VScriptExecution.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VScriptExecution.Designer.cs">
-      <DependentUpon>VScriptExecution.cs</DependentUpon>
-    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
@@ -119,11 +113,6 @@
     <Content Include="sqlScripts\fillDatabase.sql" />
     <Content Include="sqlScripts\InitDatabase.sql" />
     <Content Include="sqlScripts\InitDatabase_old.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="VScriptExecution.resx">
-      <DependentUpon>VScriptExecution.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -36,13 +36,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.BtnPersonas = new System.Windows.Forms.Button();
             this.BtnGPersonas = new System.Windows.Forms.Button();
             this.BtnPuertas = new System.Windows.Forms.Button();
             this.BtnGPuertas = new System.Windows.Forms.Button();
             this.BtnItinerario = new System.Windows.Forms.Button();
             this.BtnAbout = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1.SuspendLayout();
             this.TCMonitor.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -121,11 +121,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(816, 110);
             this.flowLayoutPanel1.TabIndex = 1;
-            // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
             // 
             // BtnPersonas
             // 
@@ -248,6 +243,11 @@
             this.BtnAbout.UseVisualStyleBackColor = false;
             this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,6 +259,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(831, 518);
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AccessControl";
             this.Resize += new System.EventHandler(this.Main_Resize);
             this.panel1.ResumeLayout(false);
