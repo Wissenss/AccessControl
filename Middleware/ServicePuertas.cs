@@ -49,6 +49,93 @@ namespace Middleware
             return Error.NoError;
         }
 
+        //Métodos para gestión de grupos individuales
+        public Error CreatePuerta(Puerta puerta)
+        {
+            base.connection.Open();
+            MySqlTransaction transaction = base.connection.BeginTransaction();
+            try
+            {
+                string query = "INSERT INTO puerta VALUES (?idPuerta, ?Descripcion, ?Ubicacion, ?Observaciones, ?idGrupo)";
+                MySqlCommand command = base.connection.CreateCommand();
+                command.Parameters.Clear();
+                command.Parameters.Add("?idPuerta", MySqlDbType.Int32).Value = puerta.IdPuerta;
+                command.Parameters.Add("?Ubicacion", MySqlDbType.VarChar).Value = puerta.Ubicacion;
+                command.Parameters.Add("?Descripcion", MySqlDbType.VarChar).Value = puerta.Descripcion;
+                command.Parameters.Add("?Observaciones", MySqlDbType.VarChar).Value = puerta.Observaciones;
+                command.Parameters.Add("?idGrupo", MySqlDbType.Int32).Value = -1;
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+            return Error.NoError;
+        }
+        public Error UpdatePuerta(Puerta puerta)
+        {
+            base.connection.Open();
+            MySqlTransaction transaction = base.connection.BeginTransaction();
+            try
+            {
+                string query = "UPDATE puerta SET Ubicacion = ?Ubicacion, Descripcion = ?Descripcion, Observaciones = ?Observaciones WHERE idPuerta = ?idPuerta";
+                MySqlCommand command = base.connection.CreateCommand();
+                command.Parameters.Clear();
+                command.Parameters.Add("?idPuerta", MySqlDbType.Int32).Value = puerta.IdPuerta;
+                command.Parameters.Add("?Ubicacion", MySqlDbType.VarChar).Value = puerta.Ubicacion;
+                command.Parameters.Add("?Descripcion", MySqlDbType.VarChar).Value = puerta.Descripcion;
+                command.Parameters.Add("?Observaciones", MySqlDbType.VarChar).Value = puerta.Observaciones;
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+            return Error.NoError;
+        }
+        public Error DeletePuerta(int IdPuerta)
+        {
+            base.connection.Open();
+            MySqlTransaction transaction = base.connection.BeginTransaction();
+            try
+            {
+                string query = "DELETE FROM puerta WHERE idPuerta = ?idPuerta";
+                MySqlCommand command = base.connection.CreateCommand();
+                command.Parameters.Clear();
+                command.Parameters.Add("?idPuerta", MySqlDbType.Int32).Value = IdPuerta;
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+            return Error.NoError;
+        }
+
         public Error GetPuertasSinAsignar(out List<Puerta> puertas)
         {
             base.connection.Open();
@@ -122,6 +209,7 @@ namespace Middleware
             return Error.NoError;
         }
 
+        //Métodos para gestión de grupos de puertas
         public Error GetGruposDePuertas(out List<GrupoPuerta> gruposDePuertas)
         {
             base.connection.Open();
