@@ -87,6 +87,7 @@
     <Compile Include="IniFile.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Models\DetallesDeAcceso.cs" />
+    <Compile Include="Models\DiaTipo.cs" />
     <Compile Include="Models\GrupoPersona.cs" />
     <Compile Include="Models\GrupoPuerta.cs" />
     <Compile Include="Models\Puerta.cs" />

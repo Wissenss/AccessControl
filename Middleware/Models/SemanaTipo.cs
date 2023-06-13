@@ -7,43 +7,36 @@ using System.Threading.Tasks;
 
 namespace AccessControl.Models
 {
-    internal class SemanaTipo
+    public class SemanaTipo
     {
         static readonly string[] Days = new string[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo" };
-        
+
         //Para facilitarnos esto, podemos usar dia/mes/año como ID
         public int IdSemanaTipo { get; set; }
         public string Descripcion { get; set; }
-        //Cada día tiene un diccionario, donde la llave es la hora de inicio,
-        //y el valor, un objeto o arreglo con los derechos de puertas y personas
-        //correspondientes a la hora
-        private class Dia
-        {
-            public String name;
-            public Dictionary<int, DetallesDeAcceso> horariosAcceso;
-            
-            public Dia(string name)
-            {
-                this.name = name;
-            }
-
-            public Dia(string name, Dictionary<int, DetallesDeAcceso> horariosAcceso) : this(name)
-            {
-                this.horariosAcceso = horariosAcceso;
-            }
-        }
 
         //cada día se almacena en una lista
-        private List<Dia> semana = new List<Dia>();
+        private List<DiaTipo> semana = new List<DiaTipo>();
 
         public SemanaTipo(int idSemanaTipo, string Descripcion)
         {
             this.IdSemanaTipo = idSemanaTipo;
             this.Descripcion = Descripcion;
-            
+
             for (int i = 0; i < 7; i++)
             {
-                semana.Add(new Dia(Days[i]));
+                semana.Add(new DiaTipo(Days[i]));
+            }
+        }
+
+        //recibimos los DiasTipo, para usar FindAll y setear directo el diccionario
+        public void SetDerechos(List<DiaTipo> dias)
+        {
+            //recibimos los dias tipo listos.
+            for (int i = 0; i < dias.Count; i++)
+            {
+                this.semana.FindIndex((DiaTipo dia) => dia.name == dias[i].name);
+                this.semana[i].horariosAcceso = dias[i].horariosAcceso;
             }
         }
     }

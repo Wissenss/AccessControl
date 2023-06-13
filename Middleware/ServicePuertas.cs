@@ -11,7 +11,6 @@ namespace Middleware
 {
     public class ServicePuertas : Service, IService
     {
-        //lsta de puertas, basando en Service Personas
         public ServicePuertas(MySqlConnection connection) : base(connection) { }
 
         public Error GetPuertas(out List<Puerta> puertas)
