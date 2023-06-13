@@ -62,9 +62,10 @@
             // 
             // BtnSelectFile
             // 
-            this.BtnSelectFile.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnSelectFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnSelectFile.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnSelectFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSelectFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.BtnSelectFile.Location = new System.Drawing.Point(34, 189);
             this.BtnSelectFile.Name = "BtnSelectFile";
             this.BtnSelectFile.Size = new System.Drawing.Size(114, 23);
@@ -76,9 +77,10 @@
             // btnAceptar
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAceptar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnAceptar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.btnAceptar.Location = new System.Drawing.Point(356, 201);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
@@ -90,10 +92,11 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.button1.Location = new System.Drawing.Point(437, 201);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);

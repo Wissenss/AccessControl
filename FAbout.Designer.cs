@@ -64,7 +64,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(416, -6);
+            this.button1.Location = new System.Drawing.Point(429, -2);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(30, 30);
@@ -201,9 +201,9 @@
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label13.Location = new System.Drawing.Point(290, 85);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(140, 13);
+            this.label13.Size = new System.Drawing.Size(169, 13);
             this.label13.TabIndex = 20;
-            this.label13.Text = "Alejando Medina Castañeda";
+            this.label13.Text = "Jorge Alejando Medina Castañeda";
             // 
             // label14
             // 
@@ -220,7 +220,7 @@
             this.statusStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.statusStrip1.Location = new System.Drawing.Point(0, 157);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(446, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(466, 22);
             this.statusStrip1.TabIndex = 24;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -238,7 +238,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 179);
+            this.ClientSize = new System.Drawing.Size(466, 179);
             this.ControlBox = false;
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.pictureBox1);
