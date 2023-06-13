@@ -13,16 +13,14 @@ namespace AccessControl.Catalogos
     public partial class FCatalogoGruposPuertas : Form
     {
         /*
-        Esta stack se crea cada vez qeu se abre la ventana
-        para ejecutar las tareas cuando se clickea OK, 
-        así, si se clickea Cancelar, entonces no se ejecuta
-        ninguna tarea, así se puede mantener la DB segura
-        hasta que se de click en "Aceptar"
+        Cada vez que se crea una instancia, se genera una lista de tareas, al cerrar, 
+        Si el usuario da en aceptar, se ejecutan las tareas, si da cancelar, no se ejecutan
+        y no habrá cambios en DB
         */
-        private bool OnLocalModifications = false;
+        private bool changes = false;
         private static List<string[]> taskStack;
         private List<GrupoPuerta> gruposPuerta;
-
+        private List<Puerta> puertasSinAsignar;
         public FCatalogoGruposPuertas()
         {
             InitializeComponent();
@@ -50,6 +48,7 @@ namespace AccessControl.Catalogos
                 dtGruposPuertas.Rows.Add(row);
             }
             dtGruposPuertas.EndLoadData();
+            ServiceProvider.Instance.ServicePuertas.GetPuertasSinAsignar(out puertasSinAsignar);
         }
 
         //Editar
@@ -57,12 +56,11 @@ namespace AccessControl.Catalogos
         {
             DataGridViewRow row = dataGridView1.SelectedRows[0];
             int idGr = Int32.Parse(row.Cells[0].Value.ToString());
-            using (FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas(idGr, this.gruposPuerta[row.Index]))
+            using (FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas(idGr, this.gruposPuerta[row.Index], this.puertasSinAsignar))
             {
                 var res = DDatosGrupoPuertas.ShowDialog();
                 if (res == DialogResult.OK)
                 {
-
                     string[] newGroup = DDatosGrupoPuertas.GetNewGroupData();
                     string Nombre = newGroup[0];
                     string Descripcion = newGroup[1];
@@ -70,10 +68,11 @@ namespace AccessControl.Catalogos
                     List<Puerta> ptAsociadas = DDatosGrupoPuertas.GetMemebers();
 
                     gruposPuerta[row.Index] = new GrupoPuerta(idGrupo, Nombre, Descripcion, ptAsociadas);
-                    taskStack.Add(new string[] { "Update", $"{gruposPuerta.Count() - 1}" });
+                    taskStack.Add(new string[] { "Update", $"{row.Index}" });
                     //Modificar las columnas desde el designer
                     row.SetValues(idGrupo, Nombre, Descripcion);
-                    this.OnLocalModifications = true;
+                    puertasSinAsignar = DDatosGrupoPuertas.GetPuertasDisponibles();
+                    this.changes = true;
                 }
             }
         }
@@ -81,7 +80,7 @@ namespace AccessControl.Catalogos
         //Crear
         private void NuevoGrupo(object sender, EventArgs e)
         {
-            using (FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas())
+            using (FDatosGrupoPuertas DDatosGrupoPuertas = new FDatosGrupoPuertas(this.puertasSinAsignar))
             {
                 var res = DDatosGrupoPuertas.ShowDialog();
                 if (res == DialogResult.OK)
@@ -101,7 +100,8 @@ namespace AccessControl.Catalogos
                     row["Nombre"] = Nombre;
                     row["Descripcion"] = Descripcion;
                     dtGruposPuertas.Rows.Add(row);
-                    this.OnLocalModifications = true;
+                    puertasSinAsignar = DDatosGrupoPuertas.GetPuertasDisponibles();
+                    this.changes = true;
                 }
             }
         }
@@ -113,8 +113,10 @@ namespace AccessControl.Catalogos
             DataGridViewRow row = dataGridView1.SelectedRows[0];
             string idGr = row.Cells[0].Value.ToString();
             gruposPuerta.Remove(gruposPuerta[row.Index]);
-            row.Dispose();
+            dataGridView1.Rows.RemoveAt(row.Index);
             taskStack.Add(new string[] { "Delete", $"{idGr}" });
+            this.changes = true;
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -128,14 +130,19 @@ namespace AccessControl.Catalogos
                     switch (task[0])
                     {
                         case "Delete":
-                            //servicio borrarGrupo, requiere: idGrupo -> index
+                            ServiceProvider.Instance.ServicePuertas.DeleteGrupoPuerta(index, out bool status);
                             break;
                         case "Add":
                             GrupoPuerta toSave = gruposPuerta[index];
-                            //Servicio guardar, requiere: Objeto <GrupoPuerta>
+                            ServiceProvider.Instance.ServicePuertas.SaveGrupoPuertas(toSave, out status);
                             break;
                         case "Update":
-                            //Servicio actualizar,  requiere: Objeto <Puerta>
+                            GrupoPuerta toUpdate = gruposPuerta[index];
+                            ServiceProvider.Instance.ServicePuertas.UpdateGrupoPuertas(toUpdate, out status);
+                            if (puertasSinAsignar.Count > 0)
+                            {
+                                ServiceProvider.Instance.ServicePuertas.UpdatePuertasDisponibles(this.puertasSinAsignar, out status);
+                            }
                             break;
                     }
                 }
@@ -155,6 +162,11 @@ namespace AccessControl.Catalogos
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!changes)
+            {
+                this.Dispose();
+                return;
+            }
             using (MensajeConfirmacion confirmacion = new MensajeConfirmacion())
             {
                 var res = confirmacion.ShowDialog();

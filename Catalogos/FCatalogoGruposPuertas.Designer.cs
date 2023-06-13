@@ -35,7 +35,6 @@ namespace AccessControl.Catalogos
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button5 = new System.Windows.Forms.Button();
-            this.BtnSelect = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -50,6 +49,7 @@ namespace AccessControl.Catalogos
             this.idGrupo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnSelect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtGruposPuertas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -70,19 +70,6 @@ namespace AccessControl.Catalogos
             this.button5.Text = "Aceptar";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // BtnSelect
-            // 
-            this.BtnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSelect.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BtnSelect.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.BtnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSelect.Location = new System.Drawing.Point(397, 12);
-            this.BtnSelect.Name = "BtnSelect";
-            this.BtnSelect.Size = new System.Drawing.Size(75, 23);
-            this.BtnSelect.TabIndex = 23;
-            this.BtnSelect.Text = "Seleccionar";
-            this.BtnSelect.UseVisualStyleBackColor = false;
             // 
             // button4
             // 
@@ -240,6 +227,19 @@ namespace AccessControl.Catalogos
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.ReadOnly = true;
             // 
+            // BtnSelect
+            // 
+            this.BtnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnSelect.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnSelect.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BtnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSelect.Location = new System.Drawing.Point(397, 12);
+            this.BtnSelect.Name = "BtnSelect";
+            this.BtnSelect.Size = new System.Drawing.Size(75, 23);
+            this.BtnSelect.TabIndex = 23;
+            this.BtnSelect.Text = "Seleccionar";
+            this.BtnSelect.UseVisualStyleBackColor = false;
+            // 
             // FCatalogoGruposPuertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,7 +268,6 @@ namespace AccessControl.Catalogos
         #endregion
 
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button BtnSelect;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
@@ -283,5 +282,6 @@ namespace AccessControl.Catalogos
         private System.Windows.Forms.DataGridViewTextBoxColumn idGrupo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.Button BtnSelect;
     }
 }

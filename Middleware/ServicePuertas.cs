@@ -29,7 +29,43 @@ namespace Middleware
                     string descripcion = (string)reader[1];
                     string ubicacion = (string)reader[2];
                     string observaciones = (string)reader[3];
-                    Puerta puerta = new Puerta(idPuerta, descripcion, ubicacion, observaciones);
+                    int idGrupo = (int)reader[4];
+                    Puerta puerta = new Puerta(idPuerta, descripcion, ubicacion, observaciones, idGrupo);
+
+                    puertas.Add(puerta);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+
+            return Error.NoError;
+        }
+
+        public Error GetPuertasSinAsignar(out List<Puerta> puertas)
+        {
+            base.connection.Open();
+            puertas = new List<Puerta>();
+            try
+            {
+                string query = "SELECT * FROM puerta WHERE GrupoPuerta_idGrupo = -1";
+                MySqlCommand command = new MySqlCommand(query, base.connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int idPuerta = (int)reader[0];
+                    string descripcion = (string)reader[1];
+                    string ubicacion = (string)reader[2];
+                    string observaciones = (string)reader[3];
+                    int idGrupo = (int)reader[4];
+                    Puerta puerta = new Puerta(idPuerta, descripcion, ubicacion, observaciones, idGrupo);
 
                     puertas.Add(puerta);
                 }
@@ -67,8 +103,8 @@ namespace Middleware
                     string descripcion = (string)reader[1];
                     string ubicacion = (string)reader[2];
                     string observaciones = (string)reader[3];
-                    Puerta puerta = new Puerta(idPuerta, descripcion, ubicacion, observaciones);
-
+                    int idGrupoPuerta = (int)reader[4];
+                    Puerta puerta = new Puerta(idPuerta, descripcion, ubicacion, observaciones, idGrupoPuerta);
                     puertas.Add(puerta);
                 }
 
@@ -92,7 +128,7 @@ namespace Middleware
             gruposDePuertas = new List<GrupoPuerta>();
             try
             {
-                string queryGrupo = "SELECT * FROM grupopuerta";
+                string queryGrupo = "SELECT * FROM grupopuerta WHERE idGrupoPuerta > -1";
                 MySqlCommand command = new MySqlCommand(queryGrupo, base.connection);
                 MySqlDataReader reader = command.ExecuteReader();
 
@@ -119,5 +155,204 @@ namespace Middleware
 
             return Error.NoError;
         }
+
+        //Cuando modificamos un grupo, debemos actualizar también las que quedan sin asignar
+        public Error UpdatePuertasDisponibles(List<Puerta> disponibles, out bool status)
+        {
+            status = true;
+            base.connection.Open();
+            MySqlTransaction transaction = base.connection.BeginTransaction();
+            try
+            {
+                MySqlCommand command = base.connection.CreateCommand();
+                foreach (Puerta puerta in disponibles)
+                {
+                    string query = "UPDATE puerta SET GrupoPuerta_idGrupo = ?idGrupo, Ubicacion = ?Nombre WHERE idPuerta = ?idPt";
+                    command.Parameters.Clear();
+                    command.Parameters.Add("?idGrupo", MySqlDbType.Int32).Value = -1;
+                    command.Parameters.Add("?idPt", MySqlDbType.Int32).Value = puerta.IdPuerta;
+                    command.Parameters.Add("?Nombre", MySqlDbType.VarChar).Value = "Sin Zona";
+                    command.CommandText = query;
+
+                    int afected = command.ExecuteNonQuery();
+                    if (afected > 0)
+                    {
+                        status = true;
+                    }
+                }
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                //rollback todo wapo
+                transaction.Rollback();
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+
+            return Error.NoError;
+        }
+
+        //cuando salvamos un grupo, solo hay que actualizar el idGrupo en la puerta de la DB
+        private Error SavePuertasAsociadas(List<Puerta> asociadas, int idGrupo, string nombreGrupo, out bool status)
+        {
+            status = true;
+            base.connection.Open();
+            MySqlTransaction transaction = base.connection.BeginTransaction();
+            try
+            {
+                MySqlCommand command = base.connection.CreateCommand();
+                foreach (Puerta puerta in asociadas)
+                {
+                    string query = "UPDATE puerta SET GrupoPuerta_idGrupo = ?idGrupo, Ubicacion = ?Nombre WHERE idPuerta = ?idPt";
+                    command.Parameters.Clear();
+                    command.Parameters.Add("?idGrupo", MySqlDbType.Int32).Value = idGrupo;
+                    command.Parameters.Add("?idPt", MySqlDbType.Int32).Value = puerta.IdPuerta;
+                    command.Parameters.Add("?Nombre", MySqlDbType.VarChar).Value = nombreGrupo;
+                    command.CommandText = query;
+
+                    int afected = command.ExecuteNonQuery();
+                    if (afected > 0)
+                    {
+                        status = true;
+                    }
+                }
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                //rollback todo wapo
+                transaction.Rollback();
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+
+            return Error.NoError;
+        }
+
+        public Error SaveGrupoPuertas(GrupoPuerta nuevoGrupo, out bool status)
+        {
+
+            status = false;
+            base.connection.Open();
+            MySqlTransaction transaction = base.connection.BeginTransaction();
+            try
+            {
+                MySqlCommand command = base.connection.CreateCommand();
+                string query = "INSERT INTO GrupoPuerta (idGrupoPuerta, Nombre, Descripcion) VALUES (?idGrupo, ?Nombre, ?Descripcion)";
+
+                command.Parameters.Add("?idGrupo", MySqlDbType.Int32).Value = nuevoGrupo.IdGrupoPuerta;
+                command.Parameters.Add("?Nombre", MySqlDbType.VarChar).Value = nuevoGrupo.Nombre;
+                command.Parameters.Add("?Descripcion", MySqlDbType.VarChar).Value = nuevoGrupo.Descripcion;
+                command.CommandText = query;
+
+                int afected = command.ExecuteNonQuery();
+                if (afected > 0)
+                {
+                    status = true;
+                }
+
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                //rollback todo wapo
+                transaction.Rollback();
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+            return SavePuertasAsociadas(nuevoGrupo.GetPuertasAsociadas(), nuevoGrupo.IdGrupoPuerta, nuevoGrupo.Nombre, out status);
+        }
+        public Error UpdateGrupoPuertas(GrupoPuerta nuevoGrupo, out bool status)
+        {
+
+            status = false;
+            base.connection.Open();
+            MySqlTransaction transaction = base.connection.BeginTransaction();
+            try
+            {
+                MySqlCommand command = base.connection.CreateCommand();
+                string query = "UPDATE GrupoPuerta SET Nombre = ?Nombre, Descripcion = ?Descripcion WHERE idGrupoPuerta = ?idGrupo";
+
+                command.Parameters.Add("?idGrupo", MySqlDbType.Int32).Value = nuevoGrupo.IdGrupoPuerta;
+                command.Parameters.Add("?Nombre", MySqlDbType.VarChar).Value = nuevoGrupo.Nombre;
+                command.Parameters.Add("?Descripcion", MySqlDbType.VarChar).Value = nuevoGrupo.Descripcion;
+                command.CommandText = query;
+
+                int afected = command.ExecuteNonQuery();
+                if (afected > 0)
+                {
+                    status = true;
+                }
+
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                //rollback todo wapo
+                transaction.Rollback();
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+            return SavePuertasAsociadas(nuevoGrupo.GetPuertasAsociadas(), nuevoGrupo.IdGrupoPuerta, nuevoGrupo.Nombre, out status);
+        }
+
+        public Error DeleteGrupoPuerta(int idGrupo, out bool status)
+        {
+            status = false;
+            GetPuertasByGroup(idGrupo, out List<Puerta> asociadas, false);
+            //liberamos todas las puertas de este grupo, así 
+            //evitamos problemas con la llave foránea hija
+            //y no borramos puertas
+            UpdatePuertasDisponibles(asociadas, out status);
+            //y luego borramos el grupo como tal
+            base.connection.Open();
+            MySqlTransaction transaction = base.connection.BeginTransaction();
+            try
+            {
+                MySqlCommand command = base.connection.CreateCommand();
+                string query = "DELETE FROM GrupoPuerta WHERE idGrupoPuerta = ?idGrupo";
+
+                command.Parameters.Add("?idGrupo", MySqlDbType.Int32).Value = idGrupo;
+                command.CommandText = query;
+
+                int afected = command.ExecuteNonQuery();
+                if (afected > 0)
+                {
+                    status = true;
+                }
+
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                //rollback todo wapo
+                transaction.Rollback();
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+            return Error.NoError;
+        }
+
     }
 }

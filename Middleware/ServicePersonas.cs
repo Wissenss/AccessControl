@@ -235,7 +235,7 @@ namespace Middleware
                 cmd.CommandText = "SELECT * FROM GrupoPersona WHERE idGrupoPersona = @grupoPersonaId;";
 
                 MySqlDataReader reader = cmd.ExecuteReader();
-                if(reader.Read())
+                if (reader.Read())
                 {
                     grupoPersonas = new GrupoPersona
                     {
@@ -255,11 +255,11 @@ namespace Middleware
 
                 reader = cmd.ExecuteReader();
 
-                while(reader.Read())
+                while (reader.Read())
                 {
                     Persona persona = new Persona(reader);
                     grupoPersonas.AñadirPersona(persona);
-                }  
+                }
             }
             catch (Exception e)
             {
@@ -287,7 +287,7 @@ namespace Middleware
                 cmd.Parameters.AddWithValue("@Nombre", grupoPersonas.Nombre);
                 cmd.Parameters.AddWithValue("@Descripcion", grupoPersonas.Descripcion);
 
-                if(EsNuevo)
+                if (EsNuevo)
                 {
                     cmd.CommandText = "INSERT INTO GrupoPersona(Nombre, Descripcion) VALUES (@Nombre, @Descripcion);";
                     cmd.ExecuteNonQuery();
@@ -331,7 +331,7 @@ namespace Middleware
 
             return Error.NoError;
         }
-    
+
         public Error DeleteGrupoDePersonas(int grupoPersonaId)
         {
             base.connection.Open();

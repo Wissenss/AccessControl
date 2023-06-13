@@ -21,30 +21,36 @@ namespace AccessControl.Catalogos
 
         private GrupoPuerta grupoTemporal;
 
+        List<GrupoPuerta> gruposRegistrados;
+
         List<Puerta> members;
         List<Puerta> puertasDisponibles;
-        public FDatosGrupoPuertas()
+        public FDatosGrupoPuertas(List<Puerta> sinAsignar)
         {
             InitializeComponent();
             this.members = new List<Puerta>();
+            this.puertasDisponibles = sinAsignar;
         }
-        public FDatosGrupoPuertas(int idGrupo, GrupoPuerta gruporecibido)
+        public FDatosGrupoPuertas(int idGrupo, GrupoPuerta gruporecibido, List<Puerta> sinAsignar)
         {
             InitializeComponent();
             this.idGrupo = idGrupo;
             this.grupoTemporal = gruporecibido;
             this.tbNombre.Text = gruporecibido.Nombre;
             this.tbDescripcion.Text = gruporecibido.Descripcion;
+            this.puertasDisponibles = sinAsignar;
         }
 
         private void FDatosGrupoPuertas_Load(object sender, EventArgs e)
         {
 
-            ServiceProvider.Instance.ServicePuertas.GetPuertas(out puertasDisponibles);
-            if (idGrupo != -1)
+            ServiceProvider.Instance.ServicePuertas.GetGruposDePuertas(out gruposRegistrados);
+
+            if (this.idGrupo != -1)
             {
                 this.members = grupoTemporal.GetPuertasAsociadas();
             }
+
             foreach (Puerta miembro in members)
             {
                 lbMiembros.Items.Add(miembro.Descripcion);
@@ -52,16 +58,7 @@ namespace AccessControl.Catalogos
 
             foreach (Puerta puerta in puertasDisponibles)
             {
-                bool flag = false;
-                foreach (Puerta miembro in members)
-                {
-                    if (miembro.IdPuerta == puerta.IdPuerta)
-                    {
-                        flag = true;
-                        break;
-                    }
-                }
-                if (!flag) lbPuertas.Items.Add(puerta.Descripcion);
+                lbPuertas.Items.Add(puerta.Descripcion);
             }
 
             ActualizarControlesActivos();
@@ -76,6 +73,7 @@ namespace AccessControl.Catalogos
                 {
                     if (puertasDisponibles[i].Descripcion == item)
                     {
+                        puertasDisponibles[i].idGrupo = this.idGrupo;
                         members.Add(puertasDisponibles[i]);
                         puertasDisponibles.Remove(puertasDisponibles[i]);
                         break;
@@ -96,8 +94,9 @@ namespace AccessControl.Catalogos
                 {
                     if (members[i].Descripcion == item)
                     {
-                        puertasDisponibles.Add(puertasDisponibles[i]);
-                        members.Remove(puertasDisponibles[i]);
+                        members[i].idGrupo = -1;
+                        puertasDisponibles.Add(members[i]);
+                        members.Remove(members[i]);
                         break;
                     }
                 }
@@ -136,8 +135,8 @@ namespace AccessControl.Catalogos
                 {
                     if (members[i].Descripcion == item)
                     {
-                        puertasDisponibles.Add(puertasDisponibles[i]);
-                        members.Remove(puertasDisponibles[i]);
+                        puertasDisponibles.Add(members[i]);
+                        members.Remove(members[i]);
                         break;
                     }
                 }
@@ -190,6 +189,23 @@ namespace AccessControl.Catalogos
         public List<Puerta> GetMemebers()
         {
             return this.members;
+        }
+
+        public List<Puerta> GetPuertasDisponibles()
+        {
+            return this.puertasDisponibles;
+        }
+
+        private bool checkDisponibilidad(Puerta puerta)
+        {
+            foreach (GrupoPuerta grupo in gruposRegistrados)
+            {
+                foreach (Puerta asociada in grupo.GetPuertasAsociadas())
+                {
+                    if (puerta.Descripcion == asociada.Descripcion) return false;
+                }
+            }
+            return true;
         }
 
         private void button6_Click(object sender, EventArgs e)

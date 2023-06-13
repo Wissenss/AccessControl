@@ -13,12 +13,15 @@ namespace AccessControl.Models
         public string Ubicacion { get; set; }
         public string Observaciones { get; set; }
 
-        public Puerta(int idPuerta, string Descripcion, string Ubicacion, string observaciones)
+        public int idGrupo { get; set; }
+
+        public Puerta(int idPuerta, string Descripcion, string Ubicacion, string observaciones, int idGrupo)
         {
             this.IdPuerta = idPuerta;
             this.Ubicacion = Ubicacion;
             this.Descripcion = Descripcion;
             this.Observaciones = observaciones;
+            this.idGrupo = idGrupo;
         }
     }
 }
