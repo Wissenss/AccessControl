@@ -75,7 +75,7 @@ namespace AccessControl.Catalogos
                     puertas[index] = nuevaPuerta;
                     dataGridView1.Rows[index].SetValues(idPuerta, Descripcion, Ubicacion, Observaciones);
                     this.changes = true;
-                    taskList.Add(new string[] { "Update", $"{index}" });
+                    taskList.Add(new string[] { "Update", $"{index}", $"{idPuerta}" });
                 }
             }
         }
@@ -102,7 +102,7 @@ namespace AccessControl.Catalogos
                     dtPuertas.Rows.Add(row);
 
                     this.changes = true;
-                    taskList.Add(new string[] { "Add", $"{puertas.Count - 1}" });
+                    taskList.Add(new string[] { "Add", $"{puertas.Count - 1}", $"{nuevaPuerta.IdPuerta}" });
                 }
             }
         }
@@ -113,9 +113,18 @@ namespace AccessControl.Catalogos
             if (dataGridView1.RowCount == 0) return;
 
             DataGridViewRow row = dataGridView1.SelectedRows[0];
-            string idPuerta = row.Cells["ID"].ToString();
-            puertas.Remove(puertas[row.Index]);
+            string idPuerta = row.Cells[0].Value.ToString();
             taskList.Add(new string[] { "Delete", $"{idPuerta}" });
+            puertas.Remove(puertas[row.Index]);
+            dataGridView1.Rows.Remove(row);
+            for(int i = 0; i<taskList.Count; i++)
+            {
+                if ((taskList[i][0] == "Add" || taskList[i][0] == "Update") 
+                    && taskList[i][2] == idPuerta)
+                {
+                    taskList.Remove(taskList[i]);
+                }
+            }
             this.changes = true;
         }
 
@@ -134,11 +143,13 @@ namespace AccessControl.Catalogos
                             ServiceProvider.Instance.ServicePuertas.DeletePuerta(index);
                             break;
                         case "Add":
-                            Puerta toSave = puertas[index];
+                            int idPuerta = Int32.Parse(task[2]);
+                            Puerta toSave = puertas.Find((Puerta pt)=> pt.IdPuerta == idPuerta);
                             ServiceProvider.Instance.ServicePuertas.CreatePuerta(toSave);
                             break;
                         case "Update":
-                            Puerta toUpdate = puertas[index];
+                            int idupdate = Int32.Parse(task[2]);
+                            Puerta toUpdate = puertas.Find((Puerta pt) => pt.IdPuerta == idupdate); ;
                             ServiceProvider.Instance.ServicePuertas.UpdatePuerta(toUpdate);
                             break;
                     }

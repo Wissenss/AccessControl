@@ -45,15 +45,18 @@ namespace AccessControl.Catalogos
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if(!validateData())
+            if (!validateData())
             {
                 MessageBox.Show("El campo Descripción es obligatorio");
                 return;
             }
-            this.puertaTemporal.Descripcion = tbDescripcion.Text;
-            this.puertaTemporal.Observaciones = tbObservaciones.Text;
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            else
+            {
+                this.puertaTemporal.Descripcion = tbDescripcion.Text;
+                this.puertaTemporal.Observaciones = tbObservaciones.Text;
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
     }
 }
