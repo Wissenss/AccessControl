@@ -33,9 +33,9 @@
             this.btnAceptar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tbNombre = new System.Windows.Forms.TextBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbImagen = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tbApellidos = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -43,14 +43,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tbCelular = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tbClaveConfirmacion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbClave = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbRol = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tbUID = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -65,7 +63,6 @@
             // BtnSelectFile
             // 
             this.BtnSelectFile.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BtnSelectFile.Enabled = false;
             this.BtnSelectFile.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnSelectFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnSelectFile.Location = new System.Drawing.Point(34, 189);
@@ -114,9 +111,11 @@
             this.tbNombre.Size = new System.Drawing.Size(308, 21);
             this.tbNombre.TabIndex = 8;
             // 
-            // openFileDialog1
+            // openFileDialog
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog.DefaultExt = "jpg";
+            this.openFileDialog.Filter = "Imagen|*.jpg;*.jpeg;*.png;*.gif|Todo|*.*";
+            this.openFileDialog.FilterIndex = 0;
             // 
             // label2
             // 
@@ -128,14 +127,15 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Nombre";
             // 
-            // pictureBox1
+            // pbImagen
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(136, 158);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pbImagen.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pbImagen.Location = new System.Drawing.Point(12, 25);
+            this.pbImagen.Name = "pbImagen";
+            this.pbImagen.Size = new System.Drawing.Size(136, 158);
+            this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImagen.TabIndex = 0;
+            this.pbImagen.TabStop = false;
             // 
             // label7
             // 
@@ -161,7 +161,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(153, 166);
+            this.label8.Location = new System.Drawing.Point(152, 141);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 13);
             this.label8.TabIndex = 21;
@@ -172,16 +172,16 @@
             this.tbCorreo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbCorreo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.tbCorreo.Location = new System.Drawing.Point(204, 162);
+            this.tbCorreo.Location = new System.Drawing.Point(203, 137);
             this.tbCorreo.Name = "tbCorreo";
-            this.tbCorreo.Size = new System.Drawing.Size(121, 21);
+            this.tbCorreo.Size = new System.Drawing.Size(308, 21);
             this.tbCorreo.TabIndex = 20;
             // 
             // label9
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(341, 166);
+            this.label9.Location = new System.Drawing.Point(153, 168);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(39, 13);
             this.label9.TabIndex = 23;
@@ -192,103 +192,72 @@
             this.tbCelular.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbCelular.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbCelular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.tbCelular.Location = new System.Drawing.Point(391, 162);
+            this.tbCelular.Location = new System.Drawing.Point(203, 164);
             this.tbCelular.Name = "tbCelular";
-            this.tbCelular.Size = new System.Drawing.Size(121, 21);
+            this.tbCelular.Size = new System.Drawing.Size(308, 21);
             this.tbCelular.TabIndex = 22;
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(331, 112);
+            this.label6.Location = new System.Drawing.Point(330, 114);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 13);
             this.label6.TabIndex = 31;
             this.label6.Text = "Confirmar";
             // 
-            // textBox4
+            // tbClaveConfirmacion
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.textBox4.Location = new System.Drawing.Point(391, 108);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.PasswordChar = '*';
-            this.textBox4.Size = new System.Drawing.Size(121, 21);
-            this.textBox4.TabIndex = 30;
+            this.tbClaveConfirmacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbClaveConfirmacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbClaveConfirmacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tbClaveConfirmacion.Location = new System.Drawing.Point(390, 110);
+            this.tbClaveConfirmacion.Name = "tbClaveConfirmacion";
+            this.tbClaveConfirmacion.PasswordChar = '*';
+            this.tbClaveConfirmacion.Size = new System.Drawing.Size(121, 21);
+            this.tbClaveConfirmacion.TabIndex = 30;
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(153, 112);
+            this.label5.Location = new System.Drawing.Point(152, 114);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 13);
             this.label5.TabIndex = 29;
             this.label5.Text = "Clave";
             // 
-            // textBox3
+            // tbClave
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.textBox3.Location = new System.Drawing.Point(204, 108);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(121, 21);
-            this.textBox3.TabIndex = 28;
+            this.tbClave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbClave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tbClave.Location = new System.Drawing.Point(203, 110);
+            this.tbClave.Name = "tbClave";
+            this.tbClave.PasswordChar = '*';
+            this.tbClave.Size = new System.Drawing.Size(121, 21);
+            this.tbClave.TabIndex = 28;
             // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(153, 139);
+            this.label4.Location = new System.Drawing.Point(153, 87);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 27;
             this.label4.Text = "UID";
             // 
-            // textBox2
+            // tbUID
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.textBox2.Location = new System.Drawing.Point(204, 135);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(308, 21);
-            this.textBox2.TabIndex = 26;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(153, 85);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 13);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "Rol";
-            // 
-            // cbRol
-            // 
-            this.cbRol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbRol.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbRol.Enabled = false;
-            this.cbRol.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cbRol.FormattingEnabled = true;
-            this.cbRol.Items.AddRange(new object[] {
-            "Administrador",
-            "Guardia",
-            "Empleado"});
-            this.cbRol.Location = new System.Drawing.Point(204, 82);
-            this.cbRol.Margin = new System.Windows.Forms.Padding(0);
-            this.cbRol.Name = "cbRol";
-            this.cbRol.Size = new System.Drawing.Size(121, 21);
-            this.cbRol.TabIndex = 24;
+            this.tbUID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbUID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbUID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tbUID.Location = new System.Drawing.Point(204, 83);
+            this.tbUID.Name = "tbUID";
+            this.tbUID.Size = new System.Drawing.Size(308, 21);
+            this.tbUID.TabIndex = 26;
             // 
             // FDatosPersona
             // 
@@ -297,13 +266,11 @@
             this.ClientSize = new System.Drawing.Size(524, 236);
             this.ControlBox = false;
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.tbClaveConfirmacion);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.tbClave);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.cbRol);
+            this.Controls.Add(this.tbUID);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.tbCelular);
             this.Controls.Add(this.label8);
@@ -316,7 +283,7 @@
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.BtnSelectFile);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pbImagen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FDatosPersona";
             this.ShowIcon = false;
@@ -324,7 +291,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Datos de la Persona";
             this.Load += new System.EventHandler(this.FDatosPersona_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,13 +299,13 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbImagen;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnSelectFile;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox tbNombre;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbApellidos;
@@ -347,12 +314,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tbCelular;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tbClaveConfirmacion;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbClave;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbRol;
+        private System.Windows.Forms.TextBox tbUID;
     }
 }

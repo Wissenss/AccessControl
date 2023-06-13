@@ -8,6 +8,8 @@ using MySql;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using Middleware.Models;
+using System.Collections;
 
 namespace Middleware
 {
@@ -44,9 +46,21 @@ namespace Middleware
                 script = new MySqlScript(conn, sqlScript);
                 script.Execute();
 
-                MessageBox.Show("Actualizacion Terminada");
+                string query = "UPDATE Persona SET Imagen = @imagenBlob WHERE idPersona = @personaId"; //insertar imagenes con puro sql es mucha lata
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.Add("@imagenBlob", MySqlDbType.Blob);
+                cmd.Parameters.Add("@personaId", MySqlDbType.Int32);
+                for (int id = 1; id <= 6; id++)
+                {
+                    byte[] imagen = File.ReadAllBytes($"sqlScripts/blobsDemo/blob_{id}.jpg");
+                    cmd.Parameters["@imagenBlob"].Value = imagen;
+                    cmd.Parameters["@personaId"].Value = id;
+                    cmd.ExecuteNonQuery();
+                }
 
                 conn.Close();
+
+                MessageBox.Show("Actualizacion Terminada");
             }
 
             return Error.NoError;

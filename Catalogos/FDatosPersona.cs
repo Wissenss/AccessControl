@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Middleware;
 using Middleware.Models;
+using System.Drawing.Imaging;
+using System.Windows.Media.Imaging;
 
 namespace AccessControl.Catalogos
 {
@@ -23,15 +26,6 @@ namespace AccessControl.Catalogos
             InitializeComponent();
         }
 
-        //supongo que si tendria sentido para ahorarte la consulta extra
-        //aunque puede haber datos que no necesariamente mandes al listado
-        //y solo los regreses a la hora de consultar para optimizar,
-        //aunque tampoco creo que lleguemos a ese punto, la verdad no se que sea mejor...
-        //public FDatosPersona(string[] personData)
-        //{
-        //    InitializeComponent();
-        //}
-
         private void FDatosPersona_Load(object sender, EventArgs e)
         {
             if (modo == ModoAcceso.Edicion)
@@ -42,7 +36,11 @@ namespace AccessControl.Catalogos
 
         private void BtnSelectFile_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            Stream file = openFileDialog.OpenFile();
+            pbImagen.Image = Image.FromStream(file);
         }
 
         private void cargarDatos()
@@ -52,14 +50,22 @@ namespace AccessControl.Catalogos
             Error codigoError = ServiceProvider.Instance.ServicePersonas.GetPersona(personaId, out persona);
             if (codigoError != Error.NoError)
             {
-                MessageBox.Show("Sucedió el error: " + (int)codigoError + " la aplicación intentará continuar...", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                codigoError.MostrarError();
                 return;
             }
 
             tbNombre.Text = persona.Nombres;
             tbApellidos.Text = persona.Apellidos;
+            tbUID.Text = persona.UID;
+            tbClave.Text = persona.Clave;
+            tbClaveConfirmacion.Text = persona.Clave;
             tbCorreo.Text = persona.Correo;
             tbCelular.Text = persona.Celular;
+
+            if(persona.Imagen != null)
+            {
+                pbImagen.Image = Image.FromStream(persona.Imagen);
+            }
         }
 
         private void guardarDatos()
@@ -68,10 +74,16 @@ namespace AccessControl.Catalogos
             {
                 Id = personaId,
                 Nombres = tbNombre.Text,
+                UID = tbUID.Text,
+                Clave = tbClave.Text,
                 Apellidos = tbApellidos.Text,
                 Correo = tbCorreo.Text,
-                Celular = tbCelular.Text
+                Celular = tbCelular.Text,
             };
+
+            persona.Imagen = new MemoryStream();
+            pbImagen.Image.Save(persona.Imagen, pbImagen.Image.RawFormat);
+            persona.Imagen.Position = 0;
 
             Error codigoError = ServiceProvider.Instance.ServicePersonas.SetPersona(persona, modo == ModoAcceso.Alta);
             if (codigoError != Error.NoError)
@@ -89,6 +101,9 @@ namespace AccessControl.Catalogos
             if (tbApellidos.Text.Trim().Length == 0)
                 return false;
 
+            if(!tbClave.Text.Equals(tbClaveConfirmacion.Text))
+                return false;
+
             return true;
         }
 
@@ -103,26 +118,6 @@ namespace AccessControl.Catalogos
             guardarDatos();
 
             DialogResult = DialogResult.OK;
-        }
-
-        //graficos
-        private void cbRol_DrawItem(object sender, DrawItemEventArgs e) //para que el combobox tenga el hightlight morado
-        {
-            var combo = sender as ComboBox;
-
-            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-            {
-                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(90, 76, 151)), e.Bounds);
-            }
-            else
-            {
-                e.Graphics.FillRectangle(new SolidBrush(SystemColors.ControlLightLight), e.Bounds);
-            }
-
-            e.Graphics.DrawString(combo.Items[e.Index].ToString(),
-                                          e.Font,
-                                          new SolidBrush(Color.Black),
-                                          new Point(e.Bounds.X, e.Bounds.Y));
         }
     }
 }

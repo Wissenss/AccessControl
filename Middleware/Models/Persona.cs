@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -15,6 +16,9 @@ namespace Middleware.Models
         public string Apellidos { get; set; }
         public string Celular { get; set; }
         public string Correo { get; set; }
+        public string Clave { get; set; }
+        public string UID { get; set; }
+        public MemoryStream Imagen { get; set; }
 
         public Persona() { }
 
@@ -25,6 +29,11 @@ namespace Middleware.Models
             this.Apellidos = (string)reader[2];
             this.Celular = (string)reader[3];
             this.Correo = (string)reader[4];
+            this.Clave = (string)reader[5];
+            this.UID = (string)reader[6];
+
+            if (!reader.IsDBNull(7))
+                this.Imagen = new MemoryStream((byte[])reader[7]);
         }
 
         public Persona (int id, string nombres, string apellidos, string celular, string correo)

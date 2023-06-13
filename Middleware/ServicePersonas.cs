@@ -28,15 +28,7 @@ namespace Middleware
 
                 while (reader.Read())
                 {
-                    Persona persona = new Persona
-                    {
-                        Id = (int)reader[0],
-                        Nombres = (string)reader[1],
-                        Apellidos = (string)reader[2],
-                        Celular = (string)reader[3],
-                        Correo = (string)reader[4],
-                    };
-
+                    Persona persona = new Persona(reader);
                     personas.Add(persona);
                 }
             }
@@ -69,14 +61,7 @@ namespace Middleware
 
                 while (reader.Read())
                 {
-                    persona = new Persona
-                    {
-                        Id = (int)reader[0],
-                        Nombres = (string)reader[1],
-                        Apellidos = (string)reader[2],
-                        Celular = (string)reader[3],
-                        Correo = (string)reader[4],
-                    };
+                    persona = new Persona(reader);
                 }
 
                 if (persona == null)
@@ -110,13 +95,7 @@ namespace Middleware
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    int id = (int)reader[0];
-                    string nombres = (string)reader[1];
-                    string apellidos = (string)reader[2];
-                    string celular = (string)reader[3];
-                    string correo = (string)reader[4];
-                    Persona Persona = new Persona(id, nombres, apellidos, celular, correo);
-
+                    Persona Persona = new Persona(reader);
                     personas.Add(Persona);
                 }
 
@@ -210,7 +189,10 @@ namespace Middleware
                         "Nombres=@Nombres, " +
                         "Apellidos=@Apellidos, " +
                         "Celular=@Celular, " +
-                        "Correo=@Correo " +
+                        "Correo=@Correo, " +
+                        "Clave = @Clave, " +
+                        "UID = @UID, " +
+                        "Imagen = @Imagen " +
                         "WHERE idPersona = @Id;";
                 }
 
@@ -221,6 +203,9 @@ namespace Middleware
                 cmd.Parameters.AddWithValue("@Apellidos", persona.Apellidos);
                 cmd.Parameters.AddWithValue("@Celular", persona.Celular);
                 cmd.Parameters.AddWithValue("@Correo", persona.Correo);
+                cmd.Parameters.AddWithValue("@Clave", persona.Clave);
+                cmd.Parameters.AddWithValue("@UID", persona.UID);
+                cmd.Parameters.AddWithValue("@Imagen", persona.Imagen.ToArray());
 
                 cmd.ExecuteNonQuery();
             }
@@ -235,75 +220,6 @@ namespace Middleware
 
             return Error.NoError;
         }
-
-        //lol, escribi los mismos
-        //public Error GetPersonasByGroup(int grupoPersonasId, out List<Persona> personas)
-        //{
-        //    base.connection.Open();
-        //    personas = new List<Persona>();
-
-        //    try
-        //    {
-        //        MySqlCommand cmd = new MySqlCommand();
-        //        cmd.Connection = base.connection;
-
-        //        cmd.CommandText = "SELECT * FROM DetalleGrupoPersona WHERE GrupoPersona_idGrupoPersona = @grupoPersonaId";
-        //        cmd.Parameters.AddWithValue("@grupoPersonaId", grupoPersonasId);
-
-        //        MySqlDataReader reader = cmd.ExecuteReader();
-
-        //        while (reader.Read())
-        //        {
-        //            Persona persona = new Persona(reader);
-        //            personas.Add(persona);
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return Error.Desconocido;
-        //    }
-        //    finally
-        //    {
-        //        base.connection.Close();
-        //    }
-
-        //    return Error.NoError;
-        //}
-
-        //public Error GetGruposDePersonas(out List<GrupoPersona> gruposPersonas)
-        //{
-        //    base.connection.Open();
-        //    gruposPersonas = new List<GrupoPersona>();
-
-        //    try
-        //    {
-        //        MySqlCommand cmd = new MySqlCommand("GrupoPersona", base.connection);
-        //        cmd.CommandType = System.Data.CommandType.TableDirect;
-
-        //        MySqlDataReader reader = cmd.ExecuteReader();
-        //        while (reader.Read())
-        //        {
-        //            GrupoPersona grupo = new GrupoPersona
-        //            {
-        //                idGrupoPersona = (int)reader[0],
-        //                Nombre = (string)reader[1],
-        //                Descripcion = (string)reader[2]
-        //            };
-
-        //            gruposPersonas.Add(grupo);
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return Error.Desconocido;
-        //    }
-        //    finally
-        //    {
-        //        base.connection.Close();
-        //    }
-
-        //    return Error.NoError;
-        //}
 
         public Error GetGrupoDePersonas(int grupoPersonaId, out GrupoPersona grupoPersonas)
         {

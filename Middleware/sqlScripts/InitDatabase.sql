@@ -145,6 +145,9 @@ CREATE TABLE IF NOT EXISTS `Persona` (
   `Apellidos` VARCHAR(255) NULL,
   `Celular` VARCHAR(20) NULL,
   `Correo` VARCHAR(45) NULL,
+  `Clave` VARCHAR(255) NULL,
+  `UID` VARCHAR(255) NULL,
+  `Imagen` LONGBLOB NULL,
   PRIMARY KEY (`idPersona`),
   UNIQUE INDEX `idPersona_UNIQUE` (`idPersona` ASC) VISIBLE)
 ENGINE = InnoDB;

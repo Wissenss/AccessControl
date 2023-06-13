@@ -1,11 +1,11 @@
 -- Persona --
 INSERT INTO Persona VALUES 
-(1, 'Leonardo', 'Merino Garfias', '449 233 4242', 'lmerino@gmail.com'),
-(2, 'David', 'Delgado Villalobos', '449 332 2332', 'ddelgado@gmail.com'),
-(3, 'Andres Esteban', 'Escudero Robles', '449 233 1042', 'aescudero@gmail.com'),
-(4, 'Alejandro', 'Medina Castañeda', '449 233 3042', 'amedina@gmail.com'),
-(5, 'Diego', 'Lopez Mendoza', '449 243 1362', 'dlopez@gmail.com'),
-(6, 'Leslie Miroslava', 'Benites Marin', '449 533 1395', 'lbenites@gmail.com');
+(1, 'Leonardo', 'Merino Garfias', '449 233 4242', 'lmerino@gmail.com', '1234', '49FK3939568823KDKFÑ04', NULL),
+(2, 'David', 'Delgado Villalobos', '449 332 2332', 'ddelgado@gmail.com', '2773', '49FK393956882DKDJK78FÑ04', NULL),
+(3, 'Andres Esteban', 'Escudero Robles', '449 233 1042', 'aescudero@gmail.com', '4242', '49FK3939DHT8823KDKFÑ04', NULL),
+(4, 'Alejandro', 'Medina Castañeda', '449 233 3042', 'amedina@gmail.com', '4242', 'DJFK3939568DKWSIKW8FÑ04', NULL),
+(5, 'Diego', 'Lopez Mendoza', '449 243 1362', 'dlopez@gmail.com', '4242', 'SSKDOOE939568823KDKFÑ04', NULL),
+(6, 'Leslie Miroslava', 'Benites Marin', '449 533 1395', 'lbenites@gmail.com', '7232', '49FK39395688233DKD04', NULL);
 
 -- Grupo Persona--
 INSERT INTO GrupoPersona VALUES 

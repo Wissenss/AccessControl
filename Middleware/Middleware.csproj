@@ -109,6 +109,12 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="sqlScripts\blobsDemo\blob_1.jpg" />
+    <Content Include="sqlScripts\blobsDemo\blob_2.jpg" />
+    <Content Include="sqlScripts\blobsDemo\blob_3.jpg" />
+    <Content Include="sqlScripts\blobsDemo\blob_4.jpg" />
+    <Content Include="sqlScripts\blobsDemo\blob_5.jpg" />
+    <Content Include="sqlScripts\blobsDemo\blob_6.jpg" />
     <Content Include="sqlScripts\dropDatabase.sql" />
     <Content Include="sqlScripts\fillDatabase.sql" />
     <Content Include="sqlScripts\InitDatabase.sql" />
@@ -123,5 +129,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
