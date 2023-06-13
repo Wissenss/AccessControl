@@ -61,17 +61,6 @@ CREATE TABLE IF NOT EXISTS `GrupoPersona` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `Periodo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Periodo` (
-  `idPeriodo` INT NOT NULL AUTO_INCREMENT,
-  `Descripcion` VARCHAR(255) NULL,
-  `Ano` INT NULL,
-  PRIMARY KEY (`idPeriodo`),
-  UNIQUE INDEX `idPeriodo_UNIQUE` (`idPeriodo` ASC) VISIBLE)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `AccesosSemana`
@@ -79,16 +68,15 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `AccesosSemana` (
   `idAccesosSemana` BIGINT NOT NULL AUTO_INCREMENT,
   `DiaSemana` VARCHAR(45) NOT NULL,
-  `HoraInciol` DATETIME NULL,
-  `HoraFin` DATETIME NOT NULL,
+  `HoraInciol` INT NULL,
   `GrupoPuerta_idGrupoPuerta` INT NOT NULL,
   `GrupoPersona_idGrupoPersona` INT NOT NULL,
-  `Periodo_idPeriodo` INT NOT NULL,
+  `SemanaTipo_idSemanaTipo` INT NOT NULL,
   PRIMARY KEY (`idAccesosSemana`),
   UNIQUE INDEX `idAccesosSemana_UNIQUE` (`idAccesosSemana` ASC) VISIBLE,
   INDEX `fk_AccesosSemana_GrupoPuerta1_idx` (`GrupoPuerta_idGrupoPuerta` ASC) VISIBLE,
   INDEX `fk_AccesosSemana_GrupoPersona1_idx` (`GrupoPersona_idGrupoPersona` ASC) VISIBLE,
-  INDEX `fk_AccesosSemana_Periodo1_idx` (`Periodo_idPeriodo` ASC) VISIBLE,
+  INDEX `fk_AccesosSemana_SemanaTipo1_idx` (`SemanaTipo_idSemanaTipo` ASC) VISIBLE,
   CONSTRAINT `fk_AccesosSemana_GrupoPuerta1`
     FOREIGN KEY (`GrupoPuerta_idGrupoPuerta`)
     REFERENCES `GrupoPuerta` (`idGrupoPuerta`)
@@ -99,9 +87,9 @@ CREATE TABLE IF NOT EXISTS `AccesosSemana` (
     REFERENCES `GrupoPersona` (`idGrupoPersona`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_AccesosSemana_Periodo1`
-    FOREIGN KEY (`Periodo_idPeriodo`)
-    REFERENCES `Periodo` (`idPeriodo`)
+  CONSTRAINT `fk_AccesosSemana_SemanaTipo1`
+    FOREIGN KEY (`SemanaTipo_idSemanaTipo`)
+    REFERENCES `semanatipo` (`idSemanaTipo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -114,25 +102,9 @@ AUTO_INCREMENT = 1;
 CREATE TABLE IF NOT EXISTS `SemanaTipo` (
   `idSemanaTipo` INT NOT NULL AUTO_INCREMENT,
   `Descripcion` VARCHAR(255) NULL,
-  `DiaSemana` VARCHAR(45) NULL,
-  `HoraInicio` DATETIME NULL,
-  `HoraFin` DATETIME NULL,
-  `GrupoPuerta_idGrupoPuerta` INT NOT NULL,
-  `GrupoPersona_idGrupoPersona` INT NOT NULL,
+  `DiaInicio` DateTime,
   PRIMARY KEY (`idSemanaTipo`),
-  UNIQUE INDEX `idSemanaTipo_UNIQUE` (`idSemanaTipo` ASC) VISIBLE,
-  INDEX `fk_SemanaTipo_GrupoPuerta1_idx` (`GrupoPuerta_idGrupoPuerta` ASC) VISIBLE,
-  INDEX `fk_SemanaTipo_GrupoPersona1_idx` (`GrupoPersona_idGrupoPersona` ASC) VISIBLE,
-  CONSTRAINT `fk_SemanaTipo_GrupoPuerta1`
-    FOREIGN KEY (`GrupoPuerta_idGrupoPuerta`)
-    REFERENCES `GrupoPuerta` (`idGrupoPuerta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_SemanaTipo_GrupoPersona1`
-    FOREIGN KEY (`GrupoPersona_idGrupoPersona`)
-    REFERENCES `GrupoPersona` (`idGrupoPersona`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `idSemanaTipo_UNIQUE` (`idSemanaTipo` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 

@@ -33,7 +33,7 @@ namespace Middleware
             base.connection.Open();
             try
             {
-                string query = "SELECT * FROM accesossemana WHERE ";
+                string query = $"SELECT * FROM accesossemana WHERE SemanaTipo_idSemanaTipo = {idSemana}";
                 MySqlCommand command = new MySqlCommand(query, base.connection);
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
@@ -65,7 +65,7 @@ namespace Middleware
             catch (Exception) { return Error.Desconocido; }
             finally { base.connection.Close(); }
             //Enviamos el id de la SEMANA
-            GetDerechosPorSemana(1, out List<DiaTipo>acceso);
+            GetDerechosPorSemana(1, out List<DiaTipo> acceso);
             //semanatal.setDetallesAcceso = acceso
             return Error.NoError;
         }
