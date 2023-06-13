@@ -35,7 +35,6 @@ namespace AccessControl.Catalogos
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button5 = new System.Windows.Forms.Button();
-            this.BtnSelect = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -48,12 +47,12 @@ namespace AccessControl.Catalogos
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.BtnSearch = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.BtnSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtPuertas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -73,19 +72,6 @@ namespace AccessControl.Catalogos
             this.button5.TabIndex = 17;
             this.button5.Text = "Aceptar";
             this.button5.UseVisualStyleBackColor = false;
-            // 
-            // BtnSelect
-            // 
-            this.BtnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSelect.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BtnSelect.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.BtnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSelect.Location = new System.Drawing.Point(397, 12);
-            this.BtnSelect.Name = "BtnSelect";
-            this.BtnSelect.Size = new System.Drawing.Size(75, 23);
-            this.BtnSelect.TabIndex = 16;
-            this.BtnSelect.Text = "Seleccionar";
-            this.BtnSelect.UseVisualStyleBackColor = false;
             // 
             // button4
             // 
@@ -227,29 +213,6 @@ namespace AccessControl.Catalogos
             this.dataGridView1.Size = new System.Drawing.Size(460, 262);
             this.dataGridView1.TabIndex = 10;
             // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.textBox1.Location = new System.Drawing.Point(96, 50);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(295, 21);
-            this.textBox1.TabIndex = 11;
-            // 
-            // BtnSearch
-            // 
-            this.BtnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSearch.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.BtnSearch.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.BtnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSearch.Location = new System.Drawing.Point(397, 49);
-            this.BtnSearch.Name = "BtnSearch";
-            this.BtnSearch.Size = new System.Drawing.Size(75, 23);
-            this.BtnSearch.TabIndex = 12;
-            this.BtnSearch.Text = "Buscar";
-            this.BtnSearch.UseVisualStyleBackColor = false;
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -278,6 +241,29 @@ namespace AccessControl.Catalogos
             this.Observaciones.Name = "Observaciones";
             this.Observaciones.ReadOnly = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.textBox1.Location = new System.Drawing.Point(96, 50);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(295, 21);
+            this.textBox1.TabIndex = 11;
+            // 
+            // BtnSearch
+            // 
+            this.BtnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnSearch.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnSearch.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BtnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSearch.Location = new System.Drawing.Point(397, 49);
+            this.BtnSearch.Name = "BtnSearch";
+            this.BtnSearch.Size = new System.Drawing.Size(75, 23);
+            this.BtnSearch.TabIndex = 12;
+            this.BtnSearch.Text = "Buscar";
+            this.BtnSearch.UseVisualStyleBackColor = false;
+            // 
             // FCatalogoPuertas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -285,7 +271,6 @@ namespace AccessControl.Catalogos
             this.ClientSize = new System.Drawing.Size(484, 384);
             this.ControlBox = false;
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.BtnSelect);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -312,7 +297,6 @@ namespace AccessControl.Catalogos
         #endregion
 
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button BtnSelect;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
