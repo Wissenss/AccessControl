@@ -91,9 +91,9 @@ namespace AccessControl
 
         private void BtnItinerario_Click(object sender, EventArgs e)
         {
-            using(FormularioDesechable desechable = new FormularioDesechable())
+            using(FCatalogoItinerario DCatalogoItinerario = new FCatalogoItinerario())
             {
-                desechable.ShowDialog();
+                DCatalogoItinerario.ShowDialog();
             }
         }
 

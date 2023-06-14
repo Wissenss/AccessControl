@@ -127,6 +127,12 @@
     <Compile Include="Catalogos\FCatalogoGruposPuertas.Designer.cs">
       <DependentUpon>FCatalogoGruposPuertas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Catalogos\FCatalogoItinerario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\FCatalogoItinerario.Designer.cs">
+      <DependentUpon>FCatalogoItinerario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Catalogos\FCatalogoPuertas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\FCatalogoGuposPersonas.resx">
       <DependentUpon>FCatalogoGuposPersonas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\FCatalogoItinerario.resx">
+      <DependentUpon>FCatalogoItinerario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\FCatalogoPuertas.resx">
       <DependentUpon>FCatalogoPuertas.cs</DependentUpon>
