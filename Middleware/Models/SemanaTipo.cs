@@ -16,8 +16,6 @@ namespace AccessControl.Models
         public int IdSemanaTipo { get; set; }
         public string Descripcion { get; set; }
 
-        public DateTime fechaInicio { get; set; }
-
         //cada día se almacena en una lista
         public List<DiaTipo> semana = new List<DiaTipo>();
 
@@ -27,11 +25,10 @@ namespace AccessControl.Models
             this.Descripcion = (string)reader[1];
         }
 
-        public SemanaTipo(int idSemanaTipo, string Descripcion, DateTime fechaInicio)
+        public SemanaTipo(int idSemanaTipo, string Descripcion)
         {
             this.IdSemanaTipo = idSemanaTipo;
             this.Descripcion = Descripcion;
-            this.fechaInicio = fechaInicio;
             for (int i = 0; i < 7; i++)
             {
                 semana.Add(new DiaTipo(Days[i]));
@@ -41,12 +38,13 @@ namespace AccessControl.Models
         //recibimos los DiasTipo, para usar FindAll y setear directo el diccionario
         public void SetDerechos(List<DiaTipo> dias)
         {
+            this.semana = dias;
             //recibimos los dias tipo listos.
-            for (int i = 0; i < dias.Count; i++)
-            {
-                this.semana.FindIndex((DiaTipo dia) => dia.name == dias[i].name);
-                this.semana[i].horariosAcceso = dias[i].horariosAcceso;
-            }
+            //for (int i = 0; i < dias.Count; i++)
+            //{
+            //    this.semana.FindIndex((DiaTipo dia) => dia.name == dias[i].name);
+            //    this.semana[i].horariosAcceso = dias[i].horariosAcceso;
+            //}
         }
     }
 }

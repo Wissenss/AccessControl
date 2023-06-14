@@ -11,7 +11,8 @@ namespace Middleware
 {
     public class ServiceSemanasTipo : Service, IService
     {
-
+        List<GrupoPuerta> gruposPuerta;
+        List<GrupoPersona> gruposPersona;
         private static string[] diasEstaticos = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo" };
         public ServiceSemanasTipo(MySqlConnection connection) : base(connection) { }
         //Lista de SemanasTipo, con sus Días y Derechos 
@@ -59,13 +60,19 @@ namespace Middleware
             for (int i = 0; i < diasEstaticos.Length; i++)
             {
                 List<string[]> diaActual = datosDia.FindAll((datos) => datos[0] == diasEstaticos[i]);
-                foreach (string[] derecho in diaActual)
+                DiaTipo dia = new DiaTipo(diasEstaticos[i]);
+                foreach (string[] hora in diaActual)
                 {
-                    //Va a ser divertido esto de traer los grupos de puerta 
-                    //y personas de permiso por permiso...
-                    //Goey, jalalos desde el principioooooooo
-
+                    int horaInt = Int32.Parse(hora[1]);
+                    GrupoPuerta grupoLlave = gruposPuerta.Find((grupo) => grupo.IdGrupoPuerta == Int32.Parse(hora[2]));
+                    GrupoPersona gruposAcceso = gruposPersona.Find((grupo) => grupo.idGrupoPersona == Int32.Parse(hora[3]));
+                    if (!dia.horariosAcceso[horaInt].ContainsKey(grupoLlave))
+                    {
+                        dia.horariosAcceso[horaInt].Add(grupoLlave, new List<GrupoPersona>());
+                    }
+                    dia.horariosAcceso[horaInt][grupoLlave].Add(gruposAcceso);
                 }
+                acceso.Add(dia);
             }
 
             return Error.NoError;
@@ -73,6 +80,8 @@ namespace Middleware
 
         public Error GetSemanasTipo(out List<SemanaTipo> semanas)
         {
+            ServiceProvider.Instance.ServicePuertas.GetGruposDePuertas(out gruposPuerta);
+            ServiceProvider.Instance.ServicePersonas.GetGruposDePersonas(out gruposPersona);
             semanas = new List<SemanaTipo>();
             base.connection.Open();
             try
@@ -84,8 +93,7 @@ namespace Middleware
                 {
                     int idSemana = (int)reader[0];
                     string Descripcion = (string)reader[1];
-                    DateTime fechaInicio = (DateTime)reader[2];
-                    SemanaTipo semana = new SemanaTipo(idSemana, Descripcion, fechaInicio);
+                    SemanaTipo semana = new SemanaTipo(idSemana, Descripcion);
                     semanas.Add(semana);
                 }
 
@@ -116,7 +124,7 @@ namespace Middleware
                 cmd.CommandType = System.Data.CommandType.TableDirect;
                 reader = cmd.ExecuteReader();
 
-                if(!reader.HasRows) //checa que la semana exista
+                if (!reader.HasRows) //checa que la semana exista
                 {
                     return Error.RegistroNoEncontrado;
                 }

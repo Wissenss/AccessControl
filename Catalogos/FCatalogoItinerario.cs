@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AccessControl.Models;
+using Middleware;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +21,7 @@ namespace AccessControl.Catalogos
 
         private void FCatalogoItinerario_Load(object sender, EventArgs e)
         {
-
+            ServiceProvider.Instance.ServiceSemanasTipo.GetSemanasTipo(out List<SemanaTipo> semanas);
         }
 
         private void close_Click(object sender, EventArgs e)
