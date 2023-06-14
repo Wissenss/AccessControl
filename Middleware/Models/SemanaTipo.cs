@@ -39,12 +39,6 @@ namespace AccessControl.Models
         public void SetDerechos(List<DiaTipo> dias)
         {
             this.semana = dias;
-            //recibimos los dias tipo listos.
-            //for (int i = 0; i < dias.Count; i++)
-            //{
-            //    this.semana.FindIndex((DiaTipo dia) => dia.name == dias[i].name);
-            //    this.semana[i].horariosAcceso = dias[i].horariosAcceso;
-            //}
         }
     }
 }

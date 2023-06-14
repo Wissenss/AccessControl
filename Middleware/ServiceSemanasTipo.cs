@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AccessControl.Models;
 using Middleware.Models;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Cms;
+using Org.BouncyCastle.Crmf;
 
 namespace Middleware
 {
@@ -18,16 +20,16 @@ namespace Middleware
         //Lista de SemanasTipo, con sus Días y Derechos 
         /*
             ToDo
-            GetSemanasTipo(out List<SemanaTipo> semanas);
+            GetSemanasTipo(out List<SemanaTipo> semanas); DONE
             GetSemanaTipo(int semanaTipoId, out SemanaTipo semana);
-            SetSemanaTipo(SemanaTipo semana);
-            DeleteSemanaTipo(int semanaTipoId);
+            SetSemanaTipo(SemanaTipo semana); DONE
+            DeleteSemanaTipo(int semanaTipoId); 
 
-            AgendarSemanaTipo(SemanaTipo semana, DateTime fechaIncial, DateTime, fechaFinal);
+            AgendarSemanaTipo(SemanaTipo semana, DateTime fechaIncial, DateTime, fechaFinal); DONE
 
-            GetAccesos(DateTime fechaIncial, DateTime, fechaFinal, out List<>);
-            GetAcceso(int detalleAccesoId, out DetalleAcceso);
-            SetAcceso(DetalleAcceso acceso);
+            GetAccesos(DateTime fechaIncial, DateTime, fechaFinal, out List<>); DONE (pero por semana)
+            GetAcceso(int detalleAccesoId, out DetalleAcceso); 
+            SetAcceso(DetalleAcceso acceso); 
             DeleteAcceso(int detalleAccesoId);
         */
         private Error GetDerechosPorSemana(int idSemana, out List<DiaTipo> acceso)
@@ -106,6 +108,76 @@ namespace Middleware
             {
                 GetDerechosPorSemana(semanas[i].IdSemanaTipo, out List<DiaTipo> diasSemana);
                 semanas[i].SetDerechos(diasSemana);
+            }
+            return Error.NoError;
+        }
+
+        public Error SetSemanaTipo(SemanaTipo semanaRegistrar, bool NuevoRegistro)
+        {
+            base.connection.Open();
+            MySqlTransaction transaction = base.connection.BeginTransaction();
+            try
+            {
+                MySqlCommand cmd = base.connection.CreateCommand();
+                cmd.Parameters.Add("?Descripcion", MySqlDbType.VarChar).Value = semanaRegistrar.Descripcion;
+                if (NuevoRegistro)
+                {
+                    cmd.CommandText = "INSERT INTO semanatipo (Descripcion) VALUES (?Descripcion)";
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = "SELECT LAST_INSERT_ID()";
+                    semanaRegistrar.IdSemanaTipo = Convert.ToInt32(cmd.ExecuteScalar());
+                    cmd.Parameters.Add("?idSemana", MySqlDbType.Int32).Value = semanaRegistrar.IdSemanaTipo;
+                }
+                else
+                {
+                    cmd.Parameters.Add("?idSemana", MySqlDbType.Int32).Value = semanaRegistrar.IdSemanaTipo;
+                    cmd.CommandText = "UPDATE semanatipo SET Descripcion = ?Descripcion WHERE idSemanaTipo = ?idSemana";
+                    cmd.ExecuteNonQuery();
+                }
+
+                //Excesivo borrar todos(?, no sé si es más barato borrar todos, o traer todo desde DB para ver
+                //qué ha cambiado 
+                cmd.CommandText = "DELETE FROM accesossemana WHERE SemanaTipo_idSemanaTipo = ?idSemana";
+                cmd.ExecuteNonQuery();
+
+                string queryDerechos = "INSERT INTO accesossemana " +
+                    "(DiaSemana, HoraInciol, GrupoPuerta_idGrupoPuerta, " +
+                    "GrupoPersona_idGrupoPersona, SemanaTipo_idSemanaTipo) " +
+                    "VALUES ";
+                foreach (DiaTipo dia in semanaRegistrar.semana)
+                {
+                    foreach(KeyValuePair<int, Dictionary<GrupoPuerta, List<GrupoPersona>>> acceso in dia.horariosAcceso)
+                    {
+                        foreach(KeyValuePair<GrupoPuerta, List<GrupoPersona>> derecho in acceso.Value)
+                        {
+                            foreach(GrupoPersona persona in derecho.Value)
+                            {
+                                queryDerechos += $"('{dia.name}', {Convert.ToInt32(acceso.Key)}, " +
+                                $"{Convert.ToInt32(derecho.Key.IdGrupoPuerta)}, " +
+                                $"{Convert.ToInt32(persona.idGrupoPersona)}, " +
+                                $"{semanaRegistrar.IdSemanaTipo}), ";
+                            }
+                        }
+                    }
+                }
+                queryDerechos.TrimEnd();
+                StringBuilder sb = new StringBuilder(queryDerechos);
+                sb[queryDerechos.LastIndexOf(',')] = ';';
+                queryDerechos = sb.ToString();
+
+                cmd.CommandText = queryDerechos; 
+                cmd.ExecuteNonQuery();
+
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
             }
             return Error.NoError;
         }

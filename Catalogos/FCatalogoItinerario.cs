@@ -21,7 +21,9 @@ namespace AccessControl.Catalogos
 
         private void FCatalogoItinerario_Load(object sender, EventArgs e)
         {
+            //Termporal, para probar el servicio
             ServiceProvider.Instance.ServiceSemanasTipo.GetSemanasTipo(out List<SemanaTipo> semanas);
+            ServiceProvider.Instance.ServiceSemanasTipo.SetSemanaTipo(semanas[0], true);
         }
 
         private void close_Click(object sender, EventArgs e)
