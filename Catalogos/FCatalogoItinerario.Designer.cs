@@ -61,6 +61,7 @@
             this.edit.TabIndex = 1;
             this.edit.Text = "Editar";
             this.edit.UseVisualStyleBackColor = true;
+            this.edit.Click += new System.EventHandler(this.edit_Click);
             // 
             // delete
             // 

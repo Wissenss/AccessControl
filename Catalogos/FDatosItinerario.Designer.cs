@@ -30,10 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.addAccess = new System.Windows.Forms.Button();
+            this.editAccess = new System.Windows.Forms.Button();
+            this.deleteAccess = new System.Windows.Forms.Button();
+            this.queryAccess = new System.Windows.Forms.Button();
             this.HorarioSemanasTipo = new System.Windows.Forms.DataGridView();
             this.DiaLunes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiaMartes = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +42,8 @@
             this.DiaViernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiaSabado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiaDomingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.close = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.HorarioSemanasTipo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,44 +63,46 @@
             this.textBox1.Location = new System.Drawing.Point(80, 18);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(328, 20);
+            this.textBox1.Size = new System.Drawing.Size(342, 20);
             this.textBox1.TabIndex = 1;
             // 
-            // button1
+            // addAccess
             // 
-            this.button1.Location = new System.Drawing.Point(12, 63);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 33);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Agregar acceso";
-            this.button1.UseVisualStyleBackColor = true;
+            this.addAccess.Location = new System.Drawing.Point(25, 63);
+            this.addAccess.Name = "addAccess";
+            this.addAccess.Size = new System.Drawing.Size(94, 33);
+            this.addAccess.TabIndex = 3;
+            this.addAccess.Text = "Agregar acceso";
+            this.addAccess.UseVisualStyleBackColor = true;
+            this.addAccess.Click += new System.EventHandler(this.addAccess_Click);
             // 
-            // button2
+            // editAccess
             // 
-            this.button2.Location = new System.Drawing.Point(352, 63);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 33);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Editar Acceso";
-            this.button2.UseVisualStyleBackColor = true;
+            this.editAccess.Location = new System.Drawing.Point(352, 63);
+            this.editAccess.Name = "editAccess";
+            this.editAccess.Size = new System.Drawing.Size(96, 33);
+            this.editAccess.TabIndex = 4;
+            this.editAccess.Text = "Editar Acceso";
+            this.editAccess.UseVisualStyleBackColor = true;
+            this.editAccess.Click += new System.EventHandler(this.editAccess_Click);
             // 
-            // button3
+            // deleteAccess
             // 
-            this.button3.Location = new System.Drawing.Point(518, 63);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 33);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Eliminar acceso";
-            this.button3.UseVisualStyleBackColor = true;
+            this.deleteAccess.Location = new System.Drawing.Point(518, 63);
+            this.deleteAccess.Name = "deleteAccess";
+            this.deleteAccess.Size = new System.Drawing.Size(94, 33);
+            this.deleteAccess.TabIndex = 5;
+            this.deleteAccess.Text = "Eliminar acceso";
+            this.deleteAccess.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // queryAccess
             // 
-            this.button4.Location = new System.Drawing.Point(176, 63);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(105, 33);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Consultar Acceso";
-            this.button4.UseVisualStyleBackColor = true;
+            this.queryAccess.Location = new System.Drawing.Point(182, 63);
+            this.queryAccess.Name = "queryAccess";
+            this.queryAccess.Size = new System.Drawing.Size(105, 33);
+            this.queryAccess.TabIndex = 6;
+            this.queryAccess.Text = "Consultar Acceso";
+            this.queryAccess.UseVisualStyleBackColor = true;
             // 
             // HorarioSemanasTipo
             // 
@@ -154,20 +158,41 @@
             this.DiaDomingo.HeaderText = "Domingo";
             this.DiaDomingo.Name = "DiaDomingo";
             // 
+            // close
+            // 
+            this.close.Location = new System.Drawing.Point(692, 375);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(75, 23);
+            this.close.TabIndex = 10;
+            this.close.Text = "Cerrar";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(591, 375);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Aceptar";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // FDatosItinerario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(809, 384);
-            this.Controls.Add(this.HorarioSemanasTipo);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.ClientSize = new System.Drawing.Size(809, 410);
+            this.Controls.Add(this.close);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.HorarioSemanasTipo);
+            this.Controls.Add(this.queryAccess);
+            this.Controls.Add(this.deleteAccess);
+            this.Controls.Add(this.editAccess);
+            this.Controls.Add(this.addAccess);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "FDatosItinerario";
-            this.Text = "FDatosItinerario";
+            this.Text = "Semanas Tipo";
             this.Load += new System.EventHandler(this.FDatosItinerario_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.HorarioSemanasTipo)).EndInit();
             this.ResumeLayout(false);
@@ -179,10 +204,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button addAccess;
+        private System.Windows.Forms.Button editAccess;
+        private System.Windows.Forms.Button deleteAccess;
+        private System.Windows.Forms.Button queryAccess;
         private System.Windows.Forms.DataGridView HorarioSemanasTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiaLunes;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiaMartes;
@@ -191,5 +216,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DiaViernes;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiaSabado;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiaDomingo;
+        private System.Windows.Forms.Button close;
+        private System.Windows.Forms.Button button2;
     }
 }

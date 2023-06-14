@@ -47,7 +47,29 @@ namespace AccessControl.Catalogos
                 HorarioSemanasTipo.Rows.Add(horario);
             }
 
+        }
 
+        private void addAccess_Click(object sender, EventArgs e)
+        {
+            using (FDatosItinerarioAccesos DDatosItinerarioAccesos = new FDatosItinerarioAccesos())
+            {
+                DDatosItinerarioAccesos.ShowDialog();
+            }
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void editAccess_Click(object sender, EventArgs e)
+        {
+            {
+                using (FDatosItinerarioAccesos DDatosItinerarioAccesos = new FDatosItinerarioAccesos())
+                {
+                    DDatosItinerarioAccesos.ShowDialog();
+                }
+            }
         }
     }
 }

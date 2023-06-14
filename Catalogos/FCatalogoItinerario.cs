@@ -34,5 +34,13 @@ namespace AccessControl.Catalogos
                 DDatosItinerario.ShowDialog();
             }
         }
+
+        private void edit_Click(object sender, EventArgs e)
+        {
+            using (FDatosItinerario DDatosItinerario = new FDatosItinerario())
+            {
+                DDatosItinerario.ShowDialog();
+            }
+        }
     }
 }

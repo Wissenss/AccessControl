@@ -151,6 +151,12 @@
     <Compile Include="Catalogos\FDatosItinerario.Designer.cs">
       <DependentUpon>FDatosItinerario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Catalogos\FDatosItinerarioAccesos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\FDatosItinerarioAccesos.Designer.cs">
+      <DependentUpon>FDatosItinerarioAccesos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Catalogos\FDatosPuerta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\FDatosItinerario.resx">
       <DependentUpon>FDatosItinerario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\FDatosItinerarioAccesos.resx">
+      <DependentUpon>FDatosItinerarioAccesos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\FDatosPersona.resx">
       <DependentUpon>FDatosPersona.cs</DependentUpon>
