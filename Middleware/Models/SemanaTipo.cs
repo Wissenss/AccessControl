@@ -15,14 +15,16 @@ namespace AccessControl.Models
         public int IdSemanaTipo { get; set; }
         public string Descripcion { get; set; }
 
+        public DateTime fechaInicio { get; set; }
+
         //cada día se almacena en una lista
         private List<DiaTipo> semana = new List<DiaTipo>();
 
-        public SemanaTipo(int idSemanaTipo, string Descripcion)
+        public SemanaTipo(int idSemanaTipo, string Descripcion, DateTime fechaInicio)
         {
             this.IdSemanaTipo = idSemanaTipo;
             this.Descripcion = Descripcion;
-
+            this.fechaInicio = fechaInicio;
             for (int i = 0; i < 7; i++)
             {
                 semana.Add(new DiaTipo(Days[i]));

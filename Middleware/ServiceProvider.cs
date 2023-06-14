@@ -6,7 +6,7 @@ namespace Middleware
     public class ServiceProvider
     {
         public MySqlConnection connection;
-        
+
         public ServiceGeneral ServiceGeneral { get; private set; }
         public ServicePersonas ServicePersonas { get; private set; }
         public ServicePuertas ServicePuertas { get; private set; }
@@ -35,6 +35,7 @@ namespace Middleware
             ServiceGeneral = new ServiceGeneral(this.connection);
             ServicePersonas = new ServicePersonas(this.connection);
             ServicePuertas = new ServicePuertas(this.connection);
+            ServiceSemanasTipo = new ServiceSemanasTipo(this.connection);
         }
 
         public static ServiceProvider Instance

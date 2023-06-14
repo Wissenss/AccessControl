@@ -146,6 +146,12 @@
       <DependentUpon>FDatosPuerta.cs</DependentUpon>
     </Compile>
     <Compile Include="Catalogos\ModoAcceso.cs" />
+    <Compile Include="Generic\FormularioDesechable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generic\FormularioDesechable.Designer.cs">
+      <DependentUpon>FormularioDesechable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generic\MensajeConfirmacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -225,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\FDatosPuerta.resx">
       <DependentUpon>FDatosPuerta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generic\FormularioDesechable.resx">
+      <DependentUpon>FormularioDesechable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generic\MensajeConfirmacion.resx">
       <DependentUpon>MensajeConfirmacion.cs</DependentUpon>

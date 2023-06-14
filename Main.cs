@@ -1,4 +1,5 @@
 ﻿using AccessControl.Catalogos;
+using AccessControl.Generic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,7 +91,10 @@ namespace AccessControl
 
         private void BtnItinerario_Click(object sender, EventArgs e)
         {
-
+            using(FormularioDesechable desechable = new FormularioDesechable())
+            {
+                desechable.ShowDialog();
+            }
         }
 
         private void BtnGPersonas_Click(object sender, EventArgs e)

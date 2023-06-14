@@ -36,3 +36,18 @@ INSERT INTO Puerta VALUES
 (23, "Oficina Administrativa", "Adminstracion", "Sin Observaciones", 3),
 (4, "Puerta de prueba sin asignar", "Sin zona", "Sin Observaciones", -1),
 (5, "Otra puerta de prueba sin asignar", "Sin zona", "Sin Observaciones", -1);
+
+
+-- SemanaTipo --
+INSERT INTO accesscontrol.semanatipo VALUES 
+(2222, "Semana de prueba", "2023-06-12"),
+(2223, "Semana 2 de prueba", "2023-06-04");
+
+-- AccesosSemana --
+INSERT INTO accesscontrol.accesossemana VALUES 
+(1, "Lunes", 8, 1, 1, 2222),
+(2, "Lunes", 9, 1, 3, 2222),
+(3, "Lunes", 8, 1, 2, 2222),
+(4, "Martes", 9, 1, 1, 2222),
+(5, "Martes", 10, 1, 1, 2222),
+(6, "Jueves", 11, 2, 1, 2222);

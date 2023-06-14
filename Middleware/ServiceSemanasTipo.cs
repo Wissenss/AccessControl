@@ -11,6 +11,8 @@ namespace Middleware
 {
     public class ServiceSemanasTipo : Service, IService
     {
+
+        private static string[] diasEstaticos = { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo" };
         public ServiceSemanasTipo(MySqlConnection connection) : base(connection) { }
         //Lista de SemanasTipo, con sus Días y Derechos 
         /*
@@ -29,21 +31,43 @@ namespace Middleware
         */
         private Error GetDerechosPorSemana(int idSemana, out List<DiaTipo> acceso)
         {
+            List<string[]> datosDia = new List<string[]>();
             acceso = new List<DiaTipo>();
             base.connection.Open();
             try
             {
-                string query = $"SELECT * FROM accesossemana WHERE SemanaTipo_idSemanaTipo = {idSemana}";
+                string query = $"SELECT * FROM accesossemana WHERE SemanaTipo_idSemanaTipo = {idSemana} ORDER BY DiaSemana";
                 MySqlCommand command = new MySqlCommand(query, base.connection);
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    //crear el objeto acceso
+                    string DiaSemana = (string)reader[1];
+                    string HoraInicio = reader[2].ToString();
+                    string idGrupoPuerta = reader[3].ToString();
+                    string idGrupoPersona = reader[4].ToString();
+                    datosDia.Add(new string[] {
+                        DiaSemana,
+                        HoraInicio,
+                        idGrupoPuerta,
+                        idGrupoPersona
+                    });
                 }
-
             }
             catch (Exception) { return Error.Desconocido; }
             finally { base.connection.Close(); }
+
+            for (int i = 0; i < diasEstaticos.Length; i++)
+            {
+                List<string[]> diaActual = datosDia.FindAll((datos) => datos[0] == diasEstaticos[i]);
+                foreach (string[] derecho in diaActual)
+                {
+                    //Va a ser divertido esto de traer los grupos de puerta 
+                    //y personas de permiso por permiso...
+                    //Goey, jalalos desde el principioooooooo
+
+                }
+            }
+
             return Error.NoError;
         }
 
@@ -58,15 +82,23 @@ namespace Middleware
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    //crear el objeto semana tipo
+                    int idSemana = (int)reader[0];
+                    string Descripcion = (string)reader[1];
+                    DateTime fechaInicio = (DateTime)reader[2];
+                    SemanaTipo semana = new SemanaTipo(idSemana, Descripcion, fechaInicio);
+                    semanas.Add(semana);
                 }
 
             }
             catch (Exception) { return Error.Desconocido; }
             finally { base.connection.Close(); }
-            //Enviamos el id de la SEMANA
-            GetDerechosPorSemana(1, out List<DiaTipo> acceso);
-            //semanatal.setDetallesAcceso = acceso
+
+            //luego de obtener todas las semanas, buscamos sus derechos registrados
+            for (int i = 0; i < semanas.Count; i++)
+            {
+                GetDerechosPorSemana(semanas[i].IdSemanaTipo, out List<DiaTipo> diasSemana);
+                semanas[i].SetDerechos(diasSemana);
+            }
             return Error.NoError;
         }
     }
