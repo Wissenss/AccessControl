@@ -10,5 +10,6 @@ namespace AccessControl.Catalogos
     {
         Alta = 0,
         Edicion = 1,
+        Seleccion = 2,
     }
 }

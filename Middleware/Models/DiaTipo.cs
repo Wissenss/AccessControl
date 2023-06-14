@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace Middleware.Models
             this.name = name;
             generarHoras();
         }
+
         public DiaTipo(string name, Dictionary<int, Dictionary<GrupoPuerta, List<GrupoPersona>>> horariosAcceso) : this(name)
         {
             this.horariosAcceso = horariosAcceso;

@@ -1,4 +1,5 @@
 ﻿using Middleware.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,13 @@ namespace AccessControl.Models
         public DateTime fechaInicio { get; set; }
 
         //cada día se almacena en una lista
-        private List<DiaTipo> semana = new List<DiaTipo>();
+        public List<DiaTipo> semana = new List<DiaTipo>();
+
+        public SemanaTipo(MySqlDataReader reader)
+        {
+            this.IdSemanaTipo = (int)reader[0];
+            this.Descripcion = (string)reader[1];
+        }
 
         public SemanaTipo(int idSemanaTipo, string Descripcion, DateTime fechaInicio)
         {

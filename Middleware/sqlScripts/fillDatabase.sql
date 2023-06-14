@@ -39,12 +39,12 @@ INSERT INTO Puerta VALUES
 
 
 -- SemanaTipo --
-INSERT INTO accesscontrol.semanatipo VALUES 
-(2222, "Semana de prueba", "2023-06-12"),
-(2223, "Semana 2 de prueba", "2023-06-04");
+INSERT INTO semanatipo VALUES 
+(2222, "Semana de prueba"),
+(2223, "Semana 2 de prueba");
 
 -- AccesosSemana --
-INSERT INTO accesscontrol.accesossemana VALUES 
+INSERT INTO accesossemana VALUES 
 (1, "Lunes", 8, 1, 1, 2222),
 (2, "Lunes", 9, 1, 3, 2222),
 (3, "Lunes", 8, 1, 2, 2222),

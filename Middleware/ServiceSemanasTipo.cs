@@ -101,5 +101,45 @@ namespace Middleware
             }
             return Error.NoError;
         }
+
+        public Error AgendarSemana(SemanaTipo semana, DateTime fechaInicio)
+        {
+            base.connection.Open();
+
+            try
+            {
+                MySqlDataReader reader;
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = base.connection;
+
+                cmd.CommandText = "SemanaTipo";
+                cmd.CommandType = System.Data.CommandType.TableDirect;
+                reader = cmd.ExecuteReader();
+
+                if(!reader.HasRows) //checa que la semana exista
+                {
+                    return Error.RegistroNoEncontrado;
+                }
+                reader.Close();
+
+                cmd.CommandText = "INSERT INTO Agenda(FechaInicio, semanatipo_idSemanaTipo) VALUES (@fechaInicio, @idSemanaTipo);";
+                cmd.Parameters.AddWithValue("@fechaInicio", fechaInicio.Date.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@idSemanaTipo", semana.IdSemanaTipo);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                return Error.NoError;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+
+            return Error.NoError;
+        }
+
+
     }
 }

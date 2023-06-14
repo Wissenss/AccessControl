@@ -112,7 +112,6 @@
     <Content Include="sqlScripts\dropDatabase.sql" />
     <Content Include="sqlScripts\fillDatabase.sql" />
     <Content Include="sqlScripts\InitDatabase.sql" />
-    <Content Include="sqlScripts\InitDatabase_old.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
