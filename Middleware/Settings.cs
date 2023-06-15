@@ -22,6 +22,12 @@ namespace Middleware
             get { return this.Read("server", "Conexion"); }
             set { this.Write("server", value, "Conexion"); }
         }
+
+        public string Port
+        {
+            get { return this.Read("port", "Conexion"); }
+            set { this.Write("server", value, "Conexion");  }
+        }
         public string Uid
         {
             get { return this.Read("uid", "Conexion"); }

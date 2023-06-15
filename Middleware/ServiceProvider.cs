@@ -20,8 +20,9 @@ namespace Middleware
         {
             //la string de conexion es creada utilizando las configuraciones del ini
             settings = new Settings();
-            string connectionString = string.Format("server={0};uid={1};pwd={2};database={3}",
+            string connectionString = string.Format("server={0};port={1};uid={2};pwd={3};database={4}",
                 settings.Server,
+                settings.Port,
                 settings.Uid,
                 settings.Pwd,
                 settings.Database);
