@@ -55,70 +55,88 @@
             // 
             // add
             // 
+            this.add.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.add.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
+            this.add.Image = global::AccessControl.Properties.Resources.purpleplus_3_16;
+            this.add.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.add.Location = new System.Drawing.Point(12, 12);
             this.add.Name = "add";
             this.add.Size = new System.Drawing.Size(75, 23);
             this.add.TabIndex = 0;
-            this.add.Text = "Añadir";
-            this.add.UseVisualStyleBackColor = true;
+            this.add.Text = "Añadir    ";
+            this.add.UseVisualStyleBackColor = false;
             this.add.Click += new System.EventHandler(this.add_Click);
             // 
             // edit
             // 
+            this.edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.edit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
+            this.edit.Image = global::AccessControl.Properties.Resources.purple_pencil;
+            this.edit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.edit.Location = new System.Drawing.Point(93, 12);
             this.edit.Name = "edit";
             this.edit.Size = new System.Drawing.Size(75, 23);
             this.edit.TabIndex = 1;
-            this.edit.Text = "Editar";
-            this.edit.UseVisualStyleBackColor = true;
+            this.edit.Text = "Editar    ";
+            this.edit.UseVisualStyleBackColor = false;
             this.edit.Click += new System.EventHandler(this.edit_Click);
             // 
             // delete
             // 
+            this.delete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.delete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
+            this.delete.Image = global::AccessControl.Properties.Resources.purpledelete_16;
+            this.delete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.delete.Location = new System.Drawing.Point(174, 12);
             this.delete.Name = "delete";
             this.delete.Size = new System.Drawing.Size(75, 23);
             this.delete.TabIndex = 2;
-            this.delete.Text = "Eliminar";
-            this.delete.UseVisualStyleBackColor = true;
+            this.delete.Text = "Eliminar    ";
+            this.delete.UseVisualStyleBackColor = false;
             // 
             // select
             // 
             this.select.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.select.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.select.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.select.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.select.Location = new System.Drawing.Point(397, 12);
             this.select.Name = "select";
             this.select.Size = new System.Drawing.Size(75, 23);
             this.select.TabIndex = 3;
             this.select.Text = "Seleccionar";
-            this.select.UseVisualStyleBackColor = true;
+            this.select.UseVisualStyleBackColor = false;
             this.select.Visible = false;
             // 
             // close
             // 
             this.close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.close.Location = new System.Drawing.Point(397, 349);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(75, 23);
             this.close.TabIndex = 8;
             this.close.Text = "Cerrar";
-            this.close.UseVisualStyleBackColor = true;
+            this.close.UseVisualStyleBackColor = false;
             this.close.Click += new System.EventHandler(this.close_Click);
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.button2.Location = new System.Drawing.Point(316, 349);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 7;
             this.button2.Text = "Aceptar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Visible = false;
             // 
             // dataGridView1
@@ -222,7 +240,7 @@
             this.tbSearchText.TabIndex = 21;
             this.tbSearchText.Text = " Ingrese el texto a buscar...";
             // 
-            // FCatalogoItinerario
+            // FCatalogoSemanasTipo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -235,7 +253,7 @@
             this.Controls.Add(this.delete);
             this.Controls.Add(this.edit);
             this.Controls.Add(this.add);
-            this.Name = "FCatalogoItinerario";
+            this.Name = "FCatalogoSemanasTipo";
             this.ShowIcon = false;
             this.Text = "Semanas Tipo";
             this.Load += new System.EventHandler(this.FCatalogoItinerario_Load);

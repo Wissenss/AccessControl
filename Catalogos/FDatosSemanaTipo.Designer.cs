@@ -46,6 +46,7 @@
             this.Viernes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sábado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Domingo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.horaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet = new System.Data.DataSet();
             this.dtAccesos = new System.Data.DataTable();
@@ -53,7 +54,7 @@
             this.addAccess = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
-            this.horaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
@@ -63,45 +64,55 @@
             // editAccess
             // 
             this.editAccess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.editAccess.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.editAccess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.editAccess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editAccess.Location = new System.Drawing.Point(581, 11);
+            this.editAccess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
+            this.editAccess.Image = global::AccessControl.Properties.Resources.purple_pencil;
+            this.editAccess.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.editAccess.Location = new System.Drawing.Point(581, 24);
             this.editAccess.Name = "editAccess";
             this.editAccess.Size = new System.Drawing.Size(105, 23);
             this.editAccess.TabIndex = 4;
-            this.editAccess.Text = "Editar Acceso";
+            this.editAccess.Text = "Editar    ";
             this.editAccess.UseVisualStyleBackColor = false;
             this.editAccess.Click += new System.EventHandler(this.editAccess_Click);
             // 
             // deleteAccess
             // 
             this.deleteAccess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteAccess.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.deleteAccess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.deleteAccess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteAccess.Location = new System.Drawing.Point(692, 11);
+            this.deleteAccess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
+            this.deleteAccess.Image = global::AccessControl.Properties.Resources.purpledelete_16;
+            this.deleteAccess.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.deleteAccess.Location = new System.Drawing.Point(692, 24);
             this.deleteAccess.Name = "deleteAccess";
             this.deleteAccess.Size = new System.Drawing.Size(105, 23);
             this.deleteAccess.TabIndex = 5;
-            this.deleteAccess.Text = "Eliminar acceso";
+            this.deleteAccess.Text = "Eliminar    ";
             this.deleteAccess.UseVisualStyleBackColor = false;
             // 
             // queryAccess
             // 
             this.queryAccess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.queryAccess.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.queryAccess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.queryAccess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.queryAccess.Location = new System.Drawing.Point(470, 11);
+            this.queryAccess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
+            this.queryAccess.Image = global::AccessControl.Properties.Resources.search_12_16;
+            this.queryAccess.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.queryAccess.Location = new System.Drawing.Point(470, 24);
             this.queryAccess.Name = "queryAccess";
             this.queryAccess.Size = new System.Drawing.Size(105, 23);
             this.queryAccess.TabIndex = 6;
-            this.queryAccess.Text = "Consultar Acceso";
+            this.queryAccess.Text = "Consultar    ";
             this.queryAccess.UseVisualStyleBackColor = false;
             // 
             // close
             // 
             this.close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.close.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.close.Location = new System.Drawing.Point(722, 454);
             this.close.Name = "close";
             this.close.Size = new System.Drawing.Size(75, 23);
@@ -113,8 +124,9 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.button2.Location = new System.Drawing.Point(641, 454);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
@@ -168,7 +180,7 @@
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 40);
+            this.dataGridView1.Location = new System.Drawing.Point(15, 53);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -177,7 +189,7 @@
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(782, 408);
+            this.dataGridView1.Size = new System.Drawing.Size(782, 395);
             this.dataGridView1.TabIndex = 21;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -249,6 +261,13 @@
             this.Domingo.ReadOnly = true;
             this.Domingo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // horaDataGridViewTextBoxColumn
+            // 
+            this.horaDataGridViewTextBoxColumn.DataPropertyName = "Hora";
+            this.horaDataGridViewTextBoxColumn.HeaderText = "Hora";
+            this.horaDataGridViewTextBoxColumn.Name = "horaDataGridViewTextBoxColumn";
+            this.horaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // bindingSource1
             // 
             this.bindingSource1.DataMember = "dtAccesos";
@@ -274,20 +293,23 @@
             // addAccess
             // 
             this.addAccess.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.addAccess.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.addAccess.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.addAccess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addAccess.Location = new System.Drawing.Point(359, 11);
+            this.addAccess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
+            this.addAccess.Image = global::AccessControl.Properties.Resources.purpleplus_3_16;
+            this.addAccess.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.addAccess.Location = new System.Drawing.Point(359, 24);
             this.addAccess.Name = "addAccess";
             this.addAccess.Size = new System.Drawing.Size(105, 23);
             this.addAccess.TabIndex = 3;
-            this.addAccess.Text = "Agregar acceso";
+            this.addAccess.Text = "Agregar    ";
             this.addAccess.UseVisualStyleBackColor = false;
             this.addAccess.Click += new System.EventHandler(this.addAccess_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 16);
+            this.label2.Location = new System.Drawing.Point(12, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 23;
@@ -297,23 +319,26 @@
             // 
             this.tbNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.tbNombre.Location = new System.Drawing.Point(62, 12);
+            this.tbNombre.Location = new System.Drawing.Point(62, 25);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(291, 21);
             this.tbNombre.TabIndex = 22;
             // 
-            // horaDataGridViewTextBoxColumn
+            // label1
             // 
-            this.horaDataGridViewTextBoxColumn.DataPropertyName = "Hora";
-            this.horaDataGridViewTextBoxColumn.HeaderText = "Hora";
-            this.horaDataGridViewTextBoxColumn.Name = "horaDataGridViewTextBoxColumn";
-            this.horaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(359, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Accesos...";
             // 
             // FDatosSemanaTipo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(809, 489);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbNombre);
             this.Controls.Add(this.dataGridView1);
@@ -359,5 +384,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn horaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label1;
     }
 }

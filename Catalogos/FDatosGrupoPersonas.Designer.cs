@@ -98,9 +98,10 @@
             // btnAceptar
             // 
             this.btnAceptar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAceptar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnAceptar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.btnAceptar.Location = new System.Drawing.Point(263, 391);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
@@ -112,10 +113,11 @@
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.button6.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button6.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.button6.Location = new System.Drawing.Point(344, 391);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
@@ -146,53 +148,53 @@
             // 
             // BtnRemoveAll
             // 
-            this.BtnRemoveAll.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnRemoveAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnRemoveAll.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnRemoveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRemoveAll.Image = global::AccessControl.Properties.Resources.doblearrow_L;
             this.BtnRemoveAll.Location = new System.Drawing.Point(198, 227);
             this.BtnRemoveAll.Name = "BtnRemoveAll";
             this.BtnRemoveAll.Size = new System.Drawing.Size(35, 23);
             this.BtnRemoveAll.TabIndex = 30;
-            this.BtnRemoveAll.Text = "<<";
             this.BtnRemoveAll.UseVisualStyleBackColor = false;
             this.BtnRemoveAll.Click += new System.EventHandler(this.BtnRemoveAll_Click);
             // 
             // BtnAddSelected
             // 
-            this.BtnAddSelected.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnAddSelected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnAddSelected.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnAddSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAddSelected.Image = global::AccessControl.Properties.Resources.purplearrow_24_32;
             this.BtnAddSelected.Location = new System.Drawing.Point(198, 138);
             this.BtnAddSelected.Name = "BtnAddSelected";
             this.BtnAddSelected.Size = new System.Drawing.Size(35, 23);
             this.BtnAddSelected.TabIndex = 31;
-            this.BtnAddSelected.Text = ">";
             this.BtnAddSelected.UseVisualStyleBackColor = false;
             this.BtnAddSelected.Click += new System.EventHandler(this.BtnAddSelected_Click);
             // 
             // BtnRemoveSelected
             // 
-            this.BtnRemoveSelected.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnRemoveSelected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnRemoveSelected.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnRemoveSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRemoveSelected.Image = global::AccessControl.Properties.Resources.purplearrow2_24_32;
             this.BtnRemoveSelected.Location = new System.Drawing.Point(198, 198);
             this.BtnRemoveSelected.Name = "BtnRemoveSelected";
             this.BtnRemoveSelected.Size = new System.Drawing.Size(35, 23);
             this.BtnRemoveSelected.TabIndex = 32;
-            this.BtnRemoveSelected.Text = "<";
             this.BtnRemoveSelected.UseVisualStyleBackColor = false;
             this.BtnRemoveSelected.Click += new System.EventHandler(this.BtnRemoveSelected_Click);
             // 
             // BtnAddAll
             // 
-            this.BtnAddAll.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnAddAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnAddAll.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnAddAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAddAll.Image = global::AccessControl.Properties.Resources.doblearrow_R;
             this.BtnAddAll.Location = new System.Drawing.Point(198, 107);
             this.BtnAddAll.Name = "BtnAddAll";
             this.BtnAddAll.Size = new System.Drawing.Size(35, 23);
             this.BtnAddAll.TabIndex = 33;
-            this.BtnAddAll.Text = ">>";
             this.BtnAddAll.UseVisualStyleBackColor = false;
             this.BtnAddAll.Click += new System.EventHandler(this.BtnAddAll_Click);
             // 
