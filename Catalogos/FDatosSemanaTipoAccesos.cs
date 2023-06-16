@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AccessControl.Catalogos
 {
-    public partial class FDatosItinerarioAccesos : Form
+    public partial class FDatosSemanaTipoAccesos : Form
     {
-        public FDatosItinerarioAccesos()
+        public FDatosSemanaTipoAccesos()
         {
             InitializeComponent();
         }

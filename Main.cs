@@ -91,7 +91,7 @@ namespace AccessControl
 
         private void BtnItinerario_Click(object sender, EventArgs e)
         {
-            using(FCatalogoItinerario DCatalogoItinerario = new FCatalogoItinerario())
+            using(FCatalogoSemanasTipo DCatalogoItinerario = new FCatalogoSemanasTipo())
             {
                 DCatalogoItinerario.ShowDialog();
             }

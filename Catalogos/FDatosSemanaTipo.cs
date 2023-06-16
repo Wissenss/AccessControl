@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AccessControl.Catalogos
 {
-    public partial class FDatosItinerario : Form
+    public partial class FDatosSemanaTipo : Form
     {
-        public FDatosItinerario()
+        public FDatosSemanaTipo()
         {
             InitializeComponent();
         }
@@ -26,9 +26,13 @@ namespace AccessControl.Catalogos
 
         private void FDatosItinerario_Load_1(object sender, EventArgs e)
         {
+            DataRow hora;
+            string horario;
+
+            dtAccesos.Clear();
+            dtAccesos.BeginLoadData();
             for (int i = 6; i <= 22; i++)
             {
-                string horario;
                 if (i <= 11)
                 {
                     if (i == 0)
@@ -44,14 +48,16 @@ namespace AccessControl.Catalogos
                         horario = (i - 12).ToString("D2") + " pm";
                 }
 
-                HorarioSemanasTipo.Rows.Add(horario);
+                hora = dtAccesos.NewRow();
+                hora["hora"] = horario;
+                dtAccesos.Rows.Add(hora);
             }
-
+            dtAccesos.EndLoadData();
         }
 
         private void addAccess_Click(object sender, EventArgs e)
         {
-            using (FDatosItinerarioAccesos DDatosItinerarioAccesos = new FDatosItinerarioAccesos())
+            using (FDatosSemanaTipoAccesos DDatosItinerarioAccesos = new FDatosSemanaTipoAccesos())
             {
                 DDatosItinerarioAccesos.ShowDialog();
             }
@@ -65,11 +71,16 @@ namespace AccessControl.Catalogos
         private void editAccess_Click(object sender, EventArgs e)
         {
             {
-                using (FDatosItinerarioAccesos DDatosItinerarioAccesos = new FDatosItinerarioAccesos())
+                using (FDatosSemanaTipoAccesos DDatosItinerarioAccesos = new FDatosSemanaTipoAccesos())
                 {
                     DDatosItinerarioAccesos.ShowDialog();
                 }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -127,11 +127,11 @@
     <Compile Include="Catalogos\FCatalogoGruposPuertas.Designer.cs">
       <DependentUpon>FCatalogoGruposPuertas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Catalogos\FCatalogoItinerario.cs">
+    <Compile Include="Catalogos\FCatalogoSemanasTipo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Catalogos\FCatalogoItinerario.Designer.cs">
-      <DependentUpon>FCatalogoItinerario.cs</DependentUpon>
+    <Compile Include="Catalogos\FCatalogoSemanasTipo.Designer.cs">
+      <DependentUpon>FCatalogoSemanasTipo.cs</DependentUpon>
     </Compile>
     <Compile Include="Catalogos\FCatalogoPuertas.cs">
       <SubType>Form</SubType>
@@ -145,17 +145,17 @@
     <Compile Include="Catalogos\FDatosGrupoPuertas.Designer.cs">
       <DependentUpon>FDatosGrupoPuertas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Catalogos\FDatosItinerario.cs">
+    <Compile Include="Catalogos\FDatosSemanaTipo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Catalogos\FDatosItinerario.Designer.cs">
-      <DependentUpon>FDatosItinerario.cs</DependentUpon>
+    <Compile Include="Catalogos\FDatosSemanaTipo.Designer.cs">
+      <DependentUpon>FDatosSemanaTipo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Catalogos\FDatosItinerarioAccesos.cs">
+    <Compile Include="Catalogos\FDatosSemanaTipoAccesos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Catalogos\FDatosItinerarioAccesos.Designer.cs">
-      <DependentUpon>FDatosItinerarioAccesos.cs</DependentUpon>
+    <Compile Include="Catalogos\FDatosSemanaTipoAccesos.Designer.cs">
+      <DependentUpon>FDatosSemanaTipoAccesos.cs</DependentUpon>
     </Compile>
     <Compile Include="Catalogos\FDatosPuerta.cs">
       <SubType>Form</SubType>
@@ -238,8 +238,8 @@
     <EmbeddedResource Include="Catalogos\FCatalogoGuposPersonas.resx">
       <DependentUpon>FCatalogoGuposPersonas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Catalogos\FCatalogoItinerario.resx">
-      <DependentUpon>FCatalogoItinerario.cs</DependentUpon>
+    <EmbeddedResource Include="Catalogos\FCatalogoSemanasTipo.resx">
+      <DependentUpon>FCatalogoSemanasTipo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\FCatalogoPuertas.resx">
       <DependentUpon>FCatalogoPuertas.cs</DependentUpon>
@@ -247,11 +247,11 @@
     <EmbeddedResource Include="Catalogos\FDatosGrupoPuertas.resx">
       <DependentUpon>FDatosGrupoPuertas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Catalogos\FDatosItinerario.resx">
-      <DependentUpon>FDatosItinerario.cs</DependentUpon>
+    <EmbeddedResource Include="Catalogos\FDatosSemanaTipo.resx">
+      <DependentUpon>FDatosSemanaTipo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Catalogos\FDatosItinerarioAccesos.resx">
-      <DependentUpon>FDatosItinerarioAccesos.cs</DependentUpon>
+    <EmbeddedResource Include="Catalogos\FDatosSemanaTipoAccesos.resx">
+      <DependentUpon>FDatosSemanaTipoAccesos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\FDatosPersona.resx">
       <DependentUpon>FDatosPersona.cs</DependentUpon>

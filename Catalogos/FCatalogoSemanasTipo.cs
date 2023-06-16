@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace AccessControl.Catalogos
 {
-    public partial class FCatalogoItinerario : Form
+    public partial class FCatalogoSemanasTipo : Form
     {
-        public FCatalogoItinerario()
+        public FCatalogoSemanasTipo()
         {
             InitializeComponent();
         }
@@ -33,7 +33,7 @@ namespace AccessControl.Catalogos
 
         private void add_Click(object sender, EventArgs e)
         {
-            using (FDatosItinerario DDatosItinerario = new FDatosItinerario())
+            using (FDatosSemanaTipo DDatosItinerario = new FDatosSemanaTipo())
             {
                 DDatosItinerario.ShowDialog();
             }
@@ -41,7 +41,7 @@ namespace AccessControl.Catalogos
 
         private void edit_Click(object sender, EventArgs e)
         {
-            using (FDatosItinerario DDatosItinerario = new FDatosItinerario())
+            using (FDatosSemanaTipo DDatosItinerario = new FDatosSemanaTipo())
             {
                 DDatosItinerario.ShowDialog();
             }
