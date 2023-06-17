@@ -15,6 +15,9 @@ namespace AccessControl.Catalogos
 {
     public partial class FCatalogoPuertas : Form
     {
+        public ModoAcceso modo = ModoAcceso.Edicion;
+        public List<int> puertasSeleccion;
+
         List<Puerta> puertas;
         private bool changes = false;
         private List<string[]> taskList;
@@ -33,6 +36,14 @@ namespace AccessControl.Catalogos
 
         private void CaatalogoPuertas_OnLoad(object sender, EventArgs e)
         {
+            if(modo == ModoAcceso.Seleccion)
+            {
+                button2.Visible = false;
+                button3.Visible = false;
+                button4.Visible = false;
+                BtnSelect.Visible = true;
+            }
+
             Error error = ServiceProvider.Instance.ServicePuertas.GetPuertas(out puertas);
             if (error != Error.NoError)
             {
@@ -168,5 +179,21 @@ namespace AccessControl.Catalogos
             return max + 1;
         }
 
+        private void BtnSelect_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+                return;
+
+            List<int> puertas = new List<int>();
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                puertas.Add((int)row.Cells["ColId"].Value);
+            }
+
+            this.puertasSeleccion = puertas;
+
+            DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }

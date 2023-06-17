@@ -121,6 +121,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catalogos\FAgenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\FAgenda.Designer.cs">
+      <DependentUpon>FAgenda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Catalogos\FCatalogoGruposPuertas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -232,6 +238,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Catalogos\FAgenda.resx">
+      <DependentUpon>FAgenda.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\FCatalogoGruposPuertas.resx">
       <DependentUpon>FCatalogoGruposPuertas.cs</DependentUpon>
     </EmbeddedResource>

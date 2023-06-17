@@ -11,12 +11,26 @@ namespace AccessControl
 {
     public partial class FCatalogoPersonas : Form
     {
+        public List<int> PersonasSeleccionadas;
+
+        public ModoAcceso modo = ModoAcceso.Edicion;
+
         public FCatalogoPersonas()
         {
             InitializeComponent();
         }
         private void FCatalogoPersonas_Load(object sender, EventArgs e)
         {
+            if(modo == ModoAcceso.Seleccion)
+            {
+                btnCancel.Text = "Cancelar";
+                BtnSelect.Visible = true;
+                btnAccept.Visible = false;
+                btnAdd.Visible = false;
+                btnEdit.Visible = false;
+                BtnEliminar.Visible = false;
+            }
+
             cargarPersonas();
         }
 
@@ -67,7 +81,19 @@ namespace AccessControl
 
         private void BtnSelect_Click(object sender, EventArgs e)
         {
-            //PENDIENTE...
+            if (gvListadoPersonas.SelectedRows.Count == 0)
+                return;
+
+            List<int> personas = new List<int>();
+            foreach(DataGridViewRow row in gvListadoPersonas.SelectedRows)
+            {
+                personas.Add((int)row.Cells["colId"].Value);
+            }
+
+            this.PersonasSeleccionadas = personas;
+
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void cargarPersonas() //medio savage cargar todas las personas (llamar a esta funcion) en casos donde solo cambia uno de los registros pero weno, de 0.00001 a 0.00002ms no se nota

@@ -33,10 +33,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.TCMonitor = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
+            this.BtnProbarAcceso = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.timePicker = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.datePicker = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BtnSelectPuerta = new System.Windows.Forms.Button();
             this.tbDescripcion = new System.Windows.Forms.TextBox();
@@ -62,6 +64,7 @@
             this.BtnPuertas = new System.Windows.Forms.Button();
             this.BtnGPuertas = new System.Windows.Forms.Button();
             this.BtnItinerario = new System.Windows.Forms.Button();
+            this.BtnAgenda = new System.Windows.Forms.Button();
             this.BtnAbout = new System.Windows.Forms.Button();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1.SuspendLayout();
@@ -101,7 +104,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.BtnProbarAcceso);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -113,28 +116,31 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Piso 1";
             // 
-            // button3
+            // BtnProbarAcceso
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.BtnProbarAcceso.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.button3.Location = new System.Drawing.Point(8, 208);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(820, 155);
-            this.button3.TabIndex = 43;
-            this.button3.Text = "Probar Acceso";
-            this.button3.UseVisualStyleBackColor = false;
+            this.BtnProbarAcceso.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnProbarAcceso.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.BtnProbarAcceso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnProbarAcceso.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.BtnProbarAcceso.Location = new System.Drawing.Point(8, 208);
+            this.BtnProbarAcceso.Name = "BtnProbarAcceso";
+            this.BtnProbarAcceso.Size = new System.Drawing.Size(820, 155);
+            this.BtnProbarAcceso.TabIndex = 43;
+            this.BtnProbarAcceso.Text = "Probar Acceso";
+            this.BtnProbarAcceso.UseVisualStyleBackColor = false;
+            this.BtnProbarAcceso.Click += new System.EventHandler(this.BtnProbarAcceso_Click);
             // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.timePicker);
             this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.dateTimePicker1);
+            this.groupBox3.Controls.Add(this.datePicker);
             this.groupBox3.Location = new System.Drawing.Point(421, 13);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(407, 74);
@@ -142,22 +148,41 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Horario";
             // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 51);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(30, 13);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "Hora";
+            // 
+            // timePicker
+            // 
+            this.timePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.timePicker.Location = new System.Drawing.Point(90, 45);
+            this.timePicker.Name = "timePicker";
+            this.timePicker.ShowUpDown = true;
+            this.timePicker.Size = new System.Drawing.Size(311, 20);
+            this.timePicker.TabIndex = 36;
+            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 39);
+            this.label5.Location = new System.Drawing.Point(6, 25);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 13);
+            this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 35;
-            this.label5.Text = "Fecha Hora";
+            this.label5.Text = "Fecha";
             // 
-            // dateTimePicker1
+            // datePicker
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(90, 33);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(311, 20);
-            this.dateTimePicker1.TabIndex = 0;
+            this.datePicker.Location = new System.Drawing.Point(90, 19);
+            this.datePicker.Name = "datePicker";
+            this.datePicker.Size = new System.Drawing.Size(311, 20);
+            this.datePicker.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -188,6 +213,7 @@
             this.BtnSelectPuerta.TabIndex = 38;
             this.BtnSelectPuerta.Text = "Seleccionar";
             this.BtnSelectPuerta.UseVisualStyleBackColor = false;
+            this.BtnSelectPuerta.Click += new System.EventHandler(this.BtnSelectPuerta_Click);
             // 
             // tbDescripcion
             // 
@@ -261,6 +287,7 @@
             this.BtnSelectPersona.TabIndex = 34;
             this.BtnSelectPersona.Text = "Seleccionar";
             this.BtnSelectPersona.UseVisualStyleBackColor = false;
+            this.BtnSelectPersona.Click += new System.EventHandler(this.BtnSelectPersona_Click);
             // 
             // tbNombre
             // 
@@ -384,6 +411,7 @@
             this.flowLayoutPanel1.Controls.Add(this.BtnGPuertas);
             this.flowLayoutPanel1.Controls.Add(this.BtnItinerario);
             this.flowLayoutPanel1.Controls.Add(this.BtnAbout);
+            this.flowLayoutPanel1.Controls.Add(this.BtnAgenda);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -486,10 +514,30 @@
             this.BtnItinerario.Name = "BtnItinerario";
             this.BtnItinerario.Size = new System.Drawing.Size(104, 104);
             this.BtnItinerario.TabIndex = 0;
-            this.BtnItinerario.Text = "Itinerario";
+            this.BtnItinerario.Text = "Semanas";
             this.BtnItinerario.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BtnItinerario.UseVisualStyleBackColor = false;
             this.BtnItinerario.Click += new System.EventHandler(this.BtnItinerario_Click);
+            // 
+            // BtnAgenda
+            // 
+            this.BtnAgenda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnAgenda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
+            this.BtnAgenda.FlatAppearance.BorderSize = 0;
+            this.BtnAgenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnAgenda.ForeColor = System.Drawing.SystemColors.Control;
+            this.BtnAgenda.Image = global::AccessControl.Properties.Resources.today_64;
+            this.BtnAgenda.Location = new System.Drawing.Point(663, 3);
+            this.BtnAgenda.Name = "BtnAgenda";
+            this.BtnAgenda.Size = new System.Drawing.Size(104, 104);
+            this.BtnAgenda.TabIndex = 6;
+            this.BtnAgenda.Text = "Agenda";
+            this.BtnAgenda.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BtnAgenda.UseVisualStyleBackColor = false;
+            this.BtnAgenda.Visible = false;
             // 
             // BtnAbout
             // 
@@ -580,8 +628,13 @@
         private System.Windows.Forms.Button BtnSelectPuerta;
         private System.Windows.Forms.Button BtnSelectPersona;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button BtnProbarAcceso;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker datePicker;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DateTimePicker timePicker;
+        private System.Windows.Forms.Button BtnAgenda;
     }
 }

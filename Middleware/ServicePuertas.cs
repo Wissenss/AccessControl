@@ -441,5 +441,40 @@ namespace Middleware
             return Error.NoError;
         }
 
+        public Error GetPuerta(int idPuerta, out Puerta puerta)
+        {
+            base.connection.Open();
+            puerta = null;
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = base.connection;
+                cmd.CommandText = "SELECT * FROM Puerta WHERE idPuerta=@puertaId";
+
+                cmd.Parameters.AddWithValue("@puertaId", idPuerta);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    puerta = new Puerta(reader);
+                }
+
+                if (puerta == null)
+                    return Error.RegistroNoEncontrado;
+            }
+            catch (Exception e)
+            {
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+
+            return Error.NoError;
+        }
+
     }
 }

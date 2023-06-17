@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,15 @@ namespace AccessControl.Models
             this.Descripcion = Descripcion;
             this.Observaciones = observaciones;
             this.idGrupo = idGrupo;
+        }
+
+        public Puerta(MySqlDataReader reader)
+        {
+            this.IdPuerta = (int)reader[0];
+            this.Descripcion = (string)reader[1];
+            this.Ubicacion = (string)reader[2];
+            this.Observaciones = (string)reader[3];
+            this.idGrupo = (int)reader[4];
         }
     }
 }
