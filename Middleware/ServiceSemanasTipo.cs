@@ -147,11 +147,11 @@ namespace Middleware
                     "VALUES ";
                 foreach (DiaTipo dia in semanaRegistrar.semana)
                 {
-                    foreach(KeyValuePair<int, Dictionary<GrupoPuerta, List<GrupoPersona>>> acceso in dia.horariosAcceso)
+                    foreach (KeyValuePair<int, Dictionary<GrupoPuerta, List<GrupoPersona>>> acceso in dia.horariosAcceso)
                     {
-                        foreach(KeyValuePair<GrupoPuerta, List<GrupoPersona>> derecho in acceso.Value)
+                        foreach (KeyValuePair<GrupoPuerta, List<GrupoPersona>> derecho in acceso.Value)
                         {
-                            foreach(GrupoPersona persona in derecho.Value)
+                            foreach (GrupoPersona persona in derecho.Value)
                             {
                                 queryDerechos += $"('{dia.name}', {Convert.ToInt32(acceso.Key)}, " +
                                 $"{Convert.ToInt32(derecho.Key.IdGrupoPuerta)}, " +
@@ -166,13 +166,44 @@ namespace Middleware
                 sb[queryDerechos.LastIndexOf(',')] = ';';
                 queryDerechos = sb.ToString();
 
-                cmd.CommandText = queryDerechos; 
+                cmd.CommandText = queryDerechos;
                 cmd.ExecuteNonQuery();
 
                 transaction.Commit();
             }
             catch (Exception)
             {
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+            return Error.NoError;
+        }
+
+        public Error EliminarSemana(int idSemana)
+        {
+
+            base.connection.Open();
+            MySqlTransaction transaction = base.connection.BeginTransaction();
+            try
+            {
+                string query = "DELETE FROM accesossemana WHERE semanatipo_idSemanaTipo = ?idSemana";
+                MySqlCommand command = base.connection.CreateCommand();
+                command.Parameters.Clear();
+                command.Parameters.Add("?idSemana", MySqlDbType.Int32).Value = idSemana;
+                command.CommandText = query;
+                command.ExecuteNonQuery();
+                string secondQuery = "DELETE FROM semanatipo WHERE idSemanaTipo = ?idSemana";
+                command.CommandText = secondQuery;
+                command.ExecuteNonQuery();
+
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
                 return Error.Desconocido;
             }
             finally

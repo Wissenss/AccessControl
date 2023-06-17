@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AccessControl.Generic;
 
 namespace AccessControl.Catalogos
 {
@@ -19,6 +20,8 @@ namespace AccessControl.Catalogos
         List<GrupoPersona> personas;
         List<GrupoPuerta> puertas;
         GrupoPuerta puertaKey;
+        private bool changes = false;
+        
         public FDatosSemanaTipoAccesos(Dictionary<GrupoPuerta, List<GrupoPersona>> derechosHora)
         {
             InitializeComponent();
@@ -95,19 +98,52 @@ namespace AccessControl.Catalogos
                 GrupoPersona quitar = personas.Find((persona) => persona.Nombre == nombreSeleccionado);
                 derechosHora[puertaKey].Remove(quitar);
             }
+            changes = true;
         }
 
         private void Add(object sender, ItemCheckEventArgs e)
         {
             string nombreGrupoSelecc = chbPuertas.Items[e.Index].ToString();
+            GrupoPuerta pt = puertas.Find((puerta) => puerta.Nombre == nombreGrupoSelecc);
             if(!chbPuertas.GetItemChecked((e.Index)))
             {
-
+                GrupoPuerta añadir = puertaKey;
+                if (!derechosHora.Keys.Any((key)=> key.IdGrupoPuerta == pt.IdGrupoPuerta))
+                {
+                    derechosHora.Add(pt, new List<GrupoPersona>());
+                }
             }
             else
             {
-
+                derechosHora.Remove(puertaKey);
             }
+            changes = true;
+        }
+
+        public Dictionary<GrupoPuerta, List<GrupoPersona>> GetAll() {  return derechosHora; }
+
+        private void close_Click_1(object sender, EventArgs e)
+        {
+            if (!changes)
+            {
+                this.Dispose();
+                return;
+            }
+            using (MensajeConfirmacion confirmacion = new MensajeConfirmacion())
+            {
+                var res = confirmacion.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    this.Dispose();
+                }
+                else { return; }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Dispose();
         }
     }
 }

@@ -30,8 +30,6 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.select = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.close = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.chbPuertas = new System.Windows.Forms.CheckedListBox();
@@ -58,31 +56,6 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Grupos de Personas Permitdas";
             // 
-            // select
-            // 
-            this.select.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.select.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.select.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.select.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
-            this.select.Location = new System.Drawing.Point(237, 36);
-            this.select.Name = "select";
-            this.select.Size = new System.Drawing.Size(75, 23);
-            this.select.TabIndex = 23;
-            this.select.Text = "Seleccionar";
-            this.select.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
-            this.button1.Location = new System.Drawing.Point(551, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "Seleccionar";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // close
             // 
             this.close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -95,6 +68,7 @@
             this.close.TabIndex = 26;
             this.close.Text = "Cancelar";
             this.close.UseVisualStyleBackColor = false;
+            this.close.Click += new System.EventHandler(this.close_Click_1);
             // 
             // button2
             // 
@@ -108,7 +82,7 @@
             this.button2.TabIndex = 25;
             this.button2.Text = "Aceptar";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // chbPuertas
             // 
@@ -139,8 +113,6 @@
             this.Controls.Add(this.chbPuertas);
             this.Controls.Add(this.close);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.select);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "FDatosSemanaTipoAccesos";
@@ -153,8 +125,6 @@
         #endregion
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button select;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button close;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckedListBox chbPuertas;

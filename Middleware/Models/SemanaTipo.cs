@@ -12,12 +12,20 @@ namespace AccessControl.Models
     {
         static readonly string[] Days = new string[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo" };
 
-        //Para facilitarnos esto, podemos usar dia/mes/año como ID
         public int IdSemanaTipo { get; set; }
         public string Descripcion { get; set; }
 
         //cada día se almacena en una lista
         public List<DiaTipo> semana = new List<DiaTipo>();
+
+        public SemanaTipo(string Descripcion)
+        {
+            this.Descripcion = Descripcion;
+            for (int i = 0; i < 7; i++)
+            {
+                semana.Add(new DiaTipo(Days[i]));
+            }
+        }
 
         public SemanaTipo(MySqlDataReader reader)
         {
