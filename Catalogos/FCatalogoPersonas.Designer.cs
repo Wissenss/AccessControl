@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gvListadoPersonas = new System.Windows.Forms.DataGridView();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,8 +49,8 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.BtnSelect = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnAccept = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvListadoPersonas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -61,8 +61,8 @@
             // 
             this.gvListadoPersonas.AllowUserToAddRows = false;
             this.gvListadoPersonas.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(76)))), ((int)(((byte)(151)))));
-            this.gvListadoPersonas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(76)))), ((int)(((byte)(151)))));
+            this.gvListadoPersonas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gvListadoPersonas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -71,14 +71,14 @@
             this.gvListadoPersonas.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.gvListadoPersonas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gvListadoPersonas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvListadoPersonas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvListadoPersonas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.gvListadoPersonas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvListadoPersonas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colId,
@@ -86,14 +86,14 @@
             this.colRol,
             this.colImagen});
             this.gvListadoPersonas.DataSource = this.bindingSource1;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(76)))), ((int)(((byte)(151)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvListadoPersonas.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(76)))), ((int)(((byte)(151)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvListadoPersonas.DefaultCellStyle = dataGridViewCellStyle3;
             this.gvListadoPersonas.EnableHeadersVisualStyles = false;
             this.gvListadoPersonas.GridColor = System.Drawing.SystemColors.Control;
             this.gvListadoPersonas.Location = new System.Drawing.Point(12, 78);
@@ -251,36 +251,36 @@
             this.BtnSelect.Visible = false;
             this.BtnSelect.Click += new System.EventHandler(this.BtnSelect_Click);
             // 
-            // button1
+            // btnCancel
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(397, 346);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Cerrar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCancel.Location = new System.Drawing.Point(397, 346);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 9;
+            this.btnCancel.Text = "Cerrar";
+            this.btnCancel.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // btnAccept
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.BackColor = System.Drawing.SystemColors.Control;
-            this.button5.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button5.Location = new System.Drawing.Point(316, 346);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Aceptar";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Visible = false;
+            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAccept.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAccept.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAccept.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAccept.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnAccept.Location = new System.Drawing.Point(316, 346);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(75, 23);
+            this.btnAccept.TabIndex = 8;
+            this.btnAccept.Text = "Aceptar";
+            this.btnAccept.UseVisualStyleBackColor = false;
+            this.btnAccept.Visible = false;
             // 
             // FCatalogoPersonas
             // 
@@ -288,8 +288,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 384);
             this.ControlBox = false;
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.BtnSelect);
             this.Controls.Add(this.BtnEliminar);
             this.Controls.Add(this.btnEdit);
@@ -328,8 +328,8 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button BtnEliminar;
         private System.Windows.Forms.Button BtnSelect;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.DataGridViewTextBoxColumn colId;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRol;

@@ -1,5 +1,7 @@
 ﻿using AccessControl.Catalogos;
 using AccessControl.Generic;
+using Middleware;
+using Middleware.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +28,44 @@ namespace AccessControl
             foreach (TabPage tab in TCMonitor.TabPages)
             {
                 tab.Text = "";
+            }
+        }
+
+        private void BtnSelectPersona_Click(object sender, EventArgs e)
+        {
+            using (FCatalogoPersonas DCatalogPersonas = new FCatalogoPersonas())
+            {
+                DCatalogPersonas.modo = ModoAcceso.Seleccion;
+                if(DCatalogPersonas.ShowDialog() == DialogResult.OK)
+                {
+                    int personaSeleccionada = DCatalogPersonas.PersonasSeleccionadas[0];
+                    Persona persona;
+                    Error error = ServiceProvider.Instance.ServicePersonas.GetPersona(personaSeleccionada, out persona);
+                    if(error != Error.NoError)
+                    {
+                        error.MostrarError();
+                        return;
+                    }
+
+                    tbNombre.Text = persona.Nombres;
+                    tbApellidos.Text = persona.Apellidos;
+                    tbCorreo.Text = persona.Correo;
+                    tbCelular.Text = persona.Celular;
+
+                    if (persona.Imagen != null)
+                    {
+                        pbImagen.Image = Image.FromStream(persona.Imagen);
+                    }
+                }
+            }
+        }
+        private void BtnSelectPuerta_Click(object sender, EventArgs e)
+        {
+            using (FCatalogoPuertas DCatalogPuertas = new FCatalogoPuertas)
+            {
+                DCatalogPuertas.modo = ModoAcceso.Seleccion;
+
+
             }
         }
 
@@ -104,7 +144,5 @@ namespace AccessControl
                 DCatalogoGruposPersonas.ShowDialog();
             }
         }
-
-
     }
 }
