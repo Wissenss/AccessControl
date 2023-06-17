@@ -26,7 +26,7 @@ namespace Middleware.Models
         private void generarHoras()
         {
             this.horariosAcceso = new Dictionary<int, Dictionary<GrupoPuerta, List<GrupoPersona>>>();
-            for (int i = 8; i < 14; i++)
+            for (int i = 8; i <= 14; i++)
             {
                 this.horariosAcceso.Add(i, new Dictionary<GrupoPuerta, List<GrupoPersona>>());
             }

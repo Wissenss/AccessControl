@@ -208,7 +208,7 @@ namespace Middleware
 
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Error.NoError;
             }
