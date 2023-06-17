@@ -35,8 +35,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -135,8 +133,6 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.dateTimePicker2);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.dateTimePicker1);
             this.groupBox3.Location = new System.Drawing.Point(421, 13);
@@ -146,40 +142,20 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Horario";
             // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 25);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 13);
-            this.label6.TabIndex = 37;
-            this.label6.Text = "Fecha";
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(90, 19);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(311, 20);
-            this.dateTimePicker2.TabIndex = 36;
-            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 53);
+            this.label5.Location = new System.Drawing.Point(6, 39);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 13);
+            this.label5.Size = new System.Drawing.Size(63, 13);
             this.label5.TabIndex = 35;
-            this.label5.Text = "Hora";
+            this.label5.Text = "Fecha Hora";
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker1.Location = new System.Drawing.Point(90, 47);
+            this.dateTimePicker1.Location = new System.Drawing.Point(90, 33);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowUpDown = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(311, 20);
             this.dateTimePicker1.TabIndex = 0;
             // 
@@ -202,17 +178,16 @@
             // BtnSelectPuerta
             // 
             this.BtnSelectPuerta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSelectPuerta.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnSelectPuerta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnSelectPuerta.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnSelectPuerta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSelectPuerta.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.BtnSelectPuerta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.BtnSelectPuerta.Location = new System.Drawing.Point(326, 19);
             this.BtnSelectPuerta.Name = "BtnSelectPuerta";
             this.BtnSelectPuerta.Size = new System.Drawing.Size(75, 23);
             this.BtnSelectPuerta.TabIndex = 38;
             this.BtnSelectPuerta.Text = "Seleccionar";
             this.BtnSelectPuerta.UseVisualStyleBackColor = false;
-            this.BtnSelectPuerta.Click += new System.EventHandler(this.BtnSelectPuerta_Click);
             // 
             // tbDescripcion
             // 
@@ -228,7 +203,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 57);
+            this.label4.Location = new System.Drawing.Point(6, 80);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 13);
             this.label4.TabIndex = 35;
@@ -238,7 +213,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 80);
+            this.label3.Location = new System.Drawing.Point(6, 53);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 13);
             this.label3.TabIndex = 37;
@@ -276,17 +251,16 @@
             // BtnSelectPersona
             // 
             this.BtnSelectPersona.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSelectPersona.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BtnSelectPersona.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.BtnSelectPersona.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.BtnSelectPersona.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSelectPersona.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.BtnSelectPersona.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(27)))), ((int)(((byte)(146)))));
             this.BtnSelectPersona.Location = new System.Drawing.Point(326, 20);
             this.BtnSelectPersona.Name = "BtnSelectPersona";
             this.BtnSelectPersona.Size = new System.Drawing.Size(75, 23);
             this.BtnSelectPersona.TabIndex = 34;
             this.BtnSelectPersona.Text = "Seleccionar";
             this.BtnSelectPersona.UseVisualStyleBackColor = false;
-            this.BtnSelectPersona.Click += new System.EventHandler(this.BtnSelectPersona_Click);
             // 
             // tbNombre
             // 
@@ -380,6 +354,7 @@
             // 
             // label1
             // 
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
