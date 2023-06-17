@@ -1,5 +1,6 @@
 ﻿using AccessControl.Catalogos;
 using AccessControl.Generic;
+using AccessControl.Models;
 using Middleware;
 using Middleware.Models;
 using System;
@@ -16,6 +17,9 @@ namespace AccessControl
 {
     public partial class Main : Form
     {
+        private int personaSeleccionada;
+        private int puertaSeleccionada;
+
         public Main()
         {
             InitializeComponent();
@@ -47,6 +51,7 @@ namespace AccessControl
                         return;
                     }
 
+                    this.personaSeleccionada = persona.Id;
                     tbNombre.Text = persona.Nombres;
                     tbApellidos.Text = persona.Apellidos;
                     tbCorreo.Text = persona.Correo;
@@ -59,13 +64,29 @@ namespace AccessControl
                 }
             }
         }
+
         private void BtnSelectPuerta_Click(object sender, EventArgs e)
         {
-            using (FCatalogoPuertas DCatalogPuertas = new FCatalogoPuertas)
+            using (FCatalogoPuertas DCatalogPuertas = new FCatalogoPuertas())
             {
                 DCatalogPuertas.modo = ModoAcceso.Seleccion;
 
+                if(DCatalogPuertas.ShowDialog() == DialogResult.OK)
+                {
+                    int puertaSeleccionada = DCatalogPuertas.puertasSeleccion[0];
 
+                    Puerta puerta;
+                    Error error = ServiceProvider.Instance.ServicePuertas.GetPuerta(puertaSeleccionada, out puerta);
+                    if (error != Error.NoError)
+                    {
+                        error.MostrarError();
+                        return;
+                    }
+
+                    this.puertaSeleccionada = puerta.IdPuerta;
+                    tbDescripcion.Text = puerta.Descripcion;
+                    tbObservaciones.Text = puerta.Observaciones;
+                }
             }
         }
 
@@ -142,6 +163,43 @@ namespace AccessControl
             using (FCatalogoGuposPersonas DCatalogoGruposPersonas = new FCatalogoGuposPersonas())
             {
                 DCatalogoGruposPersonas.ShowDialog();
+            }
+        }
+
+        private void BtnProbarAcceso_Click(object sender, EventArgs e)
+        {
+            if(this.personaSeleccionada == 0)
+            {
+                MessageBox.Show("Debe seleccionar una persona...");
+                return;
+            }
+
+            if(this.puertaSeleccionada == 0)
+            {
+                MessageBox.Show("Debe seleccionar una puerta...");
+                return;
+            }
+
+            DateTime Fecha = (DateTime)datePicker.Value;
+            DateTime Hora = (DateTime)timePicker.Value;
+
+            int persona = this.personaSeleccionada;
+            int puerta = this.puertaSeleccionada;
+
+            Error error = ServiceProvider.Instance.ServiceSemanasTipo.IntentarAcceso(persona, puerta, Fecha);
+            if(error == Error.Desconocido)
+            {
+                error.MostrarError();
+                return;
+            }
+
+            if(error == Error.LoginFallido)
+            {
+                MessageBox.Show("Acceso Denegado");
+            }
+            else
+            {
+                MessageBox.Show("Acceso Concedido");
             }
         }
     }

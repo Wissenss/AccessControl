@@ -220,5 +220,84 @@ namespace Middleware
             return Error.NoError;
         }
 
+        public Error GetAgenda()
+        {
+            ServiceProvider.Instance.ServicePuertas.GetGruposDePuertas(out gruposPuerta);
+            ServiceProvider.Instance.ServicePersonas.GetGruposDePersonas(out gruposPersona);
+            List<SemanaTipo> semanas = new List<SemanaTipo>();
+            base.connection.Open();
+            try
+            {
+                string query = "SELECT * FROM semanatipo WHERE";
+                MySqlCommand command = new MySqlCommand(query, base.connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    int idSemana = (int)reader[0];
+                    string Descripcion = (string)reader[1];
+                    SemanaTipo semana = new SemanaTipo(idSemana, Descripcion);
+                    semanas.Add(semana);
+                }
+
+            }
+            catch (Exception) { return Error.Desconocido; }
+            finally { base.connection.Close(); }
+
+            //luego de obtener todas las semanas, buscamos sus derechos registrados
+            for (int i = 0; i < semanas.Count; i++)
+            {
+                GetDerechosPorSemana(semanas[i].IdSemanaTipo, out List<DiaTipo> diasSemana);
+                semanas[i].SetDerechos(diasSemana);
+            }
+            return Error.NoError;
+        }
+
+        public Error IntentarAcceso(int idPersona, int idPuerta, DateTime FechaHora)
+        {
+            base.connection.Open();
+
+            List<int> grupoPuerta;
+            List<int> grupoPersona;
+
+            try
+            {
+                MySqlDataReader reader;
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = base.connection;
+
+                string query = "" +
+                    "SELECT @idPuerta IN (" +
+                    "SELECT idPuerta FROM puerta WHERE GrupoPuerta_idGrupo IN (" +
+                    "SELECT GrupoPuerta_idGrupoPuerta FROM accesossemana WHERE SemanaTipo_idSemanaTipo =(" +
+                    "(SELECT SemanaTipo_idSemanaTipo FROM agenda WHERE FechaInicio = @FechaHora))" +
+                    ") AND @idPersona IN (" +
+                    "SELECT Persona_idPersona FROM detallegrupopersona WHERE idDetalleGrupoPersona IN (" +
+                    "SELECT grupopersona_idGrupoPersona FROM accesossemana WHERE SemanaTipo_idSemanaTipo = (" +
+                    "SELECT SemanaTipo_idSemanaTipo FROM agenda WHERE FechaInicio = @FechaHora)));";
+
+                cmd.CommandText = query;
+
+                cmd.Parameters.AddWithValue("@FechaHora", FechaHora.Date.ToString("yyyy-MM-dd"));
+                cmd.Parameters.AddWithValue("@idPuerta", idPuerta);
+                cmd.Parameters.AddWithValue("@idPersona", idPersona);
+
+                reader = cmd.ExecuteReader();
+
+                if (!reader.HasRows)
+                {
+                    return Error.LoginFallido;
+                }
+            }
+            catch (Exception e)
+            {
+                return Error.Desconocido;
+            }
+            finally
+            {
+                base.connection.Close();
+            }
+
+            return Error.NoError;
+        }
     }
 }
